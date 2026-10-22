@@ -27,15 +27,15 @@ export const playersData = [
     image: '/assets/QASIM.png'
   },
   {
-    id: 'hafiz-tanveer',
+    id: 'joe-crush',
     number: '03',
-    name: 'HAFIZ TANVEER',
-    shortTag: 'TANVEER',
+    name: 'JOE CRUSH',
+    shortTag: 'CRUSH',
     role: 'TEKKEN PLAYER',
     team: 'Team Ashes',
-    accolades: 'International Finalist',
-    badge: 'INTL FINALIST',
-    image: '/assets/TANVER.png'
+    accolades: 'Professional Tekken Athlete',
+    badge: 'TEKKEN ATHLETE',
+    image: '/assets/JOE_CRUSH.png'
   },
   {
     id: 'arslan-ash',
