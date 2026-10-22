@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-black">
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden transform-gpu">
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-center transform-gpu">
         <video
           src="/bg.mp4"
           poster="/bg-poster.jpg"
@@ -31,8 +31,10 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          className="w-full h-full object-cover object-center grayscale"
+          className="w-full h-full object-contain sm:object-cover object-center grayscale"
         />
+        {/* Soft edge blend for mobile landscape framing */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80 sm:opacity-0 pointer-events-none" />
         {/* Dark overlay ensuring perfect contrast matching Screenshot 1 */}
         <div className="absolute inset-0 bg-black/65" />
       </div>

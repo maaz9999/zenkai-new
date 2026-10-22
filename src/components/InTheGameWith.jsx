@@ -16,7 +16,7 @@ export default function InTheGameWith() {
       <div id="in-the-game" className="absolute top-0 pointer-events-none" />
       <AnimatedGradient 
         variant="banner"
-        className="w-full py-12 sm:py-24 md:py-32 px-3.5 sm:px-6 lg:px-8"
+        className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Section Heading matching Screenshot 5 */}
@@ -46,7 +46,7 @@ export default function InTheGameWith() {
 
                   {/* Layer 2: Ghost Typographic Watermark (layered depth behind athlete) */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-                    <span className="font-heading font-black text-[5.5rem] sm:text-[6.5rem] md:text-[7.5rem] tracking-tighter text-white/[0.07] uppercase leading-none transform translate-y-1 group-hover:scale-105 group-hover:text-white/[0.12] transition-all duration-700 ease-out">
+                    <span className="font-heading font-black text-[4.5rem] sm:text-[6.5rem] md:text-[7.5rem] tracking-tighter text-white/[0.07] uppercase leading-none transform translate-y-2 sm:translate-y-1 group-hover:scale-105 group-hover:text-white/[0.12] transition-all duration-700 ease-out">
                       {player.shortTag || player.name.split(' ')[0]}
                     </span>
                   </div>
@@ -59,7 +59,7 @@ export default function InTheGameWith() {
                     }}
                   />
 
-                  {/* Layer 4: Athlete Cutout */}
+                  {/* Layer 4: Athlete Cutout with generous mobile headroom */}
                   {player.image ? (
                     <img
                       src={player.image}
@@ -71,7 +71,7 @@ export default function InTheGameWith() {
                           e.currentTarget.src = player.image.replace('/assets/', '/media/');
                         }
                       }}
-                      className="w-full h-full object-cover object-center scale-[1.35] translate-y-4 sm:translate-y-6 md:translate-y-7 origin-[center_40%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10"
+                      className="w-full h-full object-cover object-center scale-[1.18] sm:scale-[1.32] md:scale-[1.35] translate-y-8 sm:translate-y-6 md:translate-y-7 origin-[center_45%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.25] sm:group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10"
                     />
                   ) : (
                     <div className="w-full h-full bg-[#0c0a12]" />
