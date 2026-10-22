@@ -33,13 +33,18 @@ export default function InTheGameWith() {
                 key={player.id} 
                 className="group flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1"
               >
-                {/* Rectangular image box matching Screenshot 5 with studio depth */}
-                <div className="w-full aspect-[16/10] bg-[#0c0514] rounded-none overflow-hidden relative shadow-[0_15px_35px_rgba(0,0,0,0.55)] border border-white/10 group-hover:border-white/25 transition-all duration-300">
-                  {/* Subtle ambient studio spotlight behind athlete (Option 1) */}
+                {/* Rectangular image box with Option 2: Chroma-Adaptive Team Aura */}
+                <div 
+                  className="w-full aspect-[16/10] bg-[#07050b] rounded-none overflow-hidden relative shadow-[0_15px_35px_rgba(0,0,0,0.6)] border transition-all duration-300 group-hover:shadow-[0_20px_45px_rgba(0,0,0,0.85)] group-hover:-translate-y-0.5"
+                  style={{
+                    borderColor: player.borderColor || 'rgba(255, 255, 255, 0.12)'
+                  }}
+                >
+                  {/* Chroma-Adaptive signature team halo */}
                   <div 
-                    className="absolute inset-0 opacity-50 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none"
+                    className="absolute inset-0 opacity-70 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none"
                     style={{
-                      background: 'radial-gradient(circle at 50% 52%, rgba(255, 115, 72, 0.24) 0%, rgba(140, 31, 168, 0.16) 45%, transparent 75%)'
+                      background: player.bgGlow || 'radial-gradient(circle at 50% 50%, rgba(255, 115, 72, 0.24) 0%, transparent 75%)'
                     }}
                   />
 
@@ -57,7 +62,7 @@ export default function InTheGameWith() {
                       className="w-full h-full object-cover object-center scale-[1.35] translate-y-4 sm:translate-y-6 md:translate-y-7 origin-[center_40%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10"
                     />
                   ) : (
-                    <div className="w-full h-full bg-[#0c0514]" />
+                    <div className="w-full h-full bg-[#07050b]" />
                   )}
                 </div>
 
