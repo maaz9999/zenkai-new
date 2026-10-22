@@ -40,7 +40,7 @@ export default function InTheGameWith() {
                       src={player.image}
                       alt={player.name}
                       loading="lazy"
-                      className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
+                      className="w-full h-full object-cover object-center opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
                     />
                   ) : (
                     <div className="w-full h-full bg-black" />
