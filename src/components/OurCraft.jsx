@@ -27,12 +27,24 @@ export default function OurCraft() {
   // Close service panel on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && selectedService) {
+      if (e.key === 'Escape') {
         setSelectedService(null);
+        setIsFolderOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Lock body scroll on mobile while service modal popup is open
+  useEffect(() => {
+    if (selectedService && typeof window !== 'undefined' && window.innerWidth < 1024) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
   }, [selectedService]);
 
   const handleSelectService = (value) => {
@@ -53,6 +65,100 @@ export default function OurCraft() {
   const handleCloseService = () => {
     setSelectedService(null);
   };
+
+  const handleFolderClose = () => {
+    setIsFolderOpen(false);
+    setSelectedService(null);
+  };
+
+  const renderServiceCard = (service) => (
+    <div className="relative w-full max-w-md lg:max-w-[480px] xl:max-w-[520px] mx-auto lg:ml-auto rounded-3xl bg-[#0c0514]/95 backdrop-blur-2xl border border-white/[0.14] p-5 sm:p-6 lg:p-7 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden text-white transition-all flex flex-col justify-between h-full min-h-[500px] sm:min-h-[560px] lg:min-h-[600px] xl:min-h-[630px]">
+      
+      {/* Ultra-subtle gradient highlight along top edge */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-transparent opacity-90" />
+      
+      {/* Soft ambient atmospheric glow behind card */}
+      <div 
+        className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-[70px] opacity-35 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #DA2086 0%, #8C1FA8 60%, transparent 100%)' }}
+      />
+      <div 
+        className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full blur-[70px] opacity-25 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #FF7348 0%, #FFC15C 50%, transparent 100%)' }}
+      />
+      <div className="grain-overlay opacity-20 pointer-events-none" />
+
+      {/* Top Docket Bar: Discipline Number + Tag & Clean Close Button */}
+      <div className="flex items-center justify-between relative z-10 pb-1">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/10">
+          <span className="font-mono text-xs font-black text-[#FF7348]">
+            {service.number || '01'}
+          </span>
+          <span className="w-1 h-1 rounded-full bg-white/40" />
+          <span className="text-[11px] font-mono tracking-widest uppercase text-white/80 font-bold">
+            {service.tag}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleCloseService}
+          className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.2] active:scale-95 border border-white/15 text-white/80 hover:text-white transition-all cursor-pointer shadow-sm"
+          aria-label="Close service details"
+          title="Close"
+        >
+          <span className="text-[11px] font-bold tracking-wider uppercase">Close</span>
+          <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-200" />
+        </button>
+      </div>
+
+      {/* Featured Visual Media Preview Window */}
+      {service.previewImage && (
+        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 my-3.5 group/media shadow-[0_12px_32px_rgba(0,0,0,0.7)] bg-black/50 z-10 shrink-0">
+          <img 
+            src={service.previewImage} 
+            alt={service.title} 
+            className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/media:scale-105" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
+          
+          {/* Badge on visual showcase */}
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[10px] font-mono font-extrabold uppercase tracking-widest text-white/95">
+            {service.badge || 'STUDIO SPEC'}
+          </span>
+        </div>
+      )}
+
+      {/* Service Header & Description */}
+      <div className="relative z-10 text-left my-1">
+        <h3 className="font-heading font-black text-2xl sm:text-3xl xl:text-4xl uppercase tracking-tight text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
+          {service.titleFirstLine} {service.titleSecondLine}
+        </h3>
+        <p className="text-white/75 text-xs sm:text-[13.5px] leading-relaxed font-normal mt-2">
+          {service.description}
+        </p>
+      </div>
+
+      {/* Deliverables & Scope — Modern Glowing Chip Pills */}
+      <div className="pt-3.5 border-t border-white/[0.08] relative z-10 text-left mt-2">
+        <div className="text-[10px] font-mono uppercase tracking-widest text-[#FFC15C] font-bold mb-2.5">
+          Scope & Production Deliverables
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {(service.scopePills || service.details).map((pill, idx) => (
+            <span 
+              key={idx} 
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.09] border border-white/[0.12] text-xs font-semibold text-white/90 transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] shrink-0" />
+              <span>{pill}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
 
   return (
     <section 
@@ -125,7 +231,7 @@ export default function OurCraft() {
                   </span>
                   <button
                     type="button"
-                    onClick={() => setIsFolderOpen(false)}
+                    onClick={handleFolderClose}
                     className="ml-1 sm:ml-1.5 px-2 py-0.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-white/20 cursor-pointer shadow-sm shrink-0"
                     aria-label="Close folder"
                     title="Close folder"
@@ -171,7 +277,12 @@ export default function OurCraft() {
                   activeValue={selectedService?.slug || selectedService?.id}
                   compact={Boolean(selectedService)}
                   onSelect={handleSelectService}
-                  onOpenChange={(open) => setIsFolderOpen(open)}
+                  onOpenChange={(open) => {
+                    setIsFolderOpen(open);
+                    if (!open) {
+                      setSelectedService(null);
+                    }
+                  }}
                   folderColor="#35064A"
                   frontColor="#68118A"
                   paperColor="#FFFFFF"
@@ -195,100 +306,30 @@ export default function OurCraft() {
 
           </div>
 
-          {/* RIGHT SIDE: Visual Studio Showcase Dossier — Matching Section Height & High-End Studio Aesthetic */}
+          {/* DESKTOP (lg and above): Visual Studio Showcase Dossier in Split Side-by-Side Layout */}
           {selectedService && (
-            <div className="w-full lg:col-span-6 flex justify-center lg:justify-end mt-6 lg:mt-0 animate-in fade-in slide-in-from-right-8 duration-500 h-full">
-              <div className="relative w-full max-w-md lg:max-w-[480px] xl:max-w-[520px] ml-auto rounded-3xl bg-[#0c0514]/95 backdrop-blur-2xl border border-white/[0.14] p-5 sm:p-6 lg:p-7 shadow-[0_25px_70px_rgba(0,0,0,0.95)] overflow-hidden text-white transition-all flex flex-col justify-between h-full min-h-[540px] sm:min-h-[580px] lg:min-h-[600px] xl:min-h-[630px]">
-                
-                {/* Ultra-subtle gradient highlight along top edge */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-transparent opacity-90" />
-                
-                {/* Soft ambient atmospheric glow behind card */}
-                <div 
-                  className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-[70px] opacity-35 pointer-events-none"
-                  style={{ background: 'radial-gradient(circle, #DA2086 0%, #8C1FA8 60%, transparent 100%)' }}
-                />
-                <div 
-                  className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full blur-[70px] opacity-25 pointer-events-none"
-                  style={{ background: 'radial-gradient(circle, #FF7348 0%, #FFC15C 50%, transparent 100%)' }}
-                />
-                <div className="grain-overlay opacity-20 pointer-events-none" />
-
-                {/* Top Docket Bar: Discipline Number + Tag & Clean Close Button */}
-                <div className="flex items-center justify-between relative z-10 pb-1">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/10">
-                    <span className="font-mono text-xs font-black text-[#FF7348]">
-                      {selectedService.number || '01'}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-white/40" />
-                    <span className="text-[11px] font-mono tracking-widest uppercase text-white/80 font-bold">
-                      {selectedService.tag}
-                    </span>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleCloseService}
-                    className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.15] border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer"
-                    aria-label="Close service details"
-                    title="Close"
-                  >
-                    <span className="text-[11px] font-bold tracking-wider uppercase">Close</span>
-                    <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-200" />
-                  </button>
-                </div>
-
-                {/* Featured Visual Media Preview Window */}
-                {selectedService.previewImage && (
-                  <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/15 my-3.5 group/media shadow-[0_12px_32px_rgba(0,0,0,0.7)] bg-black/50 z-10 shrink-0">
-                    <img 
-                      src={selectedService.previewImage} 
-                      alt={selectedService.title} 
-                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/media:scale-105" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
-                    
-                    {/* Badge on visual showcase */}
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[10px] font-mono font-extrabold uppercase tracking-widest text-white/95">
-                      {selectedService.badge || 'STUDIO SPEC'}
-                    </span>
-                  </div>
-                )}
-
-                {/* Service Header & Description */}
-                <div className="relative z-10 text-left my-1">
-                  <h3 className="font-heading font-black text-2xl sm:text-3xl xl:text-4xl uppercase tracking-tight text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
-                    {selectedService.titleFirstLine} {selectedService.titleSecondLine}
-                  </h3>
-                  <p className="text-white/75 text-xs sm:text-[13.5px] leading-relaxed font-normal mt-2">
-                    {selectedService.description}
-                  </p>
-                </div>
-
-                {/* Deliverables & Scope — Modern Glowing Chip Pills */}
-                <div className="pt-3.5 border-t border-white/[0.08] relative z-10 text-left mt-2">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-[#FFC15C] font-bold mb-2.5">
-                    Scope & Production Deliverables
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {(selectedService.scopePills || selectedService.details).map((pill, idx) => (
-                      <span 
-                        key={idx} 
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.09] border border-white/[0.12] text-xs font-semibold text-white/90 transition-all"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] shrink-0" />
-                        <span>{pill}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
+            <div className="hidden lg:flex w-full lg:col-span-6 justify-center lg:justify-end mt-6 lg:mt-0 animate-in fade-in slide-in-from-right-8 duration-500 h-full">
+              {renderServiceCard(selectedService)}
             </div>
           )}
 
         </div>
       </div>
+
+      {/* MOBILE POPUP MODAL (Opens right on top so it is immediately visible on phone) */}
+      {selectedService && (
+        <div 
+          className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-5 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={handleCloseService}
+        >
+          <div 
+            className="w-full max-w-md max-h-[85vh] sm:max-h-[90vh] overflow-y-auto rounded-3xl animate-in zoom-in-95 duration-200 shadow-[0_25px_70px_rgba(0,0,0,0.95)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {renderServiceCard(selectedService)}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
