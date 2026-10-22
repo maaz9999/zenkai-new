@@ -22,10 +22,11 @@ import {
   Crown,
   Layers,
   MessageCircle,
-  Flame,
   User,
   AtSign,
-  PhoneCall
+  PhoneCall,
+  Zap,
+  Award
 } from 'lucide-react';
 
 const SERVICES_OPTIONS = [
@@ -33,37 +34,34 @@ const SERVICES_OPTIONS = [
     id: 'Tournament Key Art & Posters',
     title: 'Tournament Key Art & Posters',
     desc: 'Main visual branding, stage backdrops & event graphics',
-    icon: Trophy,
-    popular: true
+    icon: Trophy
   },
   {
-    id: 'Video Editing (Reels & Long Form)',
+    id: 'Video Editing & Motion',
     title: 'Video Editing & Motion',
     desc: 'High-retention TikTok/Reels & YouTube long-form edits',
-    icon: Video,
-    popular: true
+    icon: Video
   },
   {
-    id: 'YouTube Thumbnails & Packaging',
+    id: 'Thumbnails & Content Packaging',
     title: 'Thumbnails & Content Packaging',
     desc: 'High-CTR thumbnail packages & channel assets',
-    icon: ImageIcon,
-    popular: true
+    icon: ImageIcon
   },
   {
-    id: '2D Illustration & Merch Design',
+    id: '2D Illustration & Merch',
     title: '2D Illustration & Merch',
     desc: 'Custom character art, apparel & fan collection merchandise',
     icon: Palette
   },
   {
-    id: 'Twitch Broadcast Packaging & HUD',
+    id: 'Twitch Broadcast & Stream HUD',
     title: 'Twitch Broadcast & Stream HUD',
     desc: 'Animated overlays, stinger transitions & custom stickers',
     icon: Tv
   },
   {
-    id: 'Player Management & Branding',
+    id: 'Player Management & Identity',
     title: 'Player Management & Identity',
     desc: 'Pro player representation, press kits & jersey identity',
     icon: Crown
@@ -89,7 +87,6 @@ export default function StartProjectPage() {
     name: '',
     email: '',
     handleOrNumber: '',
-    contactChannel: 'whatsapp',
     service: 'Tournament Key Art & Posters',
     budget: '$500 – $1,500',
     message: ''
@@ -126,7 +123,6 @@ export default function StartProjectPage() {
       name: formData.name,
       email: formData.email,
       direct_contact: formData.handleOrNumber || 'Not provided',
-      preferred_channel: formData.contactChannel,
       service_required: formData.service,
       budget_range: formData.budget,
       project_brief: formData.message,
@@ -157,7 +153,7 @@ export default function StartProjectPage() {
       const mailtoUrl = `mailto:team@zenkai.media?subject=${encodeURIComponent(
         `Project Inquiry: ${formData.name} - ${formData.service}`
       )}&body=${encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone / Discord: ${formData.handleOrNumber}\nPreferred Channel: ${formData.contactChannel}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Brief:\n${formData.message}`
+        `Name: ${formData.name}\nEmail: ${formData.email}\nDirect Contact: ${formData.handleOrNumber}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Brief:\n${formData.message}`
       )}`;
       window.location.href = mailtoUrl;
       setStatus('success');
@@ -169,7 +165,6 @@ export default function StartProjectPage() {
       name: '',
       email: '',
       handleOrNumber: '',
-      contactChannel: 'whatsapp',
       service: 'Tournament Key Art & Posters',
       budget: '$500 – $1,500',
       message: ''
@@ -184,7 +179,7 @@ export default function StartProjectPage() {
 
       {/* Atmospheric Studio Ambient Background */}
       <div 
-        className="fixed -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[550px] rounded-full blur-[140px] opacity-25 pointer-events-none z-0"
+        className="fixed -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[550px] rounded-full blur-[140px] opacity-20 pointer-events-none z-0"
         style={{ background: 'radial-gradient(circle, #DA2086 0%, #FF7348 40%, #8C1FA8 80%, transparent 100%)' }}
       />
       <div 
@@ -193,34 +188,22 @@ export default function StartProjectPage() {
       />
       <div className="grain-overlay opacity-25 pointer-events-none" />
 
-      {/* Main Container */}
-      <main className="relative z-10 flex-1 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1340px] mx-auto w-full">
-        
-        {/* Back Navigation Bar */}
-        <div className="mb-6 sm:mb-8 flex items-center justify-between">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-xs font-mono uppercase tracking-widest text-white/70 hover:text-white transition-all group backdrop-blur-sm shadow-sm"
-          >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Showcase</span>
-          </Link>
+      {/* Deep Left "Back to Showcase" Navigation - positioned on the far left side */}
+      <div className="relative z-20 w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-24 sm:pt-28 md:pt-32 pb-2">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 hover:border-[#FF7348]/40 text-xs font-mono uppercase tracking-widest text-white/70 hover:text-white transition-all group backdrop-blur-md shadow-lg hover:shadow-[0_0_20px_rgba(255,115,72,0.2)]"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#FF7348] group-hover:-translate-x-1.5 transition-transform" />
+          <span>Back to Showcase</span>
+        </Link>
+      </div>
 
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[10px] font-bold tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>2026 CALENDAR: ACCEPTING SELECT COMMISSIONS</span>
-          </div>
-        </div>
+      {/* Main Container */}
+      <main className="relative z-10 flex-1 pt-4 sm:pt-6 md:pt-8 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1360px] mx-auto w-full">
 
         {/* Hero Title Section */}
-        <div className="text-left mb-8 sm:mb-12 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 mb-3 sm:mb-4">
-            <Flame className="w-3.5 h-3.5 text-[#FF7348]" />
-            <span className="text-white/80 text-[11px] font-mono font-bold tracking-widest uppercase">
-              STUDIO INQUIRY & BRIEF DESK
-            </span>
-          </div>
-
+        <div className="text-left mb-10 sm:mb-14 md:mb-16">
           <h1 className="font-heading font-black text-white text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.92] drop-shadow-md">
             <span>START YOUR </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB848] via-[#FF7348] via-[#DA2086] to-[#A8319B]">
@@ -228,8 +211,8 @@ export default function StartProjectPage() {
             </span>
           </h1>
 
-          <p className="mt-3.5 sm:mt-5 text-white/75 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
-            Partner with the creative studio trusted by world champions and premier esports events. Fill out your project brief below, or message our team directly on WhatsApp for immediate discussion.
+          <p className="mt-4 sm:mt-5 text-white/75 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
+            Partner with the creative studio trusted by world champions and tier-1 esports events. Fill out your project brief below, or contact our creative directors directly on WhatsApp for immediate discussion.
           </p>
         </div>
 
@@ -242,7 +225,7 @@ export default function StartProjectPage() {
           <div className="lg:col-span-5 space-y-5">
             
             {/* VIP WhatsApp Executive Card */}
-            <div className="relative rounded-3xl bg-[#0a0712]/90 border border-emerald-500/35 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden group">
+            <div className="relative rounded-3xl bg-[#090614]/95 border border-emerald-500/30 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden group">
               {/* Subtle top specular emerald rim */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
               <div className="absolute -top-16 -right-16 w-44 h-44 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -250,7 +233,7 @@ export default function StartProjectPage() {
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-bold tracking-widest uppercase flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  INSTANT RESPONSE DESK
+                  DIRECT WHATSAPP DESK
                 </span>
                 <span className="text-[11px] text-white/40 font-mono">&lt; 15 min reply</span>
               </div>
@@ -261,14 +244,14 @@ export default function StartProjectPage() {
                 </div>
                 <div>
                   <h2 className="font-heading font-black text-white text-xl sm:text-2xl uppercase tracking-wide">
-                    DIRECT WHATSAPP
+                    FAST TRACK ACCESS
                   </h2>
-                  <p className="text-white/60 text-xs">Active Daily · Global Commissions</p>
+                  <p className="text-white/60 text-xs">Direct Line to Creative Leadership</p>
                 </div>
               </div>
 
               <p className="text-white/70 text-xs sm:text-sm mt-3 leading-relaxed">
-                Need urgent tournament key art, immediate design feedback, or prefer sending quick voice notes and reference links? Message our creative directors directly.
+                Need urgent tournament key art, immediate design feedback, or prefer sending quick voice notes and reference links? Reach us directly on WhatsApp.
               </p>
 
               {/* Number display with 1-click Copy button */}
@@ -313,7 +296,7 @@ export default function StartProjectPage() {
             </div>
 
             {/* Direct Studio Email Card */}
-            <div className="rounded-3xl bg-[#0c0514]/90 border border-white/10 p-5 sm:p-6 backdrop-blur-xl shadow-lg">
+            <div className="rounded-3xl bg-[#090614]/90 border border-white/10 p-5 sm:p-6 backdrop-blur-xl shadow-lg">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FF7348]">
@@ -323,7 +306,7 @@ export default function StartProjectPage() {
                     <h3 className="font-heading font-black text-white text-base sm:text-lg uppercase tracking-wide">
                       STUDIO INBOX
                     </h3>
-                    <p className="text-white/50 text-[11px] font-mono">Formal RFPs & Contracts</p>
+                    <p className="text-white/50 text-[11px] font-mono">Formal RFPs & Briefs</p>
                   </div>
                 </div>
 
@@ -353,7 +336,7 @@ export default function StartProjectPage() {
                 >
                   team@zenkai.media
                 </a>
-                <span className="text-[10px] text-white/40 font-mono">24h turnaround</span>
+                <span className="text-[10px] text-white/40 font-mono">Under 24h turnaround</span>
               </div>
             </div>
 
@@ -371,7 +354,7 @@ export default function StartProjectPage() {
                 <span>Strict confidentiality & Mutual NDA protected</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Sparkles className="w-4 h-4 text-[#DA2086] shrink-0" />
+                <Award className="w-4 h-4 text-[#DA2086] shrink-0" />
                 <span>Visual production for 5x EVO & World Champions</span>
               </div>
             </div>
@@ -382,7 +365,7 @@ export default function StartProjectPage() {
               RIGHT COLUMN: Interactive Brief Form (7 cols)
               ========================================================================= */}
           <div className="lg:col-span-7">
-            <div className="relative rounded-3xl bg-[#0c0514]/95 border border-white/15 p-6 sm:p-8 md:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl overflow-hidden">
+            <div className="relative rounded-3xl bg-[#0a0515]/95 border border-white/15 p-6 sm:p-8 md:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl overflow-hidden">
               
               {/* Top ambient highlight */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-[#8C1FA8] opacity-90" />
@@ -440,10 +423,6 @@ export default function StartProjectPage() {
                         Delivered directly to <span className="text-[#FFB848] font-mono">team@zenkai.media</span>
                       </p>
                     </div>
-
-                    <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono uppercase text-white/50 tracking-wider">
-                      STEP 1 OF 1
-                    </span>
                   </div>
 
                   {/* Section 1: Contact Information */}
@@ -486,48 +465,20 @@ export default function StartProjectPage() {
                       </div>
                     </div>
 
-                    {/* WhatsApp/Discord & Preferred Channel */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                          WhatsApp Number / Discord Handle
-                        </label>
-                        <div className="relative">
-                          <PhoneCall className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                          <input
-                            type="text"
-                            value={formData.handleOrNumber}
-                            onChange={(e) => setFormData({ ...formData, handleOrNumber: e.target.value })}
-                            placeholder="e.g. +92 300 1234567 or @discord"
-                            className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                          Preferred Reply Method
-                        </label>
-                        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/10">
-                          {[
-                            { id: 'whatsapp', label: 'WhatsApp' },
-                            { id: 'email', label: 'Email' },
-                            { id: 'discord', label: 'Discord' }
-                          ].map((channel) => (
-                            <button
-                              key={channel.id}
-                              type="button"
-                              onClick={() => setFormData({ ...formData, contactChannel: channel.id })}
-                              className={`py-2 px-2 text-center rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                                formData.contactChannel === channel.id
-                                  ? 'bg-[#FF7348] text-white shadow-sm'
-                                  : 'text-white/60 hover:text-white hover:bg-white/5'
-                              }`}
-                            >
-                              {channel.label}
-                            </button>
-                          ))}
-                        </div>
+                    {/* WhatsApp or Discord Direct Contact (Full width clean input) */}
+                    <div>
+                      <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
+                        WhatsApp Number or Discord Handle <span className="text-white/40 font-normal lowercase">(optional for fast messaging)</span>
+                      </label>
+                      <div className="relative">
+                        <PhoneCall className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <input
+                          type="text"
+                          value={formData.handleOrNumber}
+                          onChange={(e) => setFormData({ ...formData, handleOrNumber: e.target.value })}
+                          placeholder="e.g. +92 300 1234567 or @discordtag"
+                          className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
+                        />
                       </div>
                     </div>
                   </div>
