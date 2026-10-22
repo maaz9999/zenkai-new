@@ -66,37 +66,37 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pt-2.5 sm:pt-4 md:pt-5 px-2.5 sm:px-6 pointer-events-none transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 pt-2 sm:pt-3 md:pt-3.5 px-2.5 sm:px-6 pointer-events-none transition-all duration-300">
       <div className="max-w-5xl mx-auto pointer-events-auto">
         {/* Gradient pill container */}
         <AnimatedGradient 
           variant="pill"
           rounded="rounded-full"
-          className="w-full h-12 sm:h-14 md:h-16 shadow-[0_12px_40px_rgba(0,0,0,0.7)] border border-white/20 backdrop-blur-md"
+          className="w-full h-[42px] sm:h-[48px] md:h-[52px] shadow-[0_10px_35px_rgba(0,0,0,0.65)] border border-white/20 backdrop-blur-md"
         >
-          <div className="w-full h-full flex items-center justify-between px-2.5 sm:px-6 md:px-8">
+          <div className="w-full h-full flex items-center justify-between px-2.5 sm:px-5 md:px-7">
             {/* Logo aligned left */}
             <Link 
               to="/" 
-              className="flex items-center gap-2 sm:gap-3 group transition-transform duration-200 hover:scale-[1.02] shrink-0"
+              className="flex items-center gap-2 sm:gap-2.5 group transition-transform duration-200 hover:scale-[1.02] shrink-0"
               aria-label="ZENKAI MEDIA Home"
             >
               {/* Official Zenkai geometric emblem */}
               <img 
                 src="/assets/zenkai-emblem.png" 
                 alt="Zenkai Media Emblem" 
-                className="h-6 sm:h-8 md:h-10 w-auto object-contain shrink-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" 
+                className="h-5 sm:h-6.5 md:h-7.5 w-auto object-contain shrink-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" 
               />
 
               {/* Bold Brand Text */}
-              <span className="font-brand font-black text-white tracking-[-0.02em] text-sm sm:text-base md:text-xl uppercase select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] flex items-center">
+              <span className="font-brand font-black text-white tracking-[-0.02em] text-xs sm:text-sm md:text-base uppercase select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] flex items-center">
                 <span>ZENKAI</span>
                 <span className="hidden xs:inline font-bold text-white/90 ml-1.5 tracking-normal">MEDIA</span>
               </span>
             </Link>
 
             {/* Navbar on the right side: Portfolio, Services, Contact */}
-            <nav className="flex items-center gap-0.5 xs:gap-1 sm:gap-2 md:gap-3 shrink-0" aria-label="Main Navigation">
+            <nav className="flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2 shrink-0" aria-label="Main Navigation">
               {navItems.map((item) => {
                 const isActive = activeNav === item.key;
                 return (
@@ -104,7 +104,7 @@ export default function Header() {
                     key={item.key}
                     href={`/#${item.id}`}
                     onClick={(e) => handleNavClick(e, item.id, item.key)}
-                    className={`group flex items-center px-2 xs:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider transition-all select-none cursor-pointer ${
+                    className={`group flex items-center px-2 xs:px-2.5 sm:px-3.5 py-0.5 sm:py-1 md:py-1.5 rounded-full text-[10.5px] xs:text-[11px] sm:text-xs md:text-xs font-bold uppercase tracking-wider transition-all select-none cursor-pointer ${
                       isActive
                         ? 'bg-white/25 hover:bg-white/30 text-white border border-white/30 shadow-[0_2px_12px_rgba(0,0,0,0.25)]'
                         : 'text-white/80 hover:text-white hover:bg-white/15 border border-transparent active:scale-95'

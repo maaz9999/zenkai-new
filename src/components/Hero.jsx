@@ -41,7 +41,7 @@ export default function Hero() {
       <Header />
 
       {/* Hero Central Typography & CTA */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-3 sm:px-6 pt-26 sm:pt-32 pb-12 sm:pb-16 text-center max-w-6xl mx-auto">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-3 sm:px-6 pt-22 sm:pt-28 pb-12 sm:pb-16 text-center max-w-6xl mx-auto">
         {/* Kicker */}
         <p className="text-white text-base sm:text-xl md:text-2xl font-normal tracking-normal mb-2.5 sm:mb-4">
           Esports Creative Studio

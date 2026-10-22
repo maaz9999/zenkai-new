@@ -139,7 +139,7 @@ export default function ProjectDetailPage() {
       {/* =========================================================================
           MAIN PRESENTATION AREA
           ========================================================================= */}
-      <main className="relative z-10 max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-24">
+      <main className="relative z-10 max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 pb-24">
         {project.slug === 'baaz-merch' ? (
           <BaazCaseStudy
             project={project}
