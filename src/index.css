@@ -14,6 +14,8 @@
 html {
   scroll-behavior: smooth;
   background-color: #000000;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -23,6 +25,9 @@ body {
   color: #FFFFFF;
   font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -62,33 +67,73 @@ h1, h2, h3, h4, .font-heading {
 
 /* GPU-accelerated organic gradient animations matching reference */
 @keyframes organicFlow1 {
-  0% { transform: translate(0%, 0%) scale(1) rotate(0deg); }
-  50% { transform: translate(8%, 6%) scale(1.12) rotate(180deg); }
-  100% { transform: translate(0%, 0%) scale(1) rotate(360deg); }
+  0% { transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.12) rotate(180deg); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1) rotate(360deg); }
 }
 
 @keyframes organicFlow2 {
-  0% { transform: translate(0%, 0%) scale(1.05) rotate(0deg); }
-  50% { transform: translate(-10%, -6%) scale(0.95) rotate(-180deg); }
-  100% { transform: translate(0%, 0%) scale(1.05) rotate(-360deg); }
+  0% { transform: translate3d(0%, 0%, 0) scale(1.05) rotate(0deg); }
+  50% { transform: translate3d(-10%, -6%, 0) scale(0.95) rotate(-180deg); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1.05) rotate(-360deg); }
 }
 
 @keyframes organicFlow3 {
-  0% { transform: translate(0%, 0%) scale(1); }
-  50% { transform: translate(6%, -10%) scale(1.18); }
-  100% { transform: translate(0%, 0%) scale(1); }
+  0% { transform: translate3d(0%, 0%, 0) scale(1); }
+  50% { transform: translate3d(6%, -10%, 0) scale(1.18); }
+  100% { transform: translate3d(0%, 0%, 0) scale(1); }
 }
 
 .animate-organic-1 {
   animation: organicFlow1 24s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-organic-2 {
   animation: organicFlow2 28s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-organic-3 {
   animation: organicFlow3 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Mobile hardware acceleration & performance overrides for 60 FPS */
+@media (max-width: 768px) {
+  /* Disable expensive SVG turbulence filter on mobile screens to free up GPU */
+  .grain-overlay {
+    display: none !important;
+  }
+
+  /* Clamp large CSS blurs to 24px-30px on mobile to prevent GPU tile rasterization lag */
+  .blur-\[70px\],
+  .blur-\[75px\],
+  .blur-\[80px\],
+  .blur-\[90px\],
+  .blur-\[95px\],
+  .blur-\[105px\],
+  .blur-\[110px\],
+  .blur-\[120px\] {
+    filter: blur(26px) !important;
+  }
+
+  /* Relax animation timing on mobile GPUs */
+  .animate-organic-1 {
+    animation-duration: 36s !important;
+  }
+  .animate-organic-2 {
+    animation-duration: 42s !important;
+  }
+  .animate-organic-3 {
+    animation-duration: 30s !important;
+  }
+  .animate-craft-motion-1,
+  .animate-craft-motion-2,
+  .animate-craft-motion-3,
+  .animate-craft-motion-4 {
+    animation: none !important;
+  }
 }
 
 /* Dedicated craft section motion gradient animations */
@@ -185,12 +230,13 @@ h1, h2, h3, h4, .font-heading {
 
 /* Marquee continuous right-to-left loop */
 @keyframes marqueeScroll {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee-infinite {
   animation: marqueeScroll 65s linear infinite;
+  will-change: transform;
 }
 
 .marquee-wrapper:hover .animate-marquee-infinite {

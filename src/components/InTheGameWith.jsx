@@ -16,12 +16,12 @@ export default function InTheGameWith() {
       <div id="in-the-game" className="absolute top-0 pointer-events-none" />
       <AnimatedGradient 
         variant="banner"
-        className="w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8"
+        className="w-full py-12 sm:py-24 md:py-32 px-3.5 sm:px-6 lg:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Section Heading matching Screenshot 5 */}
-          <div className="text-center mb-10 sm:mb-14 md:mb-16">
-            <h2 className="font-heading font-black text-white text-5xl sm:text-7xl md:text-8xl tracking-tight uppercase drop-shadow-md">
+          <div className="text-center mb-8 sm:mb-14 md:mb-16">
+            <h2 className="font-heading font-black text-white text-3xl xs:text-5xl sm:text-7xl md:text-8xl tracking-tight uppercase drop-shadow-md">
               IN THE GAME WITH
             </h2>
           </div>

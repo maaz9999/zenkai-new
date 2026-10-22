@@ -5,11 +5,11 @@ import './FolderFloat.css';
 const { Bodies, Body, Composite, Engine } = Matter;
 
 const DEFAULT_ITEMS = [
-  { label: 'Player Management', value: 'player-management' },
-  { label: 'Graphics (Thumbnails / Posters / Stream Assets)', value: 'graphics' },
-  { label: '2D Illustration', value: '2d-illustration' },
-  { label: 'Video Editing (Long Form / Short Form)', value: 'video-editing' },
-  { label: 'Social Media Management', value: 'social-media-management' }
+  { label: 'Player Management', shortLabel: 'Player Management', value: 'player-management' },
+  { label: 'Graphics (Thumbnails / Posters / Stream Assets)', shortLabel: 'Graphics & Stream Assets', value: 'graphics' },
+  { label: '2D Illustration', shortLabel: '2D Illustration', value: '2d-illustration' },
+  { label: 'Video Editing (Long Form / Short Form)', shortLabel: 'Video Editing', value: 'video-editing' },
+  { label: 'Social Media Management', shortLabel: 'Social Media Management', value: 'social-media-management' }
 ];
 
 const PAD = 28;
@@ -49,15 +49,15 @@ const layout = (list, spread, lift, tilt, sizes, compact = false) => {
     if (isMobile) {
       return [
         // 0: 'Player management'
-        { x: -Math.min(75, spread * 0.4), y: -lift - 55, r: -2.5 },
-        // 1: 'Graphics (thumbnail/poster/streaming assets)'
-        { x: 0,                           y: -lift - 165, r: 0.5 },
+        { x: -30, y: -lift - 45, r: -1.5 },
+        // 1: 'Graphics & Stream Assets'
+        { x: 0,   y: -lift - 115, r: 0 },
         // 2: '2D illustration'
-        { x: Math.min(75, spread * 0.4),  y: -lift - 105, r: 2.5 },
-        // 3: 'Video editing (long form/short form)'
-        { x: -Math.min(55, spread * 0.3), y: -lift - 235, r: -2 },
+        { x: 30,  y: -lift - 75, r: 1.5 },
+        // 3: 'Video editing'
+        { x: -25, y: -lift - 170, r: -1 },
         // 4: 'Social media management'
-        { x: Math.min(55, spread * 0.3),  y: -lift - 300, r: 2 }
+        { x: 25,  y: -lift - 225, r: 1 }
       ];
     }
 
@@ -175,9 +175,9 @@ export default function FolderFloat({
     const handleResize = () => {
       if (typeof window === 'undefined') return;
       if (window.innerWidth < 640) {
-        setDynamicSpread(Math.min(170, Math.floor(window.innerWidth / 2 - 20)));
+        setDynamicSpread(Math.min(130, Math.floor(window.innerWidth / 2 - 30)));
       } else if (window.innerWidth < 1024) {
-        setDynamicSpread(Math.min(320, Math.floor(window.innerWidth / 2 - 32)));
+        setDynamicSpread(Math.min(300, Math.floor(window.innerWidth / 2 - 32)));
       } else {
         setDynamicSpread(spread);
       }
@@ -384,9 +384,11 @@ export default function FolderFloat({
 
   useEffect(() => {
     clearTimeout(liveTimer.current);
-    if (!open || !physics || latest.current.reduce) {
+    // Disable physics RAF loop on touch devices / mobile screens to ensure silky 60fps scrolling
+    const isMobileDevice = typeof window !== 'undefined' && (window.innerWidth < 768 || 'ontouchstart' in window);
+    if (!open || !physics || latest.current.reduce || isMobileDevice) {
       if (!open) stopPhysics();
-      else if (!physics) stopPhysics();
+      else if (!physics || isMobileDevice) stopPhysics();
       return undefined;
     }
     liveTimer.current = setTimeout(
@@ -435,6 +437,8 @@ export default function FolderFloat({
   const down = (e, i) => {
     const w = world.current;
     if (!w.live || e.button !== 0) return;
+    // On touch devices don't capture pointer to avoid interfering with mobile touch scroll
+    if (e.pointerType === 'touch') return;
     const b = w.bodies[i];
     if (!b) return;
     const p = pointerAt(e);
@@ -569,7 +573,10 @@ export default function FolderFloat({
                 if (!d || !d.moved) pick(item, i);
               }}
             >
-              <span className="folder-float__drift">{item.label}</span>
+              <span className="folder-float__drift">
+                <span className="sm:hidden">{item.shortLabel || item.label}</span>
+                <span className="hidden sm:inline">{item.label}</span>
+              </span>
             </button>
           );
         })}

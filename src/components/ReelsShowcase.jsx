@@ -352,7 +352,7 @@ export default function ReelsShowcase({
                 {/* -------------------------------------------------------------
                     9:16 VERTICAL VIDEO PLAYER WINDOW (Optimized Viewport Sizing)
                     ------------------------------------------------------------- */}
-                <div className="relative w-[285px] sm:w-[315px] md:w-[335px] lg:w-[350px] h-[500px] sm:h-[550px] md:h-[585px] lg:h-[610px] max-h-[calc(100vh-210px)] rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-[0_25px_80px_rgba(0,0,0,0.95)] border border-neutral-800/80 flex items-center justify-center">
+                <div className="relative w-[min(285px,calc(100vw-76px))] sm:w-[315px] md:w-[335px] lg:w-[350px] h-[min(500px,calc(100dvh-200px))] sm:h-[550px] md:h-[585px] lg:h-[610px] rounded-2xl sm:rounded-3xl overflow-hidden bg-black shadow-[0_25px_80px_rgba(0,0,0,0.95)] border border-neutral-800/80 flex items-center justify-center">
                   <video
                     ref={mainShortsVideoRef}
                     src={activeShort.video}

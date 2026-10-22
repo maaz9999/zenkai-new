@@ -126,7 +126,7 @@ export default function ProjectDetailPage() {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-[#06020c] text-white">
       {/* Seamless brand moving background gradient */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <AnimatedGradient className="w-full h-full opacity-65" />
       </div>
 

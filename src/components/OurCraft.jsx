@@ -4,11 +4,11 @@ import { servicesData } from '../data/servicesData';
 import { X } from 'lucide-react';
 
 const SERVICE_ITEMS = [
-  { label: 'Player Management', value: 'player-management' },
-  { label: 'Graphics (Thumbnails / Posters / Stream Assets)', value: 'graphics' },
-  { label: '2D Illustration', value: '2d-illustration' },
-  { label: 'Video Editing (Long Form / Short Form)', value: 'video-editing' },
-  { label: 'Social Media Management', value: 'social-media-management' }
+  { label: 'Player Management', shortLabel: 'Player Management', value: 'player-management' },
+  { label: 'Graphics (Thumbnails / Posters / Stream Assets)', shortLabel: 'Graphics & Stream Assets', value: 'graphics' },
+  { label: '2D Illustration', shortLabel: '2D Illustration', value: '2d-illustration' },
+  { label: 'Video Editing (Long Form / Short Form)', shortLabel: 'Video Editing', value: 'video-editing' },
+  { label: 'Social Media Management', shortLabel: 'Social Media Management', value: 'social-media-management' }
 ];
 
 /**
@@ -93,24 +93,24 @@ export default function OurCraft() {
             {/* Section Heading */}
             <h2 className={`font-heading font-black text-white tracking-tight uppercase leading-none transition-all duration-500 ${
               selectedService 
-                ? 'text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl' 
-                : 'text-5xl sm:text-6xl md:text-7xl xl:text-8xl'
+                ? 'text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl' 
+                : 'text-3xl xs:text-5xl sm:text-6xl md:text-7xl xl:text-8xl'
             }`}>
               OUR CRAFT
             </h2>
 
             {/* Interactive Status Pill */}
-            <div className="mt-4 mb-4 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-sm shadow-inner transition-all duration-300">
+            <div className="mt-3 mb-3 sm:mt-4 sm:mb-4 inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-sm shadow-inner transition-all duration-300 max-w-[calc(100vw-32px)]">
               {selectedService ? (
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] animate-pulse" />
-                  <span className="text-white/90 text-xs tracking-wider uppercase font-semibold">
-                    Viewing {selectedService.titleFirstLine} · Click another to switch
+                <div className="flex items-center gap-1.5 sm:gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] animate-pulse shrink-0" />
+                  <span className="text-white/90 text-[11px] sm:text-xs tracking-wider uppercase font-semibold truncate">
+                    Viewing {selectedService.titleFirstLine} · Click to switch
                   </span>
                   <button
                     type="button"
                     onClick={handleCloseService}
-                    className="ml-1.5 px-2.5 py-0.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white text-[11px] font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-white/20 cursor-pointer shadow-sm"
+                    className="ml-1 sm:ml-1.5 px-2 py-0.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-white/20 cursor-pointer shadow-sm shrink-0"
                     aria-label="Back to overview"
                     title="Close selection"
                   >
@@ -118,25 +118,25 @@ export default function OurCraft() {
                   </button>
                 </div>
               ) : isFolderOpen ? (
-                <div className="flex items-center gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] animate-pulse" />
-                  <span className="text-white/80 text-xs tracking-wider uppercase font-semibold">
-                    Interactive vault open · Click any discipline to view info
+                <div className="flex items-center gap-1.5 sm:gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] animate-pulse shrink-0" />
+                  <span className="text-white/80 text-[11px] sm:text-xs tracking-wider uppercase font-semibold truncate">
+                    Vault open · Click any discipline
                   </span>
                   <button
                     type="button"
                     onClick={() => setIsFolderOpen(false)}
-                    className="ml-1.5 px-2.5 py-0.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white text-[11px] font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-white/20 cursor-pointer shadow-sm"
+                    className="ml-1 sm:ml-1.5 px-2 py-0.5 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white text-[10px] sm:text-[11px] font-bold tracking-wider uppercase transition-all flex items-center gap-1 border border-white/20 cursor-pointer shadow-sm shrink-0"
                     aria-label="Close folder"
                     title="Close folder"
                   >
-                    Close Folder ✕
+                    Close ✕
                   </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                  <p className="text-white/70 text-xs tracking-widest uppercase font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 shrink-0" />
+                  <p className="text-white/70 text-[11px] sm:text-xs tracking-widest uppercase font-semibold truncate">
                     Click the folder below to unveil our services
                   </p>
                 </div>
@@ -148,9 +148,9 @@ export default function OurCraft() {
               className={`w-full relative flex flex-col items-center justify-center transition-all duration-[520ms] ease-[cubic-bezier(0.23,1,0.32,1)] ${
                 isFolderOpen 
                   ? selectedService 
-                    ? 'pt-56 pb-8 sm:pt-64 sm:pb-12 min-h-[520px] sm:min-h-[580px]' 
-                    : 'pt-64 pb-12 sm:pt-80 sm:pb-16 min-h-[580px] sm:min-h-[660px]'
-                  : 'pt-3 pb-4 min-h-[250px]'
+                    ? 'pt-44 pb-6 sm:pt-64 sm:pb-12 min-h-[460px] sm:min-h-[580px]' 
+                    : 'pt-48 pb-8 sm:pt-80 sm:pb-16 min-h-[490px] sm:min-h-[660px]'
+                  : 'pt-2 pb-3 min-h-[200px]'
               }`}
             >
               <div 

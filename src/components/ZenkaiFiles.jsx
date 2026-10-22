@@ -60,11 +60,11 @@ export default function ZenkaiFiles() {
   ];
 
   return (
-    <section id="zenkai-files" className="relative bg-black py-20 sm:py-28 md:py-36 px-4 sm:px-6 lg:px-8">
+    <section id="zenkai-files" className="relative bg-black py-14 sm:py-24 md:py-36 px-3.5 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading matching Screenshot 2 */}
-        <div className="text-center mb-10 sm:mb-14 md:mb-16">
-          <h2 className="font-heading font-black text-white text-5xl sm:text-7xl md:text-8xl tracking-tight uppercase">
+        <div className="text-center mb-8 sm:mb-14 md:mb-16">
+          <h2 className="font-heading font-black text-white text-3xl xs:text-5xl sm:text-7xl md:text-8xl tracking-tight uppercase">
             ZENKAI FILES
           </h2>
         </div>
