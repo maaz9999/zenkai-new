@@ -410,23 +410,7 @@ export default function StartProjectPage() {
 
         </div>
 
-        {/* Global Social Proof Ribbon at Bottom of Page */}
-        <div className="mt-12 sm:mt-16 pt-6 border-t border-white/10 text-center">
-          <span className="block text-[10px] font-mono uppercase tracking-widest text-white/40 font-bold mb-3">
-            IN THE GAME WITH WORLD CHAMPIONS & CREATIVE LEADERS
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-heading font-black text-xs sm:text-sm uppercase tracking-wider text-white/60">
-            <span className="hover:text-white transition-colors">ARSLAN ASH · 5X EVO CHAMPION</span>
-            <span className="text-white/20">•</span>
-            <span className="hover:text-white transition-colors">ATIF BUTT · TWT WORLD CHAMPION</span>
-            <span className="text-white/20">•</span>
-            <span className="hover:text-white transition-colors">THE JON · TGU CHAMPION</span>
-            <span className="text-white/20">•</span>
-            <span className="hover:text-white transition-colors">BAAZ GAMING</span>
-            <span className="text-white/20">•</span>
-            <span className="hover:text-white transition-colors">4THRIVE</span>
-          </div>
-        </div>
+
 
       </main>
 
