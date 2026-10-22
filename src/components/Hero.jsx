@@ -25,10 +25,12 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <video
           src="/bg.mp4"
+          poster="/bg-poster.jpg"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           className="w-full h-full object-cover object-center grayscale"
           style={{ filter: 'grayscale(100%)' }}
         />

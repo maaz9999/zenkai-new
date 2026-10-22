@@ -44,6 +44,23 @@ function ShortsBadgeIcon({ className = "w-4 h-4" }) {
 }
 
 /**
+ * Helper to dynamically resolve poster thumbnail for reels
+ */
+const getPosterUrl = (videoUrl) => {
+  if (!videoUrl) return '';
+  if (videoUrl.includes('/assets/REELS/')) {
+    return videoUrl.replace('/assets/REELS/', '/assets/REELS/posters/').replace('.mp4', '.jpg');
+  }
+  if (videoUrl.includes('/assets/GROWTH CREATIVE.mp4')) {
+    return '/assets/REELS/posters/GROWTH CREATIVE.jpg';
+  }
+  if (videoUrl.includes('/media/reel-showcase.mp4')) {
+    return '/assets/REELS/posters/reel-showcase.jpg';
+  }
+  return '';
+};
+
+/**
  * ReelsShowcase Component
  * 100% Authentic YouTube Shorts Interface + Long-Form Showcase:
  * - Direct implementation of the official YouTube Shorts player interface (matching user reference screenshot)
@@ -69,6 +86,7 @@ export default function ReelsShowcase({
   const [searchQuery, setSearchQuery] = useState('');
   const [isPlayerMuted, setIsPlayerMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isShortBuffering, setIsShortBuffering] = useState(false);
   const [playerProgress, setPlayerProgress] = useState(0);
   const [playerDuration, setPlayerDuration] = useState(0);
   const [playerCurrentTime, setPlayerCurrentTime] = useState(0);
@@ -103,6 +121,7 @@ export default function ReelsShowcase({
   // Sync active short video playback
   useEffect(() => {
     if (mainShortsVideoRef.current && viewMode === 'shorts-player') {
+      setIsShortBuffering(true);
       mainShortsVideoRef.current.currentTime = 0;
       mainShortsVideoRef.current.play().catch(() => {});
       setIsPlaying(true);
@@ -337,14 +356,27 @@ export default function ReelsShowcase({
                   <video
                     ref={mainShortsVideoRef}
                     src={activeShort.video}
+                    poster={getPosterUrl(activeShort.video)}
+                    preload="auto"
                     loop
                     muted={isPlayerMuted}
                     playsInline
                     controls={false}
+                    onWaiting={() => setIsShortBuffering(true)}
+                    onPlaying={() => setIsShortBuffering(false)}
+                    onCanPlay={() => setIsShortBuffering(false)}
+                    onLoadedData={() => setIsShortBuffering(false)}
                     onTimeUpdate={handleTimeUpdate}
                     onClick={togglePlay}
                     className="w-full h-full object-cover cursor-pointer select-none"
                   />
+
+                  {/* YouTube Shorts Style Buffer/Loading Spinner */}
+                  {isShortBuffering && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/35 z-10 pointer-events-none backdrop-blur-[2px] transition-opacity">
+                      <div className="w-11 h-11 rounded-full border-[3px] border-white/20 border-t-[#FF0000] animate-spin shadow-2xl" />
+                    </div>
+                  )}
 
                   {/* Top-Right Mute/Unmute Overlay Toggle */}
                   <button
@@ -574,10 +606,10 @@ export default function ReelsShowcase({
                           : 'border-neutral-800 hover:border-neutral-600 opacity-70 hover:opacity-100'
                       }`}
                     >
-                      <video
-                        src={short.video}
-                        muted
-                        preload="metadata"
+                      <img
+                        src={getPosterUrl(short.video)}
+                        alt={short.title}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -629,12 +661,16 @@ export default function ReelsShowcase({
                     <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md group-hover:shadow-[0_15px_40px_rgba(255,115,72,0.18)] transition-all duration-300">
                       <video
                         src={video.video}
+                        poster={getPosterUrl(video.video)}
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
-                        onMouseEnter={(e) => e.target.play().catch(() => {})}
+                        onMouseEnter={(e) => {
+                          e.target.preload = 'auto';
+                          e.target.play().catch(() => {});
+                        }}
                         onMouseLeave={(e) => {
                           e.target.pause();
                           e.target.currentTime = 0;
@@ -705,12 +741,16 @@ export default function ReelsShowcase({
                     <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md transition-all duration-300">
                       <video
                         src={video.video}
+                        poster={getPosterUrl(video.video)}
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
-                        onMouseEnter={(e) => e.target.play().catch(() => {})}
+                        onMouseEnter={(e) => {
+                          e.target.preload = 'auto';
+                          e.target.play().catch(() => {});
+                        }}
                         onMouseLeave={(e) => {
                           e.target.pause();
                           e.target.currentTime = 0;
@@ -771,12 +811,16 @@ export default function ReelsShowcase({
                     <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md group-hover:shadow-[0_12px_36px_rgba(255,0,0,0.22)] transition-all duration-300">
                       <video
                         src={short.video}
+                        poster={getPosterUrl(short.video)}
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.025] transition-transform duration-300"
-                        onMouseEnter={(e) => e.target.play().catch(() => {})}
+                        onMouseEnter={(e) => {
+                          e.target.preload = 'auto';
+                          e.target.play().catch(() => {});
+                        }}
                         onMouseLeave={(e) => {
                           e.target.pause();
                           e.target.currentTime = 0;
@@ -847,6 +891,8 @@ export default function ReelsShowcase({
               <video
                 ref={theaterVideoRef}
                 src={activeTheaterVideo.video}
+                poster={getPosterUrl(activeTheaterVideo.video)}
+                preload="auto"
                 loop
                 muted={theaterMuted}
                 playsInline
