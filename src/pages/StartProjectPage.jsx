@@ -6,12 +6,8 @@ import {
   ArrowLeft, 
   Send, 
   CheckCircle2, 
-  Mail, 
-  Clock, 
-  ShieldCheck, 
   Loader2,
   ExternalLink,
-  Copy,
   Check,
   Trophy,
   Video,
@@ -20,11 +16,9 @@ import {
   Tv,
   Crown,
   Layers,
-  MessageCircle,
   User,
   AtSign,
-  PhoneCall,
-  Award
+  PhoneCall
 } from 'lucide-react';
 
 const SERVICES_OPTIONS = [
@@ -84,8 +78,6 @@ export default function StartProjectPage() {
   });
 
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success'
-  const [copiedNumber, setCopiedNumber] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const whatsappRaw = '+92 313 7396135';
   const whatsappUrl = "https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project.";
@@ -93,18 +85,6 @@ export default function StartProjectPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
-
-  const handleCopyNumber = () => {
-    navigator.clipboard.writeText('+923137396135');
-    setCopiedNumber(true);
-    setTimeout(() => setCopiedNumber(false), 2000);
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('team@zenkai.media');
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -191,9 +171,9 @@ export default function StartProjectPage() {
       </div>
 
       {/* Main Container */}
-      <main className="relative z-10 flex-1 pt-3 sm:pt-4 md:pt-6 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1100px] mx-auto w-full">
+      <main className="relative z-10 flex-1 pt-3 sm:pt-4 md:pt-6 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1000px] mx-auto w-full">
 
-        {/* Hero Title & Direct Contact Channels */}
+        {/* Hero Title Section */}
         <div className="text-left mb-6 sm:mb-8">
           <h1 className="font-heading font-black text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] tracking-tight uppercase leading-[0.92] drop-shadow-md">
             <span>START YOUR </span>
@@ -203,80 +183,16 @@ export default function StartProjectPage() {
           </h1>
 
           <p className="mt-2.5 sm:mt-3 text-white/75 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed">
-            Partner with the creative studio trusted by world champions. Submit your brief below for scoping, or connect directly on WhatsApp or Email.
-          </p>
-
-          {/* Quick Direct Contacts Bar */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-4 pt-1">
-            {/* WhatsApp Direct Link */}
-            <a
-              href={whatsappUrl}
-              target="_blank"
+            Partner with the creative studio trusted by world champions. Fill out your project brief below, or reach us on WhatsApp at{' '}
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-emerald-200 font-mono text-xs transition-all group"
+              className="text-[#FFB848] hover:text-[#FFA436] font-mono font-bold underline underline-offset-4 decoration-white/20 hover:decoration-[#FFB848]"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-              <span>WhatsApp: <strong className="font-bold">{whatsappRaw}</strong></span>
-              <ExternalLink className="w-3 h-3 text-emerald-400/70 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-
-            {/* Copy WhatsApp Number */}
-            <button
-              type="button"
-              onClick={handleCopyNumber}
-              className="px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white/70 hover:text-white font-mono text-xs transition-all flex items-center gap-1.5 cursor-pointer"
-              title="Copy WhatsApp number"
-            >
-              {copiedNumber ? (
-                <>
-                  <Check className="w-3 h-3 text-emerald-400" />
-                  <span className="text-emerald-400 font-bold">Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3 h-3" />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
-
-            {/* Email Contact Link */}
-            <div className="flex items-center gap-2 pl-2 sm:pl-3 border-l border-white/10">
-              <a
-                href="mailto:team@zenkai.media"
-                className="inline-flex items-center gap-1.5 text-xs font-mono text-white/70 hover:text-[#FFB848] transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5 text-[#FF7348]" />
-                <span>team@zenkai.media</span>
-              </a>
-
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-white/60 hover:text-white transition-all cursor-pointer"
-                title="Copy email address"
-              >
-                {copiedEmail ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Studio Assurance Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 mb-6 sm:mb-8 font-mono text-xs text-white/75">
-          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-            <Clock className="w-3.5 h-3.5 text-[#FF7348] shrink-0" />
-            <span>24h initial response on brief submissions</span>
-          </div>
-          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-            <span>Strict confidentiality & NDA compliant</span>
-          </div>
-          <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-            <Award className="w-3.5 h-3.5 text-[#DA2086] shrink-0" />
-            <span>Visual production for 5x EVO Champions</span>
-          </div>
+              {whatsappRaw}
+            </a>.
+          </p>
         </div>
 
         {/* =========================================================================
@@ -339,11 +255,6 @@ export default function StartProjectPage() {
                   <p className="text-white/50 text-xs mt-0.5">
                     Delivered directly to <span className="text-[#FFB848] font-mono">team@zenkai.media</span>
                   </p>
-                </div>
-
-                <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>ACCEPTING BRIEFS</span>
                 </div>
               </div>
 
@@ -492,12 +403,6 @@ export default function StartProjectPage() {
                     </>
                   )}
                 </button>
-              </div>
-
-              {/* Trust Footer Footnote */}
-              <div className="pt-1 flex items-center justify-center gap-1.5 text-center text-white/40 text-[10px] font-mono">
-                <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                <span>Protected by Zenkai Media. Strictly confidential & NDA compliant.</span>
               </div>
 
             </form>
