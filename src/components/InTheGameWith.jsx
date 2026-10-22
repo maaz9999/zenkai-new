@@ -40,6 +40,12 @@ export default function InTheGameWith() {
                       src={player.image}
                       alt={player.name}
                       loading="lazy"
+                      onError={(e) => {
+                        if (!e.currentTarget.dataset.retried) {
+                          e.currentTarget.dataset.retried = 'true';
+                          e.currentTarget.src = player.image.replace('/assets/', '/media/');
+                        }
+                      }}
                       className="w-full h-full object-cover object-center opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
                     />
                   ) : (

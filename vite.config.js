@@ -9,7 +9,7 @@ export default defineConfig({
     strictPort: true,
     host: true,
     watch: {
-      ignored: ['**/*.mp4', '**/public/assets/**', '**/node_modules/**']
+      ignored: ['**/*.mp4', '**/node_modules/**', '**/.git/**']
     }
   }
 });
