@@ -28,12 +28,12 @@ export default function InTheGameWith() {
 
           {/* Player Grid: 3 columns desktop, 2 columns tablet */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
-            {playersData.map((player, idx) => (
+            {playersData.map((player) => (
               <div 
                 key={player.id} 
                 className="group flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-1.5"
               >
-                {/* Rectangular image box with Full Esports Upgrade: Glass Specular & Layered Depth */}
+                {/* Rectangular image box with Clean Esports Finish: Glass Specular & Layered Depth */}
                 <div className="w-full aspect-[16/10] bg-[#0c0a12]/95 backdrop-blur-md rounded-none overflow-hidden relative shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),_0_20px_45px_rgba(0,0,0,0.7)] border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),_0_25px_55px_rgba(0,0,0,0.9)]">
                   
                   {/* Layer 1: Ambient Studio Rim / Spotlight */}
@@ -51,20 +51,7 @@ export default function InTheGameWith() {
                     </span>
                   </div>
 
-                  {/* Layer 3: Top Championship Badge Pill */}
-                  <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 shadow-lg group-hover:border-amber-400/40 transition-colors duration-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FFB848] animate-pulse" />
-                    <span className="font-mono text-[9px] sm:text-[10px] font-bold text-white/95 tracking-wider uppercase">
-                      {player.badge || player.accolades}
-                    </span>
-                  </div>
-
-                  {/* Layer 4: Top-Left Roster Tag / Index */}
-                  <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-20 font-mono text-[10px] font-bold text-white/40 tracking-widest uppercase">
-                    ZENKAI // {player.number || `0${idx + 1}`}
-                  </div>
-
-                  {/* Layer 5: Grounding Vignette (behind athlete feet/chest) */}
+                  {/* Layer 3: Grounding Vignette (behind athlete feet/chest) */}
                   <div 
                     className="absolute inset-0 pointer-events-none z-10"
                     style={{
@@ -72,7 +59,7 @@ export default function InTheGameWith() {
                     }}
                   />
 
-                  {/* Layer 6: Athlete Cutout */}
+                  {/* Layer 4: Athlete Cutout */}
                   {player.image ? (
                     <img
                       src={player.image}
@@ -92,19 +79,13 @@ export default function InTheGameWith() {
                 </div>
 
                 {/* Player typography centered below image */}
-                <div className="mt-3.5 sm:mt-4 text-center flex flex-col items-center">
-                  <h3 className="font-heading font-black text-white text-lg sm:text-xl md:text-2xl tracking-wide uppercase leading-tight drop-shadow-md group-hover:text-amber-200 transition-colors duration-300">
+                <div className="mt-3.5 sm:mt-4 text-center">
+                  <h3 className="font-heading font-black text-white text-lg sm:text-xl md:text-2xl tracking-wide uppercase leading-tight drop-shadow-md">
                     {player.name}
                   </h3>
-                  <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-1">
-                    <p className="text-white/80 text-xs sm:text-sm font-semibold tracking-widest uppercase">
-                      {player.role}
-                    </p>
-                    <span className="text-white/30 hidden xs:inline">•</span>
-                    <p className="text-[#FFA436] text-[11px] sm:text-xs font-mono font-medium tracking-wider uppercase">
-                      {player.team}
-                    </p>
-                  </div>
+                  <p className="text-white/80 text-xs sm:text-sm md:text-base font-medium tracking-wider uppercase mt-1">
+                    {player.role}
+                  </p>
                 </div>
               </div>
             ))}
