@@ -211,17 +211,15 @@ export default function Header() {
                 );
               })}
 
-              {/* Direct WhatsApp CTA Button */}
-              <a
-                href="https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project."
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* Dedicated Start a Project Button */}
+              <Link
+                to="/start-a-project"
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-hero-cta mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl font-black uppercase tracking-wider text-xs text-white shadow-md cursor-pointer select-none active:scale-95 transition-all"
               >
                 <span>START A PROJECT</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+              </Link>
             </div>
           </div>
         )}

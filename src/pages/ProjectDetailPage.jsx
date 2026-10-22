@@ -482,16 +482,14 @@ export default function ProjectDetailPage() {
             </div>
           </Link>
 
-          <a
-            href="https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project."
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/start-a-project"
             className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#FF7348] via-[#DA2086] to-[#8C1FA8] hover:brightness-110 active:scale-95 text-white font-black text-xs uppercase tracking-wider transition-all shadow-lg"
-            title="Chat directly on WhatsApp"
+            title="Start a Project with Zenkai Media"
           >
             <span>Start a Project</span>
             <Sparkles className="w-3.5 h-3.5 text-white" />
-          </a>
+          </Link>
 
           <Link
             to={`/work/${nextProject.slug}`}
