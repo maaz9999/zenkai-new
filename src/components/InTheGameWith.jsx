@@ -39,7 +39,7 @@ export default function InTheGameWith() {
                   <div 
                     className="absolute inset-0 opacity-50 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none"
                     style={{
-                      background: 'radial-gradient(circle at 50% 48%, rgba(255, 115, 72, 0.24) 0%, rgba(140, 31, 168, 0.16) 45%, transparent 75%)'
+                      background: 'radial-gradient(circle at 50% 52%, rgba(255, 115, 72, 0.24) 0%, rgba(140, 31, 168, 0.16) 45%, transparent 75%)'
                     }}
                   />
 
@@ -54,7 +54,7 @@ export default function InTheGameWith() {
                           e.currentTarget.src = player.image.replace('/assets/', '/media/');
                         }
                       }}
-                      className="w-full h-full object-cover object-center scale-[1.32] translate-y-2 sm:translate-y-3.5 origin-[center_42%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.38] transition-all duration-500 ease-out relative z-10"
+                      className="w-full h-full object-cover object-center scale-[1.35] translate-y-4 sm:translate-y-6 md:translate-y-7 origin-[center_40%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10"
                     />
                   ) : (
                     <div className="w-full h-full bg-[#0c0514]" />
