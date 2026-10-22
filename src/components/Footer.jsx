@@ -1,0 +1,236 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUp, Mail } from 'lucide-react';
+
+/**
+ * Clean Studio Footer Component:
+ * - Minimal, high-impact layout containing only essential info
+ * - Single direct studio email: team@zenkai.media
+ * - Core site navigation & verified social channels
+ * - Smooth Back to Top interaction
+ */
+export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavClick = (e, targetId) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const whatsappUrl =
+    "https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project.";
+
+  return (
+    <footer className="relative bg-[#06020c] text-white overflow-hidden border-t border-white/[0.1]">
+      {/* Top Edge Gradient Highlight */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-[#8C1FA8] opacity-80" />
+
+      {/* Atmospheric Background Ambient Glows */}
+      <div 
+        className="absolute -top-24 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #DA2086 0%, #8C1FA8 60%, transparent 100%)' }}
+      />
+      <div 
+        className="absolute -bottom-24 right-1/4 w-96 h-96 rounded-full blur-[120px] opacity-15 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #FF7348 0%, #FFC15C 50%, transparent 100%)' }}
+      />
+      <div className="grain-overlay opacity-25 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 pb-6 sm:pb-10 md:pb-12">
+          
+          {/* Column 1: Brand & Studio Identity (5 cols) */}
+          <div className="md:col-span-5 lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-2.5 sm:gap-3 group transition-transform hover:scale-[1.02]"
+                aria-label="ZENKAI MEDIA Home"
+              >
+                <img 
+                  src="/assets/zenkai-emblem.png" 
+                  alt="Zenkai Media" 
+                  className="h-7 sm:h-9 w-auto object-contain shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" 
+                />
+                <span className="font-brand font-black text-white text-lg sm:text-2xl tracking-[-0.01em] uppercase flex items-center">
+                  <span>ZENKAI</span>
+                  <span className="font-bold text-white/90 ml-1.5 sm:ml-2 tracking-normal">MEDIA</span>
+                </span>
+              </Link>
+              
+              <p className="mt-2.5 sm:mt-4 text-white/60 text-xs sm:text-sm leading-relaxed max-w-sm">
+                Full-service creative agency and esports management studio operating at the intersection of gaming, entertainment, and digital culture.
+              </p>
+            </div>
+
+            <div className="mt-3.5 sm:mt-6 flex items-center gap-2 text-xs text-white/60 font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="truncate">Available for select 2026 commissions</span>
+            </div>
+          </div>
+
+          {/* Mobile 2-Column Wrapper (side-by-side on phone, standard cols on desktop) */}
+          <div className="grid grid-cols-2 md:contents gap-6 sm:gap-8">
+            
+            {/* Column 2: Navigation Links (3 cols on desktop) */}
+            <div className="md:col-span-3 lg:col-span-3">
+              <h4 className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-[#FFC15C] font-bold mb-2.5 sm:mb-4">
+                NAVIGATION
+              </h4>
+              <ul className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-sm font-semibold">
+                <li>
+                  <Link to="/" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <a 
+                    href="/#zenkai-files" 
+                    onClick={(e) => handleNavClick(e, 'zenkai-files')}
+                    className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
+                  >
+                    Portfolio
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/#our-craft" 
+                    onClick={(e) => handleNavClick(e, 'our-craft')}
+                    className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/#in-the-game-with" 
+                    onClick={(e) => handleNavClick(e, 'in-the-game-with')}
+                    className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
+                  >
+                    Partners
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/#contact" 
+                    onClick={(e) => handleNavClick(e, 'contact')}
+                    className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Contact & Community (4 cols on desktop) */}
+            <div className="md:col-span-4 lg:col-span-4 flex flex-col justify-between">
+              <div>
+                <h4 className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-[#FFC15C] font-bold mb-2.5 sm:mb-4">
+                  DIRECT INQUIRIES
+                </h4>
+                
+                <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+                  {/* WhatsApp Direct Chat */}
+                  <a 
+                    href={whatsappUrl} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-mono font-bold text-xs transition-all w-fit"
+                    title="Direct WhatsApp Chat"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                  </a>
+
+                  {/* Email */}
+                  <a 
+                    href="mailto:team@zenkai.media" 
+                    className="group flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-white/25 text-white/90 hover:text-white font-mono font-bold text-xs transition-all w-fit"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#FF7348] group-hover:scale-110 transition-transform shrink-0" />
+                    <span className="truncate">team@zenkai.media</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Social Channels with Custom Icons */}
+              <div className="mt-3 sm:mt-5">
+                <span className="block text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/40 font-bold mb-1.5 sm:mb-2">
+                  SOCIAL
+                </span>
+                <div className="flex items-center gap-2.5">
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/zenkai.media/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    style={{
+                      background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)'
+                    }}
+                    aria-label="Zenkai Media on Instagram"
+                    title="Instagram"
+                  >
+                    <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </a>
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/zenkai-media-2458a542a?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-[#0A66C2] hover:bg-[#004182] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                    aria-label="Zenkai Media on LinkedIn"
+                    title="LinkedIn"
+                  >
+                    <svg className="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* =========================================================================
+            BOTTOM LEGAL & BACK TO TOP BAR
+            ========================================================================= */}
+        <div className="pt-5 sm:pt-8 border-t border-white/[0.08] flex flex-col-reverse sm:flex-row items-center justify-between gap-3 text-xs text-white/50 text-center sm:text-left">
+          <div className="text-[11px] sm:text-xs">
+            © 2026 ZENKAI MEDIA LLC. ALL RIGHTS RESERVED.
+          </div>
+
+          <div className="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase text-white/40 font-semibold">
+            BUILT FOR THE GAME · MADE FOR THE CULTURE
+          </div>
+
+          <div>
+            <button
+              onClick={scrollToTop}
+              className="group inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.15] border border-white/10 text-white/80 hover:text-white transition-all cursor-pointer text-[11px] font-bold uppercase tracking-wider"
+              aria-label="Scroll back to top of page"
+            >
+              <span>Back to Top</span>
+              <ArrowUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}

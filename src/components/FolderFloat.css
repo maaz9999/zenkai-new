@@ -1,0 +1,434 @@
+.folder-float {
+  --ff-w: 360px;
+  --ff-h: 240px;
+  --ff-r: 20px;
+  --ff-tab: 20px;
+  --ff-back: #35064A;
+  --ff-front: #68118A;
+  --ff-paper: #FFFFFF;
+  --ff-item: #FFFFFF;
+  --ff-item-ink: #0A0A0C;
+  --ff-label: #FFFFFF;
+  --ff-spread: 380px;
+  --ff-lift: 28px;
+  --ff-angle: 38deg;
+  --ff-rest: 0deg;
+  --ff-open: 520ms;
+  --ff-close: 312ms;
+  --ff-stagger: 45ms;
+  --ff-n: 5;
+  --ff-spring: cubic-bezier(0.34, 1.57, 0.64, 1);
+  --ff-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  position: relative;
+  display: inline-block;
+  width: var(--ff-w);
+  padding-top: var(--ff-tab);
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  user-select: none;
+}
+
+.folder-float__folder {
+  position: relative;
+  width: var(--ff-w);
+  height: var(--ff-h);
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.8));
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.folder-float:hover .folder-float__folder {
+  transform: translateY(-3px);
+}
+
+.folder-float__back {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--ff-r);
+  background: linear-gradient(145deg, #440A5C, #250435);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transform: perspective(700px) rotateX(0deg);
+  transform-origin: 50% 100%;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  transition: transform var(--ff-close) var(--ff-ease-out);
+}
+
+.folder-float[data-open] .folder-float__back {
+  transform: perspective(700px) rotateX(6deg);
+  transition: transform var(--ff-open) var(--ff-ease-out);
+}
+
+.folder-float__back::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--ff-tab));
+  left: 0;
+  width: 44%;
+  height: calc(var(--ff-tab) + var(--ff-r));
+  border-radius: var(--ff-r) var(--ff-r) 0 0;
+  background: inherit;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.folder-float__paper {
+  position: absolute;
+  top: 8%;
+  z-index: 1;
+  right: 8%;
+  left: 8%;
+  height: 64%;
+  border-radius: 12px;
+  background: var(--ff-paper);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    transform var(--ff-close) var(--ff-ease-out),
+    opacity var(--ff-close) ease;
+}
+
+.folder-float__front {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 100%;
+  padding: 24px 28px;
+  box-sizing: border-box;
+  border-radius: var(--ff-r);
+  overflow: hidden;
+  
+  /* Rich, vibrant esports gradient: Deep Purple -> Violet -> Warm Vivid Orange -> Gold */
+  background: linear-gradient(135deg, #46095E 0%, #751596 32%, #B0237C 50%, #FF662A 78%, #FFAE34 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--ff-label);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 35px rgba(120, 20, 150, 0.2);
+  transform: perspective(700px) rotateX(calc(-1 * var(--ff-rest)));
+  transform-origin: 50% 100%;
+  transition: transform var(--ff-close) var(--ff-ease-out), box-shadow 0.3s ease;
+}
+
+/* Continuous fluid motion gradient overlay across folder front flap */
+.folder-float__front::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(circle at 70% 35%, rgba(255, 120, 48, 0.55) 0%, transparent 50%),
+              radial-gradient(circle at 30% 65%, rgba(160, 32, 195, 0.55) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(255, 190, 70, 0.4) 0%, transparent 45%);
+  mix-blend-mode: screen;
+  animation: folder-fluid-motion 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes folder-fluid-motion {
+  0% {
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(5%, 3%) scale(1.12) rotate(8deg);
+  }
+  100% {
+    transform: translate(-4%, -3%) scale(0.96) rotate(-6deg);
+  }
+}
+
+.folder-float:hover .folder-float__front {
+  box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.55), 0 0 55px rgba(255, 102, 42, 0.35);
+}
+
+.folder-float__label {
+  position: relative;
+  z-index: 1;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.folder-float__sub {
+  position: relative;
+  z-index: 1;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.03em;
+}
+
+.folder-float__trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ff-r);
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.folder-float[data-open] .folder-float__front {
+  transform: perspective(700px) rotateX(calc(-1 * var(--ff-angle)));
+  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.5), 0 0 45px rgba(120, 20, 150, 0.3);
+  transition: transform var(--ff-open) var(--ff-ease-out), box-shadow 0.3s ease;
+}
+
+.folder-float[data-open] .folder-float__paper {
+  opacity: 1;
+  transform: translateY(-26px);
+  transition:
+    transform var(--ff-open) var(--ff-ease-out),
+    opacity 200ms ease;
+}
+
+.folder-float__items {
+  position: absolute;
+  top: var(--ff-tab);
+  left: 50%;
+  z-index: 4;
+  width: 0;
+  height: 0;
+}
+
+.folder-float[data-open] .folder-float__items::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * (var(--ff-lift) + 320px));
+  left: calc(-1 * (var(--ff-spread) + 200px));
+  width: calc(2 * var(--ff-spread) + 400px);
+  height: calc(var(--ff-lift) + 340px);
+}
+
+.folder-float__item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  padding: 0 30px;
+  height: 52px;
+  line-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 26px;
+  background: var(--ff-item);
+  color: #FFFFFF;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 16.5px;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 3px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  outline: none;
+  opacity: 0;
+  transform: translate(-50%, 50px) scale(0.6);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    transform var(--ff-close) var(--ff-ease-out) calc((var(--ff-n) - 1 - var(--i)) * var(--ff-stagger) * 0.5),
+    opacity 160ms ease calc((var(--ff-n) - 1 - var(--i)) * var(--ff-stagger) * 0.5 + var(--ff-close) * 0.45),
+    scale 160ms var(--ff-ease-out),
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* Vibrant distinct chromatic color identities for the 5 disciplines */
+.folder-float__item[data-index="0"],
+.folder-float__item:nth-child(5n + 1) {
+  /* Electric Cyan / Cyber Ice Blue */
+  background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 198, 255, 0.45), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-float__item[data-index="1"],
+.folder-float__item:nth-child(5n + 2) {
+  /* Neon Mint / Acid Emerald Green */
+  background: linear-gradient(135deg, #00F5A0 0%, #00B894 100%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(0, 245, 160, 0.45), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-float__item[data-index="2"],
+.folder-float__item:nth-child(5n + 3) {
+  /* Solar Gold / Radiant Amber */
+  background: linear-gradient(135deg, #FFB300 0%, #FF7A00 100%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(255, 179, 0, 0.45), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-float__item[data-index="3"],
+.folder-float__item:nth-child(5n + 4) {
+  /* Neon Crimson / Coral Flame */
+  background: linear-gradient(135deg, #FF3366 0%, #FF6536 100%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(255, 51, 102, 0.45), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-float__item[data-index="4"],
+.folder-float__item:nth-child(5n + 5) {
+  /* Hyper Violet / Ultra Indigo */
+  background: linear-gradient(135deg, #7928CA 0%, #4F46E5 100%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px rgba(121, 40, 202, 0.45), 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-float[data-open] .folder-float__item {
+  opacity: 1;
+  transform: translate(calc(-50% + var(--x)), var(--y)) rotate(var(--r)) scale(1);
+  pointer-events: auto;
+  transition:
+    transform var(--ff-open) var(--ff-spring) calc(var(--i) * var(--ff-stagger)),
+    opacity 160ms ease calc(var(--i) * var(--ff-stagger)),
+    scale 160ms var(--ff-ease-out),
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.folder-float[data-live] .folder-float__item {
+  cursor: grab;
+  transition: scale 160ms var(--ff-ease-out), box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.folder-float__item[data-drag] {
+  cursor: grabbing;
+  filter: brightness(1.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 102, 42, 0.5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .folder-float[data-open] .folder-float__item:hover {
+    scale: 1.07;
+    filter: brightness(1.12);
+  }
+}
+
+.folder-float[data-open] .folder-float__item:active {
+  scale: 0.96;
+}
+
+.folder-float__item[data-pop] {
+  animation: folder-float-pop 320ms var(--ff-ease-out);
+}
+
+.folder-float__item[data-active] {
+  outline: 3px solid #FFFFFF !important;
+  outline-offset: 3px !important;
+  filter: brightness(1.25) saturate(1.15) !important;
+  scale: 1.08 !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 16px 36px rgba(0, 0, 0, 0.85) !important;
+  z-index: 10 !important;
+}
+
+.folder-float__drift {
+  display: block;
+  animation: folder-float-drift 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.7s);
+  animation-play-state: paused;
+}
+
+.folder-float[data-open] .folder-float__drift {
+  animation-play-state: running;
+}
+
+.folder-float[data-physics] .folder-float__drift,
+.folder-float[data-live] .folder-float__drift {
+  animation: none;
+}
+
+@keyframes folder-float-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+@keyframes folder-float-pop {
+  30% {
+    scale: 1.15;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .folder-float {
+    --ff-w: 260px;
+    --ff-h: 175px;
+    --ff-r: 16px;
+    --ff-tab: 16px;
+    --ff-spread: 160px;
+    --ff-lift: 36px;
+  }
+
+  .folder-float__front {
+    padding: 16px 20px;
+    gap: 4px;
+  }
+
+  .folder-float__label {
+    font-size: 15px;
+  }
+
+  .folder-float__sub {
+    font-size: 11px;
+  }
+
+  .folder-float__item {
+    font-size: 15px;
+    padding: 0 20px;
+    height: 44px;
+    line-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folder-float__front,
+  .folder-float__paper {
+    transition: opacity 200ms ease;
+  }
+
+  .folder-float[data-open] .folder-float__front {
+    transform: perspective(700px) rotateX(calc(-1 * var(--ff-rest)));
+  }
+
+  .folder-float__paper {
+    transform: none !important;
+  }
+
+  .folder-float__item {
+    transition: opacity 200ms ease;
+  }
+
+  .folder-float[data-open] .folder-float__item {
+    transition: opacity 200ms ease calc(var(--i) * var(--ff-stagger));
+  }
+
+  .folder-float__drift {
+    animation: none;
+  }
+}
