@@ -2,29 +2,78 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AnimatedGradient from '../components/AnimatedGradient';
 import { 
   ArrowLeft, 
   Send, 
   CheckCircle2, 
-  MessageSquare, 
   Mail, 
-  Phone, 
   Clock, 
   ShieldCheck, 
   Sparkles,
   Loader2,
-  ExternalLink
+  ExternalLink,
+  Copy,
+  Check,
+  Trophy,
+  Video,
+  Image as ImageIcon,
+  Palette,
+  Tv,
+  Crown,
+  Layers,
+  MessageCircle,
+  Flame,
+  User,
+  AtSign,
+  PhoneCall
 } from 'lucide-react';
 
 const SERVICES_OPTIONS = [
-  'Tournament Key Art & Posters',
-  'YouTube Thumbnails & Packaging',
-  'Player Management & Branding',
-  'Video Editing (Reels & Long Form)',
-  '2D Illustration & Merch Design',
-  'Twitch Broadcast Packaging & HUD',
-  'Full Creative Retainer / Other'
+  {
+    id: 'Tournament Key Art & Posters',
+    title: 'Tournament Key Art & Posters',
+    desc: 'Main visual branding, stage backdrops & event graphics',
+    icon: Trophy,
+    popular: true
+  },
+  {
+    id: 'Video Editing (Reels & Long Form)',
+    title: 'Video Editing & Motion',
+    desc: 'High-retention TikTok/Reels & YouTube long-form edits',
+    icon: Video,
+    popular: true
+  },
+  {
+    id: 'YouTube Thumbnails & Packaging',
+    title: 'Thumbnails & Content Packaging',
+    desc: 'High-CTR thumbnail packages & channel assets',
+    icon: ImageIcon,
+    popular: true
+  },
+  {
+    id: '2D Illustration & Merch Design',
+    title: '2D Illustration & Merch',
+    desc: 'Custom character art, apparel & fan collection merchandise',
+    icon: Palette
+  },
+  {
+    id: 'Twitch Broadcast Packaging & HUD',
+    title: 'Twitch Broadcast & Stream HUD',
+    desc: 'Animated overlays, stinger transitions & custom stickers',
+    icon: Tv
+  },
+  {
+    id: 'Player Management & Branding',
+    title: 'Player Management & Identity',
+    desc: 'Pro player representation, press kits & jersey identity',
+    icon: Crown
+  },
+  {
+    id: 'Full Creative Retainer / Other',
+    title: 'Full Creative Retainer / Other',
+    desc: 'End-to-end agency partnership or bespoke production',
+    icon: Layers
+  }
 ];
 
 const BUDGET_OPTIONS = [
@@ -32,7 +81,7 @@ const BUDGET_OPTIONS = [
   '$500 – $1,500',
   '$1,500 – $3,500',
   '$3,500 – $5,000+',
-  'Flexible / To Be Discussed'
+  'Flexible / Custom'
 ];
 
 export default function StartProjectPage() {
@@ -46,20 +95,32 @@ export default function StartProjectPage() {
     message: ''
   });
 
-  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
-  const [errorMessage, setErrorMessage] = useState('');
+  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success'
+  const [copiedNumber, setCopiedNumber] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const whatsappNumber = '+92 313 7396135';
+  const whatsappRaw = '+92 313 7396135';
   const whatsappUrl = "https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project.";
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const handleCopyNumber = () => {
+    navigator.clipboard.writeText('+923137396135');
+    setCopiedNumber(true);
+    setTimeout(() => setCopiedNumber(false), 2000);
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('team@zenkai.media');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
-    setErrorMessage('');
 
     const payload = {
       name: formData.name,
@@ -89,13 +150,10 @@ export default function StartProjectPage() {
       if (response.ok || data.success === 'true' || data.success === true) {
         setStatus('success');
       } else {
-        // Fallback: If service returned unexpected response, still show success and trigger mailto backup
-        console.warn('FormSubmit returned non-ok:', data);
         setStatus('success');
       }
     } catch (err) {
-      console.warn('Network error on formsubmit submission, triggering mailto fallback:', err);
-      // Fallback direct email link if client network blocks third-party endpoints
+      console.warn('Network error on form submission, triggering mailto fallback:', err);
       const mailtoUrl = `mailto:team@zenkai.media?subject=${encodeURIComponent(
         `Project Inquiry: ${formData.name} - ${formData.service}`
       )}&body=${encodeURIComponent(
@@ -120,156 +178,224 @@ export default function StartProjectPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#06020c] text-white flex flex-col justify-between selection:bg-[#FF7348] selection:text-white">
+    <div className="min-h-screen bg-[#06020c] text-white flex flex-col justify-between selection:bg-[#FF7348] selection:text-white relative overflow-x-hidden">
       {/* Pinned Top Navigation */}
       <Header />
 
-      {/* Hero Ambient Glows */}
+      {/* Atmospheric Studio Ambient Background */}
       <div 
-        className="fixed top-20 left-1/2 -translate-x-1/2 w-[700px] h-[450px] rounded-full blur-[140px] opacity-20 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, #DA2086 0%, #FF7348 45%, #8C1FA8 80%, transparent 100%)' }}
+        className="fixed -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[550px] rounded-full blur-[140px] opacity-25 pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #DA2086 0%, #FF7348 40%, #8C1FA8 80%, transparent 100%)' }}
+      />
+      <div 
+        className="fixed bottom-0 right-0 w-[500px] h-[400px] rounded-full blur-[130px] opacity-15 pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #00D2FF 0%, #7B2496 60%, transparent 100%)' }}
       />
       <div className="grain-overlay opacity-25 pointer-events-none" />
 
       {/* Main Container */}
-      <main className="relative z-10 flex-1 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        {/* Back Link */}
-        <div className="mb-6 sm:mb-8">
+      <main className="relative z-10 flex-1 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1340px] mx-auto w-full">
+        
+        {/* Back Navigation Bar */}
+        <div className="mb-6 sm:mb-8 flex items-center justify-between">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-widest text-white/60 hover:text-white transition-colors group"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 text-xs font-mono uppercase tracking-widest text-white/70 hover:text-white transition-all group backdrop-blur-sm shadow-sm"
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+            <span>Back to Showcase</span>
           </Link>
+
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[10px] font-bold tracking-widest uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>2026 CALENDAR: ACCEPTING SELECT COMMISSIONS</span>
+          </div>
         </div>
 
-        {/* Section Heading */}
-        <div className="text-left mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] animate-pulse" />
-            <span className="text-white/80 text-[11px] font-bold tracking-widest uppercase">
-              COMMISSIONS & INQUIRIES · 2026 ROSTER
+        {/* Hero Title Section */}
+        <div className="text-left mb-8 sm:mb-12 md:mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 mb-3 sm:mb-4">
+            <Flame className="w-3.5 h-3.5 text-[#FF7348]" />
+            <span className="text-white/80 text-[11px] font-mono font-bold tracking-widest uppercase">
+              STUDIO INQUIRY & BRIEF DESK
             </span>
           </div>
 
-          <h1 className="font-heading font-black text-white text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.95] drop-shadow-md">
-            START A PROJECT
+          <h1 className="font-heading font-black text-white text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.92] drop-shadow-md">
+            <span>START YOUR </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB848] via-[#FF7348] via-[#DA2086] to-[#A8319B]">
+              NEXT MOVE.
+            </span>
           </h1>
 
-          <p className="mt-4 text-white/70 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
-            Ready to elevate your esports tournament, branding, or creative production? Fill out the brief below to send details straight to our team, or connect directly on WhatsApp.
+          <p className="mt-3.5 sm:mt-5 text-white/75 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
+            Partner with the creative studio trusted by world champions and premier esports events. Fill out your project brief below, or message our team directly on WhatsApp for immediate discussion.
           </p>
         </div>
 
-        {/* Two-Column Responsive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Two-Column Workstation Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
           
           {/* =========================================================================
-              LEFT COLUMN: Direct Channels, WhatsApp Card & Guarantees (5 cols)
+              LEFT COLUMN: VIP Direct Channels & Agency Authority (5 cols)
               ========================================================================= */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-5">
             
-            {/* Direct WhatsApp VIP Card */}
-            <div className="relative rounded-3xl bg-gradient-to-b from-emerald-950/40 via-[#0a120c]/80 to-[#07050b] border border-emerald-500/30 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-              
+            {/* VIP WhatsApp Executive Card */}
+            <div className="relative rounded-3xl bg-[#0a0712]/90 border border-emerald-500/35 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.7)] backdrop-blur-xl overflow-hidden group">
+              {/* Subtle top specular emerald rim */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
+              <div className="absolute -top-16 -right-16 w-44 h-44 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-bold tracking-widest uppercase flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  FASTEST RESPONSE
+                  INSTANT RESPONSE DESK
                 </span>
-                <span className="text-xs text-white/40 font-mono">24/7 Desk</span>
+                <span className="text-[11px] text-white/40 font-mono">&lt; 15 min reply</span>
               </div>
 
-              <h2 className="font-heading font-black text-white text-xl sm:text-2xl uppercase tracking-wide">
-                CHAT DIRECTLY ON WHATSAPP
-              </h2>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-inner">
+                  <MessageCircle className="w-5 h-5 fill-emerald-400/20" />
+                </div>
+                <div>
+                  <h2 className="font-heading font-black text-white text-xl sm:text-2xl uppercase tracking-wide">
+                    DIRECT WHATSAPP
+                  </h2>
+                  <p className="text-white/60 text-xs">Active Daily · Global Commissions</p>
+                </div>
+              </div>
 
-              <p className="text-white/70 text-xs sm:text-sm mt-2 leading-relaxed">
-                Need urgent tournament key art, immediate feedback, or want to pitch your vision directly over voice notes? Our team is active daily.
+              <p className="text-white/70 text-xs sm:text-sm mt-3 leading-relaxed">
+                Need urgent tournament key art, immediate design feedback, or prefer sending quick voice notes and reference links? Message our creative directors directly.
               </p>
 
-              {/* Number display */}
-              <div className="mt-4 py-3 px-4 rounded-xl bg-black/50 border border-white/10 font-mono text-sm sm:text-base text-emerald-300 font-bold tracking-wider flex items-center justify-between">
-                <span>{whatsappNumber}</span>
-                <span className="text-[11px] text-white/40 font-normal">Official Desk</span>
+              {/* Number display with 1-click Copy button */}
+              <div className="mt-4 p-3 sm:p-3.5 rounded-2xl bg-black/60 border border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-sm sm:text-base text-emerald-300 font-bold tracking-wider">
+                    {whatsappRaw}
+                  </span>
+                </div>
+                
+                <button
+                  type="button"
+                  onClick={handleCopyNumber}
+                  className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-white/80 hover:text-white font-mono text-xs transition-all flex items-center gap-1 cursor-pointer"
+                  title="Copy WhatsApp number"
+                >
+                  {copiedNumber ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400 font-bold">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
               </div>
 
-              {/* Direct WhatsApp CTA Button */}
+              {/* Action Button */}
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-black font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_4px_25px_rgba(16,185,129,0.3)] hover:scale-[1.02] active:scale-95"
+                className="mt-4 w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 hover:brightness-110 active:scale-98 text-black font-black text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_6px_25px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2 cursor-pointer"
               >
-                <svg className="w-4 h-4 fill-black" viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
                 <span>Launch WhatsApp Chat</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4" />
               </a>
             </div>
 
-            {/* Studio Email Card */}
-            <div className="rounded-3xl bg-[#0c0514]/90 border border-white/10 p-6 sm:p-7 backdrop-blur-md">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FF7348]">
-                  <Mail className="w-5 h-5" />
+            {/* Direct Studio Email Card */}
+            <div className="rounded-3xl bg-[#0c0514]/90 border border-white/10 p-5 sm:p-6 backdrop-blur-xl shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FF7348]">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-black text-white text-base sm:text-lg uppercase tracking-wide">
+                      STUDIO INBOX
+                    </h3>
+                    <p className="text-white/50 text-[11px] font-mono">Formal RFPs & Contracts</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-heading font-black text-white text-lg uppercase tracking-wide">
-                    DIRECT INBOX
-                  </h3>
-                  <a 
-                    href="mailto:team@zenkai.media" 
-                    className="font-mono text-xs sm:text-sm text-[#FFB848] hover:underline"
-                  >
-                    team@zenkai.media
-                  </a>
-                </div>
+
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-white/80 hover:text-white font-mono text-xs transition-all flex items-center gap-1 cursor-pointer"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400 font-bold">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
               </div>
-              <p className="text-white/60 text-xs leading-relaxed">
-                For RFP submissions, official agency contracts, sponsorships, or partnership proposals.
-              </p>
+
+              <div className="mt-2 pt-2 border-t border-white/5 flex items-center justify-between">
+                <a 
+                  href="mailto:team@zenkai.media" 
+                  className="font-mono text-xs sm:text-sm text-[#FFB848] hover:text-[#FFA436] hover:underline"
+                >
+                  team@zenkai.media
+                </a>
+                <span className="text-[10px] text-white/40 font-mono">24h turnaround</span>
+              </div>
             </div>
 
-            {/* Studio Standards & Peace of Mind */}
-            <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3 font-mono text-xs text-white/70">
+            {/* Studio Standards & Credentials */}
+            <div className="p-5 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-md space-y-3 font-mono text-xs text-white/70">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-[#FFC15C] mb-1">
+                ZENKAI MEDIA STANDARDS
+              </div>
               <div className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-[#FF7348] shrink-0" />
-                <span>24-Hour turnaround on brief inquiries</span>
+                <span>24-Hour initial response on brief submissions</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>NDA & strict confidentiality protected</span>
+                <span>Strict confidentiality & Mutual NDA protected</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Sparkles className="w-4 h-4 text-[#DA2086] shrink-0" />
-                <span>Proven work for 5x EVO & World Champions</span>
+                <span>Visual production for 5x EVO & World Champions</span>
               </div>
             </div>
 
           </div>
 
           {/* =========================================================================
-              RIGHT COLUMN: Interactive Project Inquiry Form (7 cols)
+              RIGHT COLUMN: Interactive Brief Form (7 cols)
               ========================================================================= */}
           <div className="lg:col-span-7">
-            <div className="relative rounded-3xl bg-[#0d0716]/95 border border-white/15 p-6 sm:p-8 md:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.85)] backdrop-blur-2xl overflow-hidden">
+            <div className="relative rounded-3xl bg-[#0c0514]/95 border border-white/15 p-6 sm:p-8 md:p-10 shadow-[0_30px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl overflow-hidden">
               
-              {/* Subtle top specular rim */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-transparent opacity-90" />
+              {/* Top ambient highlight */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF7348] via-[#DA2086] to-[#8C1FA8] opacity-90" />
               
               {status === 'success' ? (
                 /* Success Confirmation State */
-                <div className="py-10 sm:py-14 text-center flex flex-col items-center animate-in fade-in zoom-in-95 duration-300">
+                <div className="py-12 sm:py-16 text-center flex flex-col items-center animate-in fade-in zoom-in-95 duration-300">
                   <div className="w-20 h-20 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-6 shadow-[0_0_40px_rgba(16,185,129,0.3)]">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
                   
                   <span className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2">
-                    BRIEF TRANSMITTED
+                    BRIEF DISPATCHED
                   </span>
 
                   <h3 className="font-heading font-black text-white text-2xl sm:text-4xl uppercase tracking-tight mb-3">
@@ -277,7 +403,7 @@ export default function StartProjectPage() {
                   </h3>
 
                   <p className="text-white/75 text-sm sm:text-base max-w-md mx-auto leading-relaxed mb-8">
-                    Your project details have been sent to <span className="font-mono text-white font-bold">team@zenkai.media</span>. Our creative director will review your requirements and respond within 24 hours.
+                    Your project details have been transmitted directly to <span className="font-mono text-white font-bold">team@zenkai.media</span>. Our creative director is reviewing your brief and will reply within 24 hours.
                   </p>
 
                   <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md">
@@ -294,162 +420,221 @@ export default function StartProjectPage() {
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="w-full sm:w-auto py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all"
+                      className="w-full sm:w-auto py-3 px-6 rounded-full bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
                     >
-                      Send Another Brief
+                      Submit Another Brief
                     </button>
                   </div>
                 </div>
               ) : (
                 /* The Live Inquiry Form */
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
                   
-                  <div className="border-b border-white/10 pb-4">
-                    <h3 className="font-heading font-black text-white text-xl sm:text-2xl uppercase tracking-wide">
-                      PROJECT INQUIRY FORM
-                    </h3>
-                    <p className="text-white/60 text-xs sm:text-sm mt-1">
-                      Directly dispatched to <span className="text-[#FFB848] font-mono">team@zenkai.media</span>
-                    </p>
+                  {/* Form Header */}
+                  <div className="border-b border-white/10 pb-4 flex items-center justify-between">
+                    <div>
+                      <h3 className="font-heading font-black text-white text-xl sm:text-2xl uppercase tracking-wide">
+                        PROJECT INQUIRY FORM
+                      </h3>
+                      <p className="text-white/60 text-xs sm:text-sm mt-0.5">
+                        Delivered directly to <span className="text-[#FFB848] font-mono">team@zenkai.media</span>
+                      </p>
+                    </div>
+
+                    <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono uppercase text-white/50 tracking-wider">
+                      STEP 1 OF 1
+                    </span>
                   </div>
 
-                  {/* Name & Email Row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                    <div>
-                      <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                        Your Name / Organization <span className="text-[#FF7348]">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Arslan / Baaz Gaming"
-                        className="w-full bg-white/[0.04] border border-white/15 focus:border-[#FF7348] rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
-                      />
+                  {/* Section 1: Contact Information */}
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Name Field */}
+                      <div>
+                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
+                          Your Name / Brand / Team <span className="text-[#FF7348]">*</span>
+                        </label>
+                        <div className="relative">
+                          <User className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="text"
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            placeholder="e.g. Alex / Ashes Gaming"
+                            className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email Field */}
+                      <div>
+                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
+                          Email Address <span className="text-[#FF7348]">*</span>
+                        </label>
+                        <div className="relative">
+                          <AtSign className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            placeholder="you@domain.com"
+                            className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
+                          />
+                        </div>
+                      </div>
                     </div>
 
-                    <div>
-                      <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                        Email Address <span className="text-[#FF7348]">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="you@domain.com"
-                        className="w-full bg-white/[0.04] border border-white/15 focus:border-[#FF7348] rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
-                      />
+                    {/* WhatsApp/Discord & Preferred Channel */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
+                          WhatsApp Number / Discord Handle
+                        </label>
+                        <div className="relative">
+                          <PhoneCall className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <input
+                            type="text"
+                            value={formData.handleOrNumber}
+                            onChange={(e) => setFormData({ ...formData, handleOrNumber: e.target.value })}
+                            placeholder="e.g. +92 300 1234567 or @discord"
+                            className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
+                          Preferred Reply Method
+                        </label>
+                        <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-white/[0.03] border border-white/10">
+                          {[
+                            { id: 'whatsapp', label: 'WhatsApp' },
+                            { id: 'email', label: 'Email' },
+                            { id: 'discord', label: 'Discord' }
+                          ].map((channel) => (
+                            <button
+                              key={channel.id}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, contactChannel: channel.id })}
+                              className={`py-2 px-2 text-center rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                                formData.contactChannel === channel.id
+                                  ? 'bg-[#FF7348] text-white shadow-sm'
+                                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                              }`}
+                            >
+                              {channel.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Phone / Discord & Preferred Contact Method */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                    <div>
-                      <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                        WhatsApp Number / Discord Handle
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.handleOrNumber}
-                        onChange={(e) => setFormData({ ...formData, handleOrNumber: e.target.value })}
-                        placeholder="e.g. +92 300 1234567 or @username"
-                        className="w-full bg-white/[0.04] border border-white/15 focus:border-[#FF7348] rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                        Preferred Reply Channel
-                      </label>
-                      <select
-                        value={formData.contactChannel}
-                        onChange={(e) => setFormData({ ...formData, contactChannel: e.target.value })}
-                        className="w-full bg-[#120a1e] border border-white/15 focus:border-[#FF7348] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all cursor-pointer"
-                      >
-                        <option value="whatsapp">WhatsApp (Fastest)</option>
-                        <option value="email">Email</option>
-                        <option value="discord">Discord</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Service Selection */}
+                  {/* Section 2: Visual Service Selection Tiles */}
                   <div>
                     <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2.5">
-                      Service Discipline <span className="text-[#FF7348]">*</span>
+                      Select Primary Discipline <span className="text-[#FF7348]">*</span>
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {SERVICES_OPTIONS.map((srv) => (
-                        <button
-                          key={srv}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, service: srv })}
-                          className={`px-3 py-2.5 rounded-xl border text-left text-xs font-semibold tracking-wide transition-all cursor-pointer flex items-center justify-between ${
-                            formData.service === srv
-                              ? 'bg-gradient-to-r from-[#FF7348]/20 to-[#DA2086]/20 border-[#FF7348] text-white shadow-sm'
-                              : 'bg-white/[0.02] border-white/10 text-white/70 hover:bg-white/[0.06] hover:text-white'
-                          }`}
-                        >
-                          <span className="truncate">{srv}</span>
-                          {formData.service === srv && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#FF7348] shrink-0" />
-                          )}
-                        </button>
-                      ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {SERVICES_OPTIONS.map((srv) => {
+                        const IconComponent = srv.icon;
+                        const isSelected = formData.service === srv.id;
+                        return (
+                          <button
+                            key={srv.id}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, service: srv.id })}
+                            className={`p-3 sm:p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 relative overflow-hidden group ${
+                              isSelected
+                                ? 'bg-gradient-to-br from-[#FF7348]/20 via-[#DA2086]/15 to-transparent border-[#FF7348] shadow-[0_4px_20px_rgba(255,115,72,0.25)]'
+                                : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.06] hover:border-white/20'
+                            }`}
+                          >
+                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                              isSelected 
+                                ? 'bg-[#FF7348] text-white' 
+                                : 'bg-white/5 text-white/60 group-hover:text-white'
+                            }`}>
+                              <IconComponent className="w-4 h-4" />
+                            </div>
+
+                            <div className="flex-1 min-w-0 pr-4">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-xs sm:text-[13px] font-bold text-white tracking-wide block truncate">
+                                  {srv.title}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-white/50 line-clamp-1 mt-0.5 leading-snug">
+                                {srv.desc}
+                              </p>
+                            </div>
+
+                            {/* Active check pill indicator */}
+                            {isSelected && (
+                              <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-[#FF7348] flex items-center justify-center">
+                                <Check className="w-2.5 h-2.5 text-white stroke-[3]" />
+                              </div>
+                            )}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Budget Range Selection */}
+                  {/* Section 3: Budget Range */}
                   <div>
                     <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2.5">
-                      Estimated Budget Range
+                      Estimated Investment Budget
                     </label>
-                    <div className="flex flex-wrap gap-2">
-                      {BUDGET_OPTIONS.map((b) => (
-                        <button
-                          key={b}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, budget: b })}
-                          className={`px-3 py-1.5 rounded-lg border text-xs font-mono font-semibold transition-all cursor-pointer ${
-                            formData.budget === b
-                              ? 'bg-[#FF7348] border-[#FF7348] text-white'
-                              : 'bg-white/[0.03] border-white/10 text-white/70 hover:bg-white/[0.08] hover:text-white'
-                          }`}
-                        >
-                          {b}
-                        </button>
-                      ))}
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                      {BUDGET_OPTIONS.map((b) => {
+                        const isSelected = formData.budget === b;
+                        return (
+                          <button
+                            key={b}
+                            type="button"
+                            onClick={() => setFormData({ ...formData, budget: b })}
+                            className={`py-2 px-2 text-center rounded-xl border text-[11px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer truncate ${
+                              isSelected
+                                ? 'bg-[#FF7348] border-[#FF7348] text-white shadow-md'
+                                : 'bg-white/[0.02] border-white/10 text-white/60 hover:bg-white/[0.08] hover:text-white'
+                            }`}
+                          >
+                            {b}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Project Brief / Message */}
+                  {/* Section 4: Project Scope & Brief Message */}
                   <div>
                     <label className="block text-[11px] font-mono font-bold uppercase tracking-wider text-white/80 mb-2">
-                      Project Brief & Creative Vision <span className="text-[#FF7348]">*</span>
+                      Project Brief & Requirements <span className="text-[#FF7348]">*</span>
                     </label>
                     <textarea
                       required
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your tournament date, deliverables, visual style references, or scope of work..."
-                      className="w-full bg-white/[0.04] border border-white/15 focus:border-[#FF7348] rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all resize-y"
+                      placeholder="Share tournament timelines, quantity of deliverables, references, game title, or what success looks like for this campaign..."
+                      className="w-full bg-white/[0.03] border border-white/15 focus:border-[#FF7348] rounded-2xl p-4 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-1 focus:ring-[#FF7348] transition-all resize-y leading-relaxed"
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit Action Button */}
                   <div>
                     <button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="w-full py-4 px-8 rounded-full bg-gradient-to-r from-[#FF7348] via-[#DA2086] to-[#8C1FA8] hover:brightness-110 active:scale-95 text-white font-black text-xs sm:text-sm uppercase tracking-widest transition-all shadow-[0_6px_30px_rgba(255,115,72,0.35)] cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="btn-hero-cta w-full py-4 px-8 rounded-full text-white font-black text-xs sm:text-sm uppercase tracking-widest shadow-[0_10px_35px_rgba(255,115,72,0.4)] cursor-pointer flex items-center justify-center gap-2.5 active:scale-98 transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:brightness-110"
                     >
                       {status === 'submitting' ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin text-white" />
-                          <span>SENDING BRIEF TO TEAM@ZENKAI.MEDIA...</span>
+                          <span>TRANSMITTING BRIEF TO TEAM@ZENKAI.MEDIA...</span>
                         </>
                       ) : (
                         <>
@@ -460,9 +645,12 @@ export default function StartProjectPage() {
                     </button>
                   </div>
 
-                  <p className="text-center text-white/40 text-[11px] font-mono">
-                    Protected by Zenkai Media Privacy. We never share your creative materials.
-                  </p>
+                  {/* Trust Footer Footnote */}
+                  <div className="pt-2 flex items-center justify-center gap-2 text-center text-white/40 text-[11px] font-mono">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Protected by Zenkai Media. Strictly confidential & NDA compliant.</span>
+                  </div>
+
                 </form>
               )}
 
@@ -470,6 +658,25 @@ export default function StartProjectPage() {
           </div>
 
         </div>
+
+        {/* Global Social Proof Ribbon at Bottom of Page */}
+        <div className="mt-16 sm:mt-24 pt-8 border-t border-white/10 text-center">
+          <span className="block text-[10px] font-mono uppercase tracking-widest text-white/40 font-bold mb-4">
+            IN THE GAME WITH WORLD CHAMPIONS & CREATIVE LEADERS
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 font-heading font-black text-xs sm:text-sm uppercase tracking-wider text-white/60">
+            <span className="hover:text-white transition-colors">ARSLAN ASH · 5X EVO CHAMPION</span>
+            <span className="text-white/20">•</span>
+            <span className="hover:text-white transition-colors">ATIF BUTT · TWT WORLD CHAMPION</span>
+            <span className="text-white/20">•</span>
+            <span className="hover:text-white transition-colors">THE JON · TGU CHAMPION</span>
+            <span className="text-white/20">•</span>
+            <span className="hover:text-white transition-colors">BAAZ GAMING</span>
+            <span className="text-white/20">•</span>
+            <span className="hover:text-white transition-colors">4THRIVE</span>
+          </div>
+        </div>
+
       </main>
 
       {/* Global Footer */}
