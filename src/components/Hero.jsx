@@ -30,7 +30,7 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="w-full h-full object-cover object-center grayscale"
         />
         {/* Dark overlay ensuring perfect contrast matching Screenshot 1 */}

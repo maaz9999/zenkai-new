@@ -717,6 +717,7 @@ export default function BaazCaseStudy({
                     poster="/assets/Baaz Merch/page_2.png"
                     playsInline
                     loop
+                    preload="none"
                     muted={videoMuted}
                     className="w-full h-full object-cover"
                     onPlay={() => setVideoPlaying(true)}

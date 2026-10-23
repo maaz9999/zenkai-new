@@ -13,7 +13,7 @@ export const playersData = [
     team: 'Team Ashes / Baaz Gaming',
     accolades: 'Thaigher Uppercut Champion',
     badge: 'THAIGHER CHAMPION',
-    image: '/assets/JON.png'
+    image: '/assets/JON.webp'
   },
   {
     id: 'khan',
@@ -24,7 +24,7 @@ export const playersData = [
     team: 'Team Ashes',
     accolades: 'EVO Grand Finalist',
     badge: 'EVO FINALIST',
-    image: '/assets/KHAN.PNG',
+    image: '/assets/KHAN.webp',
     imageClass: 'object-cover object-top scale-[1.04] sm:scale-[1.06] md:scale-[1.08] translate-y-4 sm:translate-y-5 md:translate-y-5 origin-top group-hover:scale-[1.12]'
   },
   {
@@ -36,7 +36,7 @@ export const playersData = [
     team: 'Team Ashes',
     accolades: 'Professional Tekken Athlete',
     badge: 'TEKKEN ATHLETE',
-    image: '/assets/JOE_CRUSH.png'
+    image: '/assets/JOE_CRUSH.webp'
   },
   {
     id: 'arslan-ash',
@@ -47,7 +47,7 @@ export const playersData = [
     team: 'Red Bull / Twisted Minds',
     accolades: '5x EVO Champion',
     badge: '5X EVO CHAMPION',
-    image: '/assets/ARSLAN.png'
+    image: '/assets/ARSLAN.webp'
   },
   {
     id: 'usama',
@@ -58,7 +58,7 @@ export const playersData = [
     team: 'Team Ashes',
     accolades: 'TGU Top 16 Contender',
     badge: 'TGU CONTENDER',
-    image: '/assets/USAMA.png'
+    image: '/assets/USAMA.webp'
   },
   {
     id: 'atif-butt',
@@ -69,6 +69,6 @@ export const playersData = [
     team: 'Falcon Esports / Ashes',
     accolades: 'Tekken World Tour Champion',
     badge: 'TWT WORLD CHAMPION',
-    image: '/assets/ATIF.png'
+    image: '/assets/ATIF.webp'
   }
 ];

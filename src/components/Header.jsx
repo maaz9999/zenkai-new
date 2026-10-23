@@ -33,21 +33,28 @@ export default function Header() {
       { id: 'contact', key: 'contact' }
     ];
 
+    let ticking = false;
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 280;
-      let current = null;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + 280;
+          let current = null;
 
-      for (const section of sections) {
-        const el = document.getElementById(section.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            current = section.key;
+          for (const section of sections) {
+            const el = document.getElementById(section.id);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPosition >= top && scrollPosition < top + height) {
+                current = section.key;
+              }
+            }
           }
-        }
+          setActiveNav(current);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setActiveNav(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

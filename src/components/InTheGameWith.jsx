@@ -65,10 +65,12 @@ export default function InTheGameWith() {
                       src={player.image}
                       alt={player.name}
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         if (!e.currentTarget.dataset.retried) {
                           e.currentTarget.dataset.retried = 'true';
-                          e.currentTarget.src = player.image.replace('/assets/', '/media/');
+                          // Fallback from webp to png/jpg if ever needed
+                          e.currentTarget.src = player.image.replace(/\.webp$/i, '.png');
                         }
                       }}
                       className={`w-full h-full ${

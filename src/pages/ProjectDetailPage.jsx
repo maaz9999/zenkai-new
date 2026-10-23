@@ -335,7 +335,7 @@ export default function ProjectDetailPage() {
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="w-full h-full object-cover object-center cursor-pointer transition-transform duration-500 group-hover/video:scale-102"
                         onMouseEnter={(e) => e.target.play().catch(() => {})}
                         onMouseLeave={(e) => {

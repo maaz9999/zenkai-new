@@ -14,19 +14,19 @@ export default function ZenkaiFiles() {
     {
       heading: 'THUMBNAILS',
       project: projectsData.find((p) => p.slug === 'thumbnails' || p.id === 'thumbnails') || projectsData[2],
-      thumbnail: '/media/thumb_Arslan_podcast.jpg',
+      thumbnail: '/media/thumb_Arslan_podcast.webp',
       badge: 'THUMBNAIL'
     },
     {
       heading: 'POSTERS',
       project: projectsData.find((p) => p.id === 'tekken-8-championship') || projectsData[0],
-      thumbnail: '/media/Arslan_tournament.jpg',
+      thumbnail: '/media/Arslan_tournament.webp',
       badge: 'POSTER'
     },
     {
       heading: 'REELS',
       project: projectsData.find((p) => p.id === 'growth-creative-motion') || projectsData[5],
-      thumbnail: '/media/services-hero-landscape.png',
+      thumbnail: '/media/services-hero-landscape.webp',
       badge: 'REEL'
     },
     {
@@ -37,13 +37,13 @@ export default function ZenkaiFiles() {
         title: '4THRIVE FAN MERCHANDISE',
         category: 'Merchandise & Esports Apparel'
       },
-      thumbnail: '/assets/4thrive Merch/Artboard 21.png',
+      thumbnail: '/assets/4thrive Merch/Artboard 21.webp',
       badge: 'MERCH'
     },
     {
       heading: 'ARSLAN ASH STICKERS',
       project: projectsData.find((p) => p.id === 'twitch-stream-packaging') || projectsData[6],
-      thumbnail: '/assets/Twitch emote presentation/Frame 7.jpg',
+      thumbnail: '/assets/Twitch emote presentation/Frame 7.webp',
       badge: 'STICKERS'
     },
     {
@@ -54,7 +54,7 @@ export default function ZenkaiFiles() {
         title: 'BAAZ TAKEDOWN 2026 MERCH',
         category: 'Merchandise & Apparel Design'
       },
-      thumbnail: '/assets/Baaz Merch/baaz_merch_thumb.png',
+      thumbnail: '/assets/Baaz Merch/baaz_merch_thumb.webp',
       badge: 'MERCH'
     }
   ];

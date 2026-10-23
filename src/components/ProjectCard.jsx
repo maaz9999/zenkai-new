@@ -103,6 +103,14 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
           <img 
             src={displayThumbnail} 
             alt={displayHeading} 
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              if (!e.currentTarget.dataset.retried && displayThumbnail.endsWith('.webp')) {
+                e.currentTarget.dataset.retried = 'true';
+                e.currentTarget.src = displayThumbnail.replace(/\.webp$/i, '.png');
+              }
+            }}
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
           />
           {/* Subtle gradient vignette at bottom of thumbnail */}
