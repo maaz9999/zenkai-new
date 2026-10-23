@@ -24,7 +24,8 @@ export const playersData = [
     team: 'Team Ashes',
     accolades: 'EVO Grand Finalist',
     badge: 'EVO FINALIST',
-    image: '/assets/KHAN.PNG'
+    image: '/assets/KHAN.PNG',
+    imageClass: 'scale-[1.12] sm:scale-[1.22] md:scale-[1.24] translate-y-9 sm:translate-y-8 md:translate-y-9 origin-[center_45%]'
   },
   {
     id: 'joe-crush',

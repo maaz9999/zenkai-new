@@ -71,7 +71,9 @@ export default function InTheGameWith() {
                           e.currentTarget.src = player.image.replace('/assets/', '/media/');
                         }
                       }}
-                      className="w-full h-full object-cover object-center scale-[1.18] sm:scale-[1.32] md:scale-[1.35] translate-y-8 sm:translate-y-6 md:translate-y-7 origin-[center_45%] opacity-95 group-hover:opacity-100 group-hover:scale-[1.25] sm:group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10"
+                      className={`w-full h-full object-cover object-center ${
+                        player.imageClass || 'scale-[1.18] sm:scale-[1.32] md:scale-[1.35] translate-y-8 sm:translate-y-6 md:translate-y-7 origin-[center_45%]'
+                      } opacity-95 group-hover:opacity-100 group-hover:scale-[1.25] sm:group-hover:scale-[1.4] transition-all duration-500 ease-out relative z-10`}
                     />
                   ) : (
                     <div className="w-full h-full bg-[#0c0a12]" />
