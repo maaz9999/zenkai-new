@@ -130,7 +130,7 @@ export const projectsData = [
     client: '4THRIVE Esports Org · PUBG Mobile Division',
     year: '2025',
     description: 'Complete esports fan merchandise collection, 3D collectables, custom anime chibi mascots, pro hoodies, gaming desk pads, and collector\'s unboxing packaging.',
-    cover: '/assets/4thrive Merch/Artboard 21.png',
+    cover: '/assets/4t_cover.webp',
     pdfUrl: '/assets/PUBG 4Thrive Fan Merchandise Concept.pdf',
     pdfTitle: 'Download 4THRIVE Fan Merchandise Pitch Deck (PDF)',
     gradientColors: ['#FF6428', '#DE2288', '#580E6E', '#FFA436'],
@@ -155,7 +155,7 @@ export const projectsData = [
       {
         title: '4THRIVE FAN MERCHANDISE CONCEPT',
         subtitle: 'Page 03 // Official Pitch Deck Title & Collection Cover',
-        image: '/media/4thrive_cover.jpg',
+        image: '/assets/4t_cover.webp',
         badge: 'CONCEPT COVER',
         aspect: 'aspect-[16/9]'
       },
@@ -335,7 +335,7 @@ export const projectsData = [
     client: 'Arslan Ash (8x EVO Champion) & Twitch',
     year: '2024 - 2025',
     description: 'Complete Twitch channel overlay systems, interactive emote packages, sub badges, in-game overlays, starting/offline screens, and exclusive chibi character stickers.',
-    cover: '/assets/Twitch emote presentation/Frame 1.jpg',
+    cover: '/assets/Arslan_Ash_cover.webp',
     gradientColors: ['#9227B5', '#FF7348', '#FFC15C', '#F03391'],
     projectType: 'twitch-stream',
     defaultColumns: 2,
@@ -344,7 +344,7 @@ export const projectsData = [
       {
         title: 'MASTER STREAM PACKAGING',
         subtitle: 'Frame 01 // Master Broadcast Identity & Channel Visual Suite',
-        image: '/assets/Twitch emote presentation/Frame 1.jpg',
+        image: '/assets/Arslan_Ash_cover.webp',
         badge: 'MASTER SUITE',
         aspect: 'aspect-[16/9]'
       },
@@ -439,7 +439,7 @@ export const projectsData = [
     client: 'Ashes Gaming · Red Bull · Hardware Brands · Top Creators',
     year: '2024 - 2026',
     description: 'High-velocity short-form reels, 3D motion graphics, cinematic tournament hype trailers, and performance advertising engineered for algorithmic growth across Instagram, TikTok, and YouTube Shorts.',
-    cover: '/media/reel-cover.jpg',
+    cover: '/assets/Reel_cover.webp',
     gradientColors: ['#DA2086', '#FF7348', '#FFC15C', '#551276'],
     projectType: 'reels-portfolio',
     defaultColumns: 4,

@@ -26,7 +26,7 @@ export default function ZenkaiFiles() {
     {
       heading: 'REELS',
       project: projectsData.find((p) => p.id === 'growth-creative-motion') || projectsData[5],
-      thumbnail: '/media/services-hero-landscape.webp',
+      thumbnail: '/assets/Reel_cover.webp',
       badge: 'REEL'
     },
     {
@@ -37,13 +37,13 @@ export default function ZenkaiFiles() {
         title: '4THRIVE FAN MERCHANDISE',
         category: 'Merchandise & Esports Apparel'
       },
-      thumbnail: '/assets/4thrive Merch/Artboard 21.webp',
+      thumbnail: '/assets/4t_cover.webp',
       badge: 'MERCH'
     },
     {
       heading: 'ARSLAN ASH STICKERS',
       project: projectsData.find((p) => p.id === 'twitch-stream-packaging') || projectsData[6],
-      thumbnail: '/assets/Twitch emote presentation/Frame 7.webp',
+      thumbnail: '/assets/Arslan_Ash_cover.webp',
       badge: 'STICKERS'
     },
     {

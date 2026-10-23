@@ -494,8 +494,10 @@ export default function TwitchPackagingShowcase({
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
                   <img
-                    src="/assets/Twitch emote presentation/Frame 1.jpg"
+                    src="/assets/Arslan_Ash_cover.webp"
                     alt="Master Stream Packaging"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-102"
                   />
                   <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-mono font-bold uppercase text-[#FFC15C]">

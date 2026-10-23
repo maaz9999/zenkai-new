@@ -78,7 +78,7 @@ export default function FourThriveMerchShowcase({
       badge: 'CONCEPT COVER',
       title: '4THRIVE FAN MERCHANDISE CONCEPT',
       subtitle: 'Official Pitch Deck Title Slide & Visual Identity Cover',
-      image: '/media/4thrive_cover.jpg',
+      image: '/assets/4t_cover.webp',
       category: 'case-deck',
       lore: 'Official pitch deck cover establishing the 4THRIVE visual identity system — bold energetic orange, neon magenta, and royal violet palette tailored for high-energy esports fans and convention releases.',
       tags: ['#CoverDesign', '#PitchDeck', '#VisualIdentity', '#Typography']
