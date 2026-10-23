@@ -5,8 +5,19 @@
  */
 export const playersData = [
   {
-    id: 'the-jon',
+    id: 'arslan-ash',
     number: '01',
+    name: 'ARSLAN ASH',
+    shortTag: 'ASH',
+    role: 'TEKKEN PLAYER',
+    team: 'Red Bull / Twisted Minds',
+    accolades: '5x EVO Champion',
+    badge: '5X EVO CHAMPION',
+    image: '/assets/ARSLAN.webp'
+  },
+  {
+    id: 'the-jon',
+    number: '02',
     name: 'THE JON',
     shortTag: 'JON',
     role: 'TEKKEN PLAYER',
@@ -17,7 +28,7 @@ export const playersData = [
   },
   {
     id: 'khan',
-    number: '02',
+    number: '03',
     name: 'KHAN',
     shortTag: 'KHAN',
     role: 'TEKKEN PLAYER',
@@ -29,7 +40,7 @@ export const playersData = [
   },
   {
     id: 'joe-crush',
-    number: '03',
+    number: '04',
     name: 'JOE CRUSH',
     shortTag: 'JOE',
     role: 'TEKKEN PLAYER',
@@ -37,17 +48,6 @@ export const playersData = [
     accolades: 'Professional Tekken Athlete',
     badge: 'TEKKEN ATHLETE',
     image: '/assets/JOE_CRUSH.webp'
-  },
-  {
-    id: 'arslan-ash',
-    number: '04',
-    name: 'ARSLAN ASH',
-    shortTag: 'ASH',
-    role: 'TEKKEN PLAYER',
-    team: 'Red Bull / Twisted Minds',
-    accolades: '5x EVO Champion',
-    badge: '5X EVO CHAMPION',
-    image: '/assets/ARSLAN.webp'
   },
   {
     id: 'usama',
