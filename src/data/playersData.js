@@ -16,21 +16,21 @@ export const playersData = [
     image: '/assets/JON.png'
   },
   {
-    id: 'qasim',
+    id: 'khan',
     number: '02',
-    name: 'QASIM',
-    shortTag: 'QASIM',
+    name: 'KHAN',
+    shortTag: 'KHAN',
     role: 'TEKKEN PLAYER',
     team: 'Team Ashes',
-    accolades: 'First Knockout Finalist',
-    badge: 'KNOCKOUT FINALIST',
-    image: '/assets/QASIM.png'
+    accolades: 'EVO Grand Finalist',
+    badge: 'EVO FINALIST',
+    image: '/assets/KHAN.PNG'
   },
   {
     id: 'joe-crush',
     number: '03',
     name: 'JOE CRUSH',
-    shortTag: 'CRUSH',
+    shortTag: 'JOE',
     role: 'TEKKEN PLAYER',
     team: 'Team Ashes',
     accolades: 'Professional Tekken Athlete',
