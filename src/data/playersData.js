@@ -25,7 +25,7 @@ export const playersData = [
     accolades: 'EVO Grand Finalist',
     badge: 'EVO FINALIST',
     image: '/assets/KHAN.PNG',
-    imageClass: 'scale-[1.12] sm:scale-[1.22] md:scale-[1.24] translate-y-9 sm:translate-y-8 md:translate-y-9 origin-[center_45%]'
+    imageClass: 'object-cover object-top scale-[1.04] sm:scale-[1.06] md:scale-[1.08] translate-y-4 sm:translate-y-5 md:translate-y-5 origin-top group-hover:scale-[1.12]'
   },
   {
     id: 'joe-crush',
