@@ -115,12 +115,6 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
           />
           {/* Subtle gradient vignette at bottom of thumbnail */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
-          
-          {badge && (
-            <span className="absolute top-2 left-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] font-extrabold uppercase tracking-widest text-white/90">
-              {badge}
-            </span>
-          )}
         </div>
       )}
 

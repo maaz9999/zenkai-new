@@ -14,20 +14,17 @@ export default function ZenkaiFiles() {
     {
       heading: 'THUMBNAILS',
       project: projectsData.find((p) => p.slug === 'thumbnails' || p.id === 'thumbnails') || projectsData[2],
-      thumbnail: '/media/thumb_Arslan_podcast.webp',
-      badge: 'THUMBNAIL'
+      thumbnail: '/media/thumb_Arslan_podcast.webp'
     },
     {
       heading: 'POSTERS',
       project: projectsData.find((p) => p.id === 'tekken-8-championship') || projectsData[0],
-      thumbnail: '/media/Arslan_tournament.webp',
-      badge: 'POSTER'
+      thumbnail: '/media/Arslan_tournament.webp'
     },
     {
       heading: 'REELS',
       project: projectsData.find((p) => p.id === 'growth-creative-motion') || projectsData[5],
-      thumbnail: '/assets/Reel_cover.webp',
-      badge: 'REEL'
+      thumbnail: '/assets/Reel_cover.webp'
     },
     {
       heading: '4THRIVES MERCH CONCEPT',
@@ -37,14 +34,12 @@ export default function ZenkaiFiles() {
         title: '4THRIVE FAN MERCHANDISE',
         category: 'Merchandise & Esports Apparel'
       },
-      thumbnail: '/assets/4t_cover.webp',
-      badge: 'MERCH'
+      thumbnail: '/assets/4t_cover.webp'
     },
     {
       heading: 'ARSLAN ASH STICKERS',
       project: projectsData.find((p) => p.id === 'twitch-stream-packaging') || projectsData[6],
-      thumbnail: '/assets/Arslan_Ash_cover.webp',
-      badge: 'STICKERS'
+      thumbnail: '/assets/Arslan_Ash_cover.webp'
     },
     {
       heading: 'BAAZ MERCH',
@@ -54,8 +49,7 @@ export default function ZenkaiFiles() {
         title: 'BAAZ TAKEDOWN 2026 MERCH',
         category: 'Merchandise & Apparel Design'
       },
-      thumbnail: '/assets/Baaz Merch/baaz_merch_thumb.webp',
-      badge: 'MERCH'
+      thumbnail: '/assets/Baaz Merch/baaz_merch_thumb.webp'
     }
   ];
 
@@ -77,7 +71,6 @@ export default function ZenkaiFiles() {
               project={block.project}
               heading={block.heading}
               thumbnail={block.thumbnail}
-              badge={block.badge}
               index={idx}
             />
           ))}
