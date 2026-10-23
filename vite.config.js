@@ -6,16 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     cssCodeSplit: true,
-    chunkSizeWarningLimit: 800,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-matter': ['matter-js'],
-          'vendor-icons': ['lucide-react']
-        }
-      }
-    }
+    chunkSizeWarningLimit: 1200
   },
   server: {
     port: 3007,

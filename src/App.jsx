@@ -1,13 +1,13 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 
-// Dynamic lazy imports for instant route-level code-splitting
-const HomePage = lazy(() => import('./pages/HomePage'));
+// Code-split heavy secondary detail pages to keep main landing instant
 const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
 const StartProjectPage = lazy(() => import('./pages/StartProjectPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
-// Ultra-lightweight brand fallback loader
+// Ultra-lightweight brand fallback loader for subroutes
 function PageLoader() {
   return (
     <div className="min-h-screen bg-[#050505] flex items-center justify-center">
@@ -21,14 +21,43 @@ function PageLoader() {
 
 export default function App() {
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/work/:slug" element={<ProjectDetailPage />} />
-        <Route path="/start-a-project" element={<StartProjectPage />} />
-        <Route path="/contact" element={<StartProjectPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      {/* HomePage renders instantly with zero loading waterfall */}
+      <Route path="/" element={<HomePage />} />
+      
+      {/* Subroutes with lazy code-splitting and smooth fallback */}
+      <Route 
+        path="/work/:slug" 
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <ProjectDetailPage />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path="/start-a-project" 
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <StartProjectPage />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path="/contact" 
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <StartProjectPage />
+          </Suspense>
+        } 
+      />
+      <Route 
+        path="*" 
+        element={
+          <Suspense fallback={<PageLoader />}>
+            <NotFoundPage />
+          </Suspense>
+        } 
+      />
+    </Routes>
   );
 }
