@@ -34,7 +34,7 @@ export default function ZenkaiFiles() {
         title: '4THRIVE FAN MERCHANDISE',
         category: 'Merchandise & Esports Apparel'
       },
-      thumbnail: '/assets/4t_cover.webp'
+      thumbnail: '/assets/4t_cover.webp?v=full'
     },
     {
       heading: 'ARSLAN ASH STICKERS',

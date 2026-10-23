@@ -130,7 +130,7 @@ export const projectsData = [
     client: '4THRIVE Esports Org · PUBG Mobile Division',
     year: '2025',
     description: 'Complete esports fan merchandise collection, 3D collectables, custom anime chibi mascots, pro hoodies, gaming desk pads, and collector\'s unboxing packaging.',
-    cover: '/assets/4t_cover.webp',
+    cover: '/assets/4t_cover.webp?v=full',
     pdfUrl: '/assets/PUBG 4Thrive Fan Merchandise Concept.pdf',
     pdfTitle: 'Download 4THRIVE Fan Merchandise Pitch Deck (PDF)',
     gradientColors: ['#FF6428', '#DE2288', '#580E6E', '#FFA436'],
@@ -155,7 +155,7 @@ export const projectsData = [
       {
         title: '4THRIVE FAN MERCHANDISE CONCEPT',
         subtitle: 'Page 03 // Official Pitch Deck Title & Collection Cover',
-        image: '/assets/4t_cover.webp',
+        image: '/assets/4t_cover.webp?v=full',
         badge: 'CONCEPT COVER',
         aspect: 'aspect-[16/9]'
       },

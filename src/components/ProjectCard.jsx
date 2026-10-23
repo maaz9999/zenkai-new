@@ -106,9 +106,9 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
             loading="lazy"
             decoding="async"
             onError={(e) => {
-              if (!e.currentTarget.dataset.retried && displayThumbnail.endsWith('.webp')) {
+              if (!e.currentTarget.dataset.retried && displayThumbnail.includes('.webp')) {
                 e.currentTarget.dataset.retried = 'true';
-                e.currentTarget.src = displayThumbnail.replace(/\.webp$/i, '.png');
+                e.currentTarget.src = displayThumbnail.replace(/\.webp(\?.*)?$/i, '.png$1');
               }
             }}
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" 
