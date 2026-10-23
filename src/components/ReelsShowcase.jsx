@@ -84,7 +84,7 @@ export default function ReelsShowcase({
   const [viewMode, setViewMode] = useState('shorts-player');
   const [activeShortIdx, setActiveShortIdx] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isPlayerMuted, setIsPlayerMuted] = useState(false);
+  const [isPlayerMuted, setIsPlayerMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isShortBuffering, setIsShortBuffering] = useState(false);
   const [playerProgress, setPlayerProgress] = useState(0);
@@ -118,15 +118,66 @@ export default function ReelsShowcase({
     return times[idx % times.length];
   };
 
-  // Sync active short video playback
-  useEffect(() => {
-    if (mainShortsVideoRef.current && viewMode === 'shorts-player') {
-      setIsShortBuffering(true);
-      mainShortsVideoRef.current.currentTime = 0;
-      mainShortsVideoRef.current.play().catch(() => {});
-      setIsPlaying(true);
-      setHasLiked(false);
+  const handleToggleMute = (e) => {
+    if (e) e.stopPropagation();
+    const nextMuted = !isPlayerMuted;
+    setIsPlayerMuted(nextMuted);
+    if (mainShortsVideoRef.current) {
+      mainShortsVideoRef.current.muted = nextMuted;
     }
+  };
+
+  // Sync active short video playback with robust autoplay handling
+  useEffect(() => {
+    const video = mainShortsVideoRef.current;
+    if (!video || viewMode !== 'shorts-player') return;
+
+    let isMounted = true;
+    setHasLiked(false);
+
+    // Initial buffering check
+    if (video.readyState < 3) {
+      setIsShortBuffering(true);
+    } else {
+      setIsShortBuffering(false);
+    }
+
+    const startPlayback = async () => {
+      try {
+        video.currentTime = 0;
+        await video.play();
+        if (isMounted) {
+          setIsPlaying(true);
+          setIsShortBuffering(false);
+        }
+      } catch (err) {
+        // If unmuted autoplay blocked by browser policy, auto-fallback to muted
+        if (!video.muted) {
+          try {
+            video.muted = true;
+            setIsPlayerMuted(true);
+            await video.play();
+            if (isMounted) {
+              setIsPlaying(true);
+              setIsShortBuffering(false);
+            }
+            return;
+          } catch (mutedErr) {
+            // Autoplay strictly blocked by OS/browser
+          }
+        }
+        if (isMounted) {
+          setIsPlaying(false);
+          setIsShortBuffering(false);
+        }
+      }
+    };
+
+    startPlayback();
+
+    return () => {
+      isMounted = false;
+    };
   }, [activeShortIdx, viewMode]);
 
   // Keyboard navigation for Shorts Feed Player
@@ -151,14 +202,14 @@ export default function ReelsShowcase({
           togglePlay();
         } else if (e.key === 'm' || e.key === 'M') {
           e.preventDefault();
-          setIsPlayerMuted((prev) => !prev);
+          handleToggleMute();
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [viewMode, activeTheaterVideo, activeShortIdx, shortsReels.length]);
+  }, [viewMode, activeTheaterVideo, activeShortIdx, shortsReels.length, isPlayerMuted]);
 
   const stepShort = (direction) => {
     setActiveShortIdx((prev) => {
@@ -167,13 +218,24 @@ export default function ReelsShowcase({
     });
   };
 
-  const togglePlay = () => {
-    if (!mainShortsVideoRef.current) return;
-    if (mainShortsVideoRef.current.paused) {
-      mainShortsVideoRef.current.play().catch(() => {});
-      setIsPlaying(true);
+  const togglePlay = async () => {
+    const video = mainShortsVideoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      try {
+        await video.play();
+        setIsPlaying(true);
+      } catch (err) {
+        if (!video.muted) {
+          video.muted = true;
+          setIsPlayerMuted(true);
+          await video.play().catch(() => {});
+          setIsPlaying(true);
+        }
+      }
     } else {
-      mainShortsVideoRef.current.pause();
+      video.pause();
       setIsPlaying(false);
     }
   };
@@ -357,33 +419,47 @@ export default function ReelsShowcase({
                     ref={mainShortsVideoRef}
                     src={activeShort.video}
                     poster={getPosterUrl(activeShort.video)}
-                    preload="auto"
+                    autoPlay
                     loop
                     muted={isPlayerMuted}
                     playsInline
                     controls={false}
+                    preload="auto"
                     onWaiting={() => setIsShortBuffering(true)}
-                    onPlaying={() => setIsShortBuffering(false)}
+                    onPlaying={() => {
+                      setIsShortBuffering(false);
+                      setIsPlaying(true);
+                    }}
                     onCanPlay={() => setIsShortBuffering(false)}
                     onLoadedData={() => setIsShortBuffering(false)}
+                    onPlay={() => setIsPlaying(true)}
+                    onPause={() => setIsPlaying(false)}
                     onTimeUpdate={handleTimeUpdate}
                     onClick={togglePlay}
                     className="w-full h-full object-cover cursor-pointer select-none"
                   />
 
                   {/* YouTube Shorts Style Buffer/Loading Spinner */}
-                  {isShortBuffering && (
+                  {isShortBuffering && isPlaying && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/35 z-10 pointer-events-none backdrop-blur-[2px] transition-opacity">
                       <div className="w-11 h-11 rounded-full border-[3px] border-white/20 border-t-[#FF0000] animate-spin shadow-2xl" />
                     </div>
                   )}
 
+                  {/* Quick Unmute pill at top-left matching Instagram Reels / TikTok */}
+                  {isPlayerMuted && isPlaying && (
+                    <button
+                      onClick={handleToggleMute}
+                      className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 px-2.5 py-1 rounded-full bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/25 text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-xl transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <VolumeX className="w-3.5 h-3.5 text-white/80" />
+                      <span>Tap to unmute</span>
+                    </button>
+                  )}
+
                   {/* Top-Right Mute/Unmute Overlay Toggle */}
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsPlayerMuted(!isPlayerMuted);
-                    }}
+                    onClick={handleToggleMute}
                     className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer z-20 shadow-md"
                     title={isPlayerMuted ? 'Unmute Audio' : 'Mute Audio'}
                   >
@@ -394,15 +470,18 @@ export default function ReelsShowcase({
                     )}
                   </button>
 
-                  {/* Center Play/Pause Indicator on click */}
+                  {/* Center Play Indicator when paused or autoplay blocked */}
                   {!isPlaying && (
                     <div
                       onClick={togglePlay}
-                      className="absolute inset-0 flex items-center justify-center bg-black/40 z-10 cursor-pointer"
+                      className="absolute inset-0 flex flex-col items-center justify-center bg-black/45 z-10 cursor-pointer backdrop-blur-[1px] transition-all"
                     >
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/75 backdrop-blur-md flex items-center justify-center text-white border border-white/20 shadow-2xl">
-                        <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/80 hover:bg-black text-white border-2 border-white/30 hover:border-white flex items-center justify-center shadow-2xl transition-transform hover:scale-110 active:scale-95">
+                        <Play className="w-8 h-8 sm:w-9 sm:h-9 fill-current translate-x-0.5 text-white" />
                       </div>
+                      <span className="mt-3 text-xs font-mono font-bold uppercase tracking-widest text-white/90 drop-shadow-md">
+                        Tap to play
+                      </span>
                     </div>
                   )}
 
