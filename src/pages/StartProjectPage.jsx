@@ -171,13 +171,13 @@ export default function StartProjectPage() {
       </div>
 
       {/* Main Container */}
-      <main className="relative z-10 flex-1 pt-3 sm:pt-4 md:pt-6 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1000px] mx-auto w-full">
+      <main className="relative z-10 flex-1 pt-3 sm:pt-4 md:pt-6 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1120px] mx-auto w-full">
 
         {/* Hero Title Section */}
         <div className="text-left mb-6 sm:mb-8">
-          <h1 className="font-heading font-black text-white text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[4.75rem] tracking-tight uppercase leading-[0.92] drop-shadow-md">
+          <h1 className="font-heading font-black text-white text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.5rem] tracking-tight uppercase leading-[0.95] drop-shadow-md sm:whitespace-nowrap">
             <span>START YOUR </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB848] via-[#FF7348] via-[#DA2086] to-[#A8319B]">
+            <span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#FFB848] via-[#FF7348] via-[#DA2086] to-[#A8319B]">
               NEXT MOVE.
             </span>
           </h1>
