@@ -44,20 +44,36 @@ function ShortsBadgeIcon({ className = "w-4 h-4" }) {
 }
 
 /**
- * Helper to dynamically resolve poster thumbnail for reels
+ * Helper to dynamically resolve poster thumbnail for reels (WebP optimized)
  */
 const getPosterUrl = (videoUrl) => {
   if (!videoUrl) return '';
   if (videoUrl.includes('/assets/REELS/')) {
-    return videoUrl.replace('/assets/REELS/', '/assets/REELS/posters/').replace('.mp4', '.jpg');
+    return videoUrl.replace('/assets/REELS/', '/assets/REELS/posters/').replace('.mp4', '.webp');
   }
   if (videoUrl.includes('/assets/GROWTH CREATIVE.mp4')) {
-    return '/assets/REELS/posters/GROWTH CREATIVE.jpg';
+    return '/assets/REELS/posters/GROWTH CREATIVE.webp';
   }
   if (videoUrl.includes('/media/reel-showcase.mp4')) {
-    return '/assets/REELS/posters/reel-showcase.jpg';
+    return '/assets/REELS/posters/reel-showcase.webp';
   }
   return '';
+};
+
+/**
+ * Format seconds to mm:ss or hh:mm:ss
+ */
+const formatTime = (seconds) => {
+  if (isNaN(seconds) || seconds === null) return '0:00';
+  const s = Math.floor(seconds);
+  const m = Math.floor(s / 60);
+  const remSec = s % 60;
+  if (m >= 60) {
+    const h = Math.floor(m / 60);
+    const remMin = m % 60;
+    return `${h}:${remMin.toString().padStart(2, '0')}:${remSec.toString().padStart(2, '0')}`;
+  }
+  return `${m}:${remSec.toString().padStart(2, '0')}`;
 };
 
 /**
@@ -95,9 +111,12 @@ export default function ReelsShowcase({
 
   // Theater modal for long-form videos
   const [activeTheaterVideo, setActiveTheaterVideo] = useState(null);
-  const [theaterPlaying, setTheaterPlaying] = useState(true);
-  const [theaterMuted, setTheaterMuted] = useState(false);
+  const [theaterPlaying, setTheaterPlaying] = useState(false);
+  const [theaterMuted, setTheaterMuted] = useState(true);
+  const [theaterBuffering, setTheaterBuffering] = useState(false);
   const [theaterProgress, setTheaterProgress] = useState(0);
+  const [theaterCurrentTime, setTheaterCurrentTime] = useState(0);
+  const [theaterDuration, setTheaterDuration] = useState(0);
 
   const mainShortsVideoRef = useRef(null);
   const theaterVideoRef = useRef(null);
@@ -112,6 +131,17 @@ export default function ReelsShowcase({
 
   const activeShort = shortsReels[activeShortIdx] || shortsReels[0] || {};
 
+  // Eagerly preload posters in background cache on mount for instant visual display
+  useEffect(() => {
+    longFormVideos.forEach((v) => {
+      const poster = getPosterUrl(v.video);
+      if (poster) {
+        const img = new Image();
+        img.src = poster;
+      }
+    });
+  }, [longFormVideos]);
+
   // Duration mapping for long-form videos
   const getLongDuration = (idx) => {
     const times = ['14:20', '18:45', '11:32', '08:15'];
@@ -124,6 +154,127 @@ export default function ReelsShowcase({
     setIsPlayerMuted(nextMuted);
     if (mainShortsVideoRef.current) {
       mainShortsVideoRef.current.muted = nextMuted;
+    }
+  };
+
+  // Synchronize Theater Video playback with mobile-first autoplay fallback
+  useEffect(() => {
+    if (!activeTheaterVideo) {
+      setTheaterPlaying(false);
+      setTheaterBuffering(false);
+      return;
+    }
+
+    // Pause shorts video while theater modal is open
+    if (mainShortsVideoRef.current && !mainShortsVideoRef.current.paused) {
+      mainShortsVideoRef.current.pause();
+      setIsPlaying(false);
+    }
+
+    const video = theaterVideoRef.current;
+    if (!video) return;
+
+    let isMounted = true;
+    setTheaterBuffering(true);
+    setTheaterProgress(0);
+    setTheaterCurrentTime(0);
+
+    const startPlayback = async () => {
+      try {
+        video.currentTime = 0;
+        video.muted = theaterMuted;
+        await video.play();
+        if (isMounted) {
+          setTheaterPlaying(true);
+          setTheaterBuffering(false);
+        }
+      } catch (err) {
+        // Fallback to muted autoplay if unmuted was blocked by mobile OS
+        try {
+          video.muted = true;
+          if (isMounted) setTheaterMuted(true);
+          await video.play();
+          if (isMounted) {
+            setTheaterPlaying(true);
+            setTheaterBuffering(false);
+          }
+        } catch (mutedErr) {
+          if (isMounted) {
+            setTheaterPlaying(false);
+            setTheaterBuffering(false);
+          }
+        }
+      }
+    };
+
+    startPlayback();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [activeTheaterVideo]);
+
+  const toggleTheaterPlay = async (e) => {
+    if (e) e.stopPropagation();
+    const video = theaterVideoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      try {
+        await video.play();
+        setTheaterPlaying(true);
+      } catch (err) {
+        video.muted = true;
+        setTheaterMuted(true);
+        await video.play().catch(() => {});
+        setTheaterPlaying(true);
+      }
+    } else {
+      video.pause();
+      setTheaterPlaying(false);
+    }
+  };
+
+  const toggleTheaterMute = (e) => {
+    if (e) e.stopPropagation();
+    const video = theaterVideoRef.current;
+    if (!video) return;
+    const nextMuted = !theaterMuted;
+    setTheaterMuted(nextMuted);
+    video.muted = nextMuted;
+  };
+
+  const handleTheaterSeek = (e) => {
+    e.stopPropagation();
+    const video = theaterVideoRef.current;
+    if (!video) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const pct = Math.max(0, Math.min(1, clickX / rect.width));
+    const newTime = pct * (video.duration || 1);
+    video.currentTime = newTime;
+    setTheaterCurrentTime(newTime);
+    setTheaterProgress(pct * 100);
+  };
+
+  const handleTheaterTimeUpdate = () => {
+    const video = theaterVideoRef.current;
+    if (!video) return;
+    const cur = video.currentTime;
+    const dur = video.duration || 1;
+    setTheaterCurrentTime(cur);
+    setTheaterDuration(dur);
+    setTheaterProgress((cur / dur) * 100);
+  };
+
+  const toggleTheaterFullscreen = (e) => {
+    if (e) e.stopPropagation();
+    const video = theaterVideoRef.current;
+    if (!video) return;
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
     }
   };
 
@@ -181,7 +332,25 @@ export default function ReelsShowcase({
     const handleKeyDown = (e) => {
       // If theater modal open
       if (activeTheaterVideo) {
-        if (e.key === 'Escape') setActiveTheaterVideo(null);
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          setActiveTheaterVideo(null);
+        } else if (e.key === ' ' || e.key === 'k' || e.key === 'K') {
+          e.preventDefault();
+          toggleTheaterPlay();
+        } else if (e.key === 'm' || e.key === 'M') {
+          e.preventDefault();
+          toggleTheaterMute();
+        } else if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          toggleTheaterFullscreen();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          if (theaterVideoRef.current) theaterVideoRef.current.currentTime += 5;
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          if (theaterVideoRef.current) theaterVideoRef.current.currentTime -= 5;
+        }
         return;
       }
 
@@ -741,7 +910,7 @@ export default function ReelsShowcase({
                         loop
                         muted
                         playsInline
-                        preload="none"
+                        preload="metadata"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
                         onMouseEnter={(e) => {
                           e.target.preload = 'auto';
@@ -752,6 +921,17 @@ export default function ReelsShowcase({
                           e.target.currentTime = 0;
                         }}
                       />
+                      {/* Play button overlay: prominently visible on touch / mobile */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/75 group-hover:bg-[#FF0000] text-white flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-2xl transition-all">
+                          <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current translate-x-0.5 text-white" />
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-black/75 text-white/90 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md border border-white/10 pointer-events-none flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] animate-pulse" />
+                        <span>Master Video</span>
+                      </span>
                       <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-black/85 text-white font-mono text-xs font-bold tracking-wider shadow-md border border-white/10 pointer-events-none">
                         {duration}
                       </span>
@@ -821,7 +1001,7 @@ export default function ReelsShowcase({
                         loop
                         muted
                         playsInline
-                        preload="none"
+                        preload="metadata"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
                         onMouseEnter={(e) => {
                           e.target.preload = 'auto';
@@ -832,6 +1012,17 @@ export default function ReelsShowcase({
                           e.target.currentTime = 0;
                         }}
                       />
+                      {/* Play button overlay: prominently visible on touch / mobile */}
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/75 group-hover:bg-[#FF0000] text-white flex items-center justify-center backdrop-blur-sm border border-white/20 shadow-2xl transition-all">
+                          <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current translate-x-0.5 text-white" />
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded bg-black/75 text-white/90 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md border border-white/10 pointer-events-none flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF0000] animate-pulse" />
+                        <span>Master Video</span>
+                      </span>
                       <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-black/85 text-white font-mono text-xs font-bold tracking-wider shadow-md border border-white/10 pointer-events-none">
                         {getLongDuration(idx)}
                       </span>
@@ -891,7 +1082,7 @@ export default function ReelsShowcase({
                         loop
                         muted
                         playsInline
-                        preload="none"
+                        preload="metadata"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.025] transition-transform duration-300"
                         onMouseEnter={(e) => {
                           e.target.preload = 'auto';
@@ -902,6 +1093,10 @@ export default function ReelsShowcase({
                           e.target.currentTime = 0;
                         }}
                       />
+                      {/* YouTube Shorts Play badge indicator */}
+                      <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white border border-white/10 group-hover:bg-[#FF0000] transition-colors pointer-events-none">
+                        <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
+                      </div>
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-neutral-800 opacity-0 group-hover:opacity-100 transition-opacity">
                         <div className="h-full bg-[#FF0000] w-full animate-pulse" />
                       </div>
@@ -963,18 +1158,137 @@ export default function ReelsShowcase({
               </div>
             </div>
 
-            <div className="relative w-full flex-1 min-h-0 bg-black flex items-center justify-center overflow-hidden p-2">
+            {/* Video Player Stage Container */}
+            <div 
+              className="relative w-full flex-1 min-h-0 bg-black flex items-center justify-center overflow-hidden cursor-pointer select-none group/theater"
+              onClick={toggleTheaterPlay}
+            >
               <video
                 ref={theaterVideoRef}
                 src={activeTheaterVideo.video}
                 poster={getPosterUrl(activeTheaterVideo.video)}
-                preload="auto"
+                preload="metadata"
                 loop
                 muted={theaterMuted}
                 playsInline
-                autoPlay
-                className="max-w-full max-h-[68vh] aspect-[16/9] object-contain rounded-xl"
+                onWaiting={() => setTheaterBuffering(true)}
+                onPlaying={() => {
+                  setTheaterBuffering(false);
+                  setTheaterPlaying(true);
+                }}
+                onCanPlay={() => setTheaterBuffering(false)}
+                onLoadedData={() => setTheaterBuffering(false)}
+                onLoadedMetadata={(e) => setTheaterDuration(e.target.duration || 0)}
+                onTimeUpdate={handleTheaterTimeUpdate}
+                onPlay={() => setTheaterPlaying(true)}
+                onPause={() => setTheaterPlaying(false)}
+                className="w-full h-auto max-h-[66vh] aspect-[16/9] object-contain"
               />
+
+              {/* Fast Buffer / Loading Spinner */}
+              {theaterBuffering && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-20 pointer-events-none backdrop-blur-[2px]">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-[3px] border-white/20 border-t-[#FF0000] animate-spin shadow-2xl" />
+                  <span className="mt-3 font-mono text-[11px] sm:text-xs uppercase tracking-widest text-white/85">
+                    Streaming Master Video...
+                  </span>
+                </div>
+              )}
+
+              {/* Big Center Play Button when paused & not buffering */}
+              {!theaterPlaying && !theaterBuffering && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/45 z-20 pointer-events-none backdrop-blur-[1px]">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FF0000] text-white flex items-center justify-center shadow-[0_0_40px_rgba(255,0,0,0.6)] transition-transform hover:scale-110 active:scale-95">
+                    <Play className="w-8 h-8 sm:w-9 sm:h-9 fill-current translate-x-0.5 text-white" />
+                  </div>
+                  <span className="mt-3 text-xs font-mono font-bold uppercase tracking-widest text-white/90 drop-shadow-md">
+                    Tap to play
+                  </span>
+                </div>
+              )}
+
+              {/* Floating Unmute audio pill banner if muted on mobile */}
+              {theaterMuted && theaterPlaying && (
+                <button
+                  type="button"
+                  onClick={toggleTheaterMute}
+                  className="absolute top-4 left-4 z-30 px-3.5 py-1.5 rounded-full bg-black/85 hover:bg-black text-white text-xs font-semibold flex items-center gap-2 border border-white/25 shadow-xl transition-all cursor-pointer animate-pulse"
+                >
+                  <VolumeX className="w-3.5 h-3.5 text-[#FFC15C]" />
+                  <span>Tap to unmute sound</span>
+                </button>
+              )}
+
+              {/* YouTube Style Scrub & Control Bar at bottom of video */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 z-30 bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-6 pb-2.5 px-3 sm:px-5 flex flex-col gap-1.5 transition-opacity duration-200"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Scrub Progress Bar */}
+                <div 
+                  className="w-full h-3 group/bar relative flex items-center cursor-pointer py-1"
+                  onClick={handleTheaterSeek}
+                >
+                  <div className="w-full h-1 bg-white/25 rounded-full overflow-hidden relative group-hover/bar:h-1.5 transition-all">
+                    <div 
+                      className="h-full bg-[#FF0000] transition-[width] duration-75"
+                      style={{ width: `${theaterProgress}%` }}
+                    />
+                  </div>
+                  <div 
+                    className="absolute w-3.5 h-3.5 rounded-full bg-[#FF0000] shadow-md pointer-events-none -translate-x-1/2 scale-0 group-hover/bar:scale-100 transition-transform"
+                    style={{ left: `${theaterProgress}%` }}
+                  />
+                </div>
+
+                {/* Bottom Bar Controls: Play/Pause, Time, Mute, Fullscreen */}
+                <div className="flex items-center justify-between text-white text-xs">
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={toggleTheaterPlay}
+                      className="p-1 hover:text-[#FF0000] transition-colors cursor-pointer"
+                      title={theaterPlaying ? "Pause (Space / K)" : "Play (Space / K)"}
+                    >
+                      {theaterPlaying ? (
+                        <Pause className="w-4 h-4 fill-current" />
+                      ) : (
+                        <Play className="w-4 h-4 fill-current" />
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={toggleTheaterMute}
+                      className="p-1 hover:text-[#FFC15C] transition-colors cursor-pointer"
+                      title={theaterMuted ? "Unmute (M)" : "Mute (M)"}
+                    >
+                      {theaterMuted ? (
+                        <VolumeX className="w-4 h-4 text-white/60" />
+                      ) : (
+                        <Volume2 className="w-4 h-4 text-[#FFC15C]" />
+                      )}
+                    </button>
+
+                    <span className="font-mono text-[11px] text-white/75 select-none">
+                      {formatTime(theaterCurrentTime)} / {formatTime(theaterDuration || 900)}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={toggleTheaterFullscreen}
+                      className="p-1 hover:text-white text-white/75 transition-colors cursor-pointer"
+                      title="Fullscreen (F)"
+                    >
+                      <Maximize2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>

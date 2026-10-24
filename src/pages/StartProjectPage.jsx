@@ -83,7 +83,7 @@ export default function StartProjectPage() {
   const whatsappUrl = "https://wa.me/923137396135?text=Hi%20Zenkai%20Media!%20I'd%20like%20to%20discuss%20a%20creative%20project.";
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -151,11 +151,19 @@ export default function StartProjectPage() {
       {/* Atmospheric Studio Ambient Background */}
       <div 
         className="fixed -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[550px] rounded-full blur-[140px] opacity-20 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, #DA2086 0%, #FF7348 40%, #8C1FA8 80%, transparent 100%)' }}
+        style={{ 
+          background: 'radial-gradient(circle, #DA2086 0%, #FF7348 40%, #8C1FA8 80%, transparent 100%)',
+          transform: 'translate3d(-50%, 0, 0)',
+          willChange: 'transform'
+        }}
       />
       <div 
         className="fixed bottom-0 right-0 w-[500px] h-[400px] rounded-full blur-[130px] opacity-15 pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, #00D2FF 0%, #7B2496 60%, transparent 100%)' }}
+        style={{ 
+          background: 'radial-gradient(circle, #00D2FF 0%, #7B2496 60%, transparent 100%)',
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'transform'
+        }}
       />
       <div className="grain-overlay opacity-25 pointer-events-none" />
 

@@ -94,7 +94,7 @@ export default function ProjectDetailPage() {
 
   // Scroll to top on slug change
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
     setLightboxIndex(null);
     setActiveVideoModal(null);
   }, [slug]);

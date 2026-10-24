@@ -114,7 +114,9 @@ h1, h2, h3, h4, .font-heading {
   .blur-\[95px\],
   .blur-\[105px\],
   .blur-\[110px\],
-  .blur-\[120px\] {
+  .blur-\[120px\],
+  .blur-\[130px\],
+  .blur-\[140px\] {
     filter: blur(26px) !important;
   }
 
