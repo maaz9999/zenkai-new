@@ -134,17 +134,13 @@ export default function ReelsShowcase({
 
     let isMounted = true;
     setHasLiked(false);
-
-    // Initial buffering check
-    if (video.readyState < 3) {
-      setIsShortBuffering(true);
-    } else {
-      setIsShortBuffering(false);
-    }
+    setIsShortBuffering(false);
 
     const startPlayback = async () => {
       try {
-        video.currentTime = 0;
+        if (video.readyState >= 1 && video.currentTime > 0) {
+          video.currentTime = 0;
+        }
         await video.play();
         if (isMounted) {
           setIsPlaying(true);
@@ -424,7 +420,7 @@ export default function ReelsShowcase({
                     muted={isPlayerMuted}
                     playsInline
                     controls={false}
-                    preload="auto"
+                    preload="metadata"
                     onWaiting={() => setIsShortBuffering(true)}
                     onPlaying={() => {
                       setIsShortBuffering(false);
@@ -688,7 +684,8 @@ export default function ReelsShowcase({
                       <img
                         src={getPosterUrl(short.video)}
                         alt={short.title}
-                        loading="lazy"
+                        loading={idx < 3 ? 'eager' : 'lazy'}
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />

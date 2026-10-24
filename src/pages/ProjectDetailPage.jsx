@@ -1,15 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense, lazy } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import AnimatedGradient from '../components/AnimatedGradient';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import BaazCaseStudy from '../components/BaazCaseStudy';
-import ThumbnailsShowcase from '../components/ThumbnailsShowcase';
-import TwitchPackagingShowcase from '../components/TwitchPackagingShowcase';
-import FourThriveMerchShowcase from '../components/FourThriveMerchShowcase';
-import PostersShowcase from '../components/PostersShowcase';
-import ReelsShowcase from '../components/ReelsShowcase';
 import { projectsData, getProjectBySlug } from '../data/projectsData';
+
+// Code-split heavy showcase components so visiting one project doesn't load code for other heavy projects
+const BaazCaseStudy = lazy(() => import('../components/BaazCaseStudy'));
+const ThumbnailsShowcase = lazy(() => import('../components/ThumbnailsShowcase'));
+const TwitchPackagingShowcase = lazy(() => import('../components/TwitchPackagingShowcase'));
+const FourThriveMerchShowcase = lazy(() => import('../components/FourThriveMerchShowcase'));
+const PostersShowcase = lazy(() => import('../components/PostersShowcase'));
+const ReelsShowcase = lazy(() => import('../components/ReelsShowcase'));
+
+function ShowcaseLoader() {
+  return (
+    <div className="w-full min-h-[50vh] flex flex-col items-center justify-center py-20 text-center">
+      <div className="w-10 h-10 rounded-full border-2 border-white/10 border-t-[#FF0000] animate-spin mb-4" />
+      <span className="font-mono text-xs tracking-widest text-white/60 uppercase">Loading Showcase...</span>
+    </div>
+  );
+}
 import { 
   ArrowLeft, 
   ArrowRight, 
@@ -140,56 +151,57 @@ export default function ProjectDetailPage() {
           MAIN PRESENTATION AREA
           ========================================================================= */}
       <main className="relative z-10 max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-24 pb-24">
-        {project.slug === 'baaz-merch' ? (
-          <BaazCaseStudy
-            project={project}
-            onOpenLightbox={(idx) => setLightboxIndex(idx)}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : project.slug === 'thumbnails' ? (
-          <ThumbnailsShowcase
-            project={project}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : project.slug === 'twitch-stream-packaging' ? (
-          <TwitchPackagingShowcase
-            project={project}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : project.slug === '4thrive-merch' ? (
-          <FourThriveMerchShowcase
-            project={project}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : project.slug === 'tekken-8-championship' ? (
-          <PostersShowcase
-            project={project}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : project.slug === 'growth-creative-motion' || project.slug === 'reels' ? (
-          <ReelsShowcase
-            project={project}
-            handleShare={handleShare}
-            copied={copied}
-            nextProject={nextProject}
-            prevProject={prevProject}
-          />
-        ) : (
+        <Suspense fallback={<ShowcaseLoader />}>
+          {project.slug === 'baaz-merch' ? (
+            <BaazCaseStudy
+              project={project}
+              onOpenLightbox={(idx) => setLightboxIndex(idx)}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : project.slug === 'thumbnails' ? (
+            <ThumbnailsShowcase
+              project={project}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : project.slug === 'twitch-stream-packaging' ? (
+            <TwitchPackagingShowcase
+              project={project}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : project.slug === '4thrive-merch' ? (
+            <FourThriveMerchShowcase
+              project={project}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : project.slug === 'tekken-8-championship' ? (
+            <PostersShowcase
+              project={project}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : project.slug === 'growth-creative-motion' || project.slug === 'reels' ? (
+            <ReelsShowcase
+              project={project}
+              handleShare={handleShare}
+              copied={copied}
+              nextProject={nextProject}
+              prevProject={prevProject}
+            />
+          ) : (
           <>
             {/* Project Header Info Plaque */}
             <div className="relative bg-[#0c0514]/90 backdrop-blur-2xl border border-white/15 rounded-3xl p-6 sm:p-8 lg:p-10 mb-6 sm:mb-8 text-white shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden">
@@ -510,6 +522,7 @@ export default function ProjectDetailPage() {
         </div>
           </>
         )}
+        </Suspense>
 
       </main>
 

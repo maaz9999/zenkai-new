@@ -80,9 +80,29 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
 
   const isLongHeading = displayHeading.length > 15;
 
+  const handlePrefetch = () => {
+    // Instant prefetch of target route and showcase chunk on user hover / touch
+    import('../pages/ProjectDetailPage');
+    if (project.slug === 'growth-creative-motion' || project.slug === 'reels') {
+      import('./ReelsShowcase');
+    } else if (project.slug === 'thumbnails') {
+      import('./ThumbnailsShowcase');
+    } else if (project.slug === 'twitch-stream-packaging') {
+      import('./TwitchPackagingShowcase');
+    } else if (project.slug === 'tekken-8-championship') {
+      import('./PostersShowcase');
+    } else if (project.slug === '4thrive-merch') {
+      import('./FourThriveMerchShowcase');
+    } else if (project.slug === 'baaz-merch') {
+      import('./BaazCaseStudy');
+    }
+  };
+
   return (
     <Link
       to={`/work/${project.slug}`}
+      onMouseEnter={handlePrefetch}
+      onTouchStart={handlePrefetch}
       className="group block relative aspect-[16/11] overflow-hidden bg-black transition-all duration-300 cursor-pointer select-none rounded-none"
       aria-label={`View project: ${displayHeading} — ${project.title}`}
     >
