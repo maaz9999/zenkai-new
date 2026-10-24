@@ -204,7 +204,7 @@ export default function BaazCaseStudy({
               <div className="relative group/mockup rounded-3xl overflow-hidden border border-white/20 bg-gradient-to-b from-[#180826] to-[#0c0414] p-3 sm:p-4 shadow-[0_25px_70px_rgba(0,0,0,0.95)]">
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-black/60 flex items-center justify-center">
                   <img 
-                    src="/assets/Baaz Merch/baaz_merch_with_title.png" 
+                    src="/assets/Baaz Merch/baaz_merch_with_title.webp" 
                     alt="Baaz Takedown 2026 Official Merch Shirt"
                     className="w-full h-full object-cover group-hover/mockup:scale-105 transition-transform duration-700" 
                   />
@@ -244,7 +244,7 @@ export default function BaazCaseStudy({
                 className="group relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.9)] hover:border-white/35 transition-all duration-300"
               >
                 <img 
-                  src="/assets/Baaz Merch/page_2.png" 
+                  src="/assets/Baaz Merch/page_2.webp" 
                   alt="About Takedown 2026 - Tournament Context"
                   className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                 />
@@ -403,7 +403,7 @@ export default function BaazCaseStudy({
                 className="group relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.9)] hover:border-white/35 transition-all duration-300"
               >
                 <img 
-                  src="/assets/Baaz Merch/page_3.png" 
+                  src="/assets/Baaz Merch/page_3.webp" 
                   alt="The Concept - Minar-e-Pakistan and Cultural Fusion"
                   className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                 />
@@ -434,7 +434,7 @@ export default function BaazCaseStudy({
                 className="group relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.95)] hover:border-white/35 transition-all duration-300"
               >
                 <img 
-                  src="/assets/Baaz Merch/page_4.png" 
+                  src="/assets/Baaz Merch/page_4.webp" 
                   alt="The Character Roster on Minar-e-Pakistan"
                   className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                 />
@@ -642,7 +642,7 @@ export default function BaazCaseStudy({
                 className="group relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.95)] hover:border-white/35 transition-all duration-300 w-full max-w-[460px]"
               >
                 <img 
-                  src="/assets/Baaz Merch/page_5.png" 
+                  src="/assets/Baaz Merch/page_5.webp" 
                   alt="Final Design Merch Shirt - Front and Back Mockup"
                   className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500" 
                 />

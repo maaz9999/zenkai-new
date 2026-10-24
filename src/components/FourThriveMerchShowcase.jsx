@@ -52,7 +52,7 @@ export default function FourThriveMerchShowcase({
       badge: 'THE TEAM',
       title: 'WHO ARE 4THRIVES?',
       subtitle: 'Pakistan-Based PUBG Mobile Esports Team — South Asian Scene Competitors & Story',
-      image: '/assets/4thrive Merch/3.jpg',
+      image: '/assets/4thrive Merch/3.webp',
       category: 'case-deck',
       lore: '4THRIVE is a competitive PUBG Mobile squad from Pakistan making waves in South Asian esports tournaments. This merchandise initiative was designed to give the team a distinct brand universe, uniting their competitive identity with fan-accessible streetwear and collectables.',
       tags: ['#4THRIVE', '#PUBGMobile', '#TeamOrigin', '#EsportsPakistan']
@@ -65,7 +65,7 @@ export default function FourThriveMerchShowcase({
       badge: 'THE IDEA',
       title: 'PROJECT OVERVIEW & THE IDEA',
       subtitle: 'Transforming PUBG Mobile Esports Players into a Complete Fan Merchandise Collection',
-      image: '/media/4thrive_overview.jpg',
+      image: '/media/4thrive_overview.webp',
       category: 'case-deck',
       lore: 'The creative challenge was turning five hardcore in-game tournament athletes into cute, instantly recognizable anime-style chibi characters while retaining their signature in-game personalities, gear preferences, and playstyles.',
       tags: ['#CreativeDirection', '#ChibiMascot', '#BrandIdentity', '#FanMerch']
@@ -91,7 +91,7 @@ export default function FourThriveMerchShowcase({
       badge: 'COLLECTION LINEUP',
       title: 'MASTER MERCHANDISE LINEUP',
       subtitle: 'Complete Fan Gear Suite — Hoodies, Deskmat, Phone Covers, Keychains & Backpacks',
-      image: '/assets/4thrive Merch/Artboard 21.png',
+      image: '/assets/4thrive Merch/Artboard 21.webp',
       category: 'case-deck',
       lore: 'A comprehensive collection spread featuring team oversized fleece hoodies, ergonomic stitched-edge gaming deskmats, impact-resistant phone cases, custom silicone keychains, and tournament backpacks.',
       tags: ['#MerchandiseSuite', '#EsportsApparel', '#GamingDeskmat', '#Streetwear']
@@ -104,7 +104,7 @@ export default function FourThriveMerchShowcase({
       badge: 'AVATARS & LORE',
       title: 'ORIGINAL AVATARS — IQ & NOCKI',
       subtitle: '4THRIVE IQ (Tactical Power-Radar) & 4THRIVE NOCKI (Superman Clutch Hero)',
-      image: '/assets/4thrive Merch/Artboard 4.jpg',
+      image: '/assets/4thrive Merch/Artboard 4.webp',
       category: 'avatars',
       lore: 'Character breakdown highlighting 4THRIVE IQ as the calm battlefield strategist equipped with holographic radar optics, alongside 4THRIVE NOCKI, renowned for heroic 1v3 clutch saves represented by his flowing superhero cape.',
       tags: ['#CharacterDesign', '#ChibiIQ', '#ChibiNocki', '#PUBGMobileClutch']
@@ -117,7 +117,7 @@ export default function FourThriveMerchShowcase({
       badge: 'AVATARS & LORE',
       title: 'ORIGINAL AVATARS — HUZAIFA & FALAK',
       subtitle: '4THRIVE HUZAIFA (M16 Rifleman) & 4THRIVE FALAK (The Aggressive Tiger)',
-      image: '/assets/4thrive Merch/Artboard 5.png',
+      image: '/assets/4thrive Merch/Artboard 5.webp',
       category: 'avatars',
       lore: 'Character designs for 4THRIVE HUZAIFA, carrying his signature burst-fire M16 assault rifle, and 4THRIVE FALAK, embodying the ferocious agility and striking speed of a predator tiger.',
       tags: ['#CharacterDesign', '#ChibiHuzaifa', '#ChibiFalak', '#TigerMascot']
@@ -130,7 +130,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D FIGURINE',
       title: '3D FIGURINE — FALAK (THE TIGER)',
       subtitle: 'Tiger Chibi 3D Collectable Toy & Front/Back Rotations',
-      image: '/assets/4thrive Merch/Artboard 9.png',
+      image: '/assets/4thrive Merch/Artboard 9.webp',
       category: 'figurines',
       lore: 'Front and rear turnaround renders for the Falak 3D vinyl collectable figurine, highlighting custom striped tail detailing, team ear-hoodie crest, and weighted desktop display base.',
       tags: ['#3DCollectable', '#VinylFigurine', '#FalakTiger', '#ProductDesign']
@@ -143,7 +143,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D FIGURINE',
       title: '3D FIGURINE — NOCKI (SUPERMAN)',
       subtitle: 'Superman Cape Clutch Hero 3D Collectable Figurine (Front & Back Rotations)',
-      image: '/assets/4thrive Merch/Artboard 11.png',
+      image: '/assets/4thrive Merch/Artboard 11.webp',
       category: 'figurines',
       lore: 'Vinyl collectable toy model showcasing Nocki with his flowing crimson superhero cape, heroic fist pose, and glossy finish on the 4THRIVE tournament jersey.',
       tags: ['#3DFigurine', '#NockiSuperman', '#ClutchHero', '#EsportsToys']
@@ -156,7 +156,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D FIGURINE',
       title: '3D FIGURINE — T240P (VANGUARD SHIELD)',
       subtitle: 'Vanguard Shield Defender 3D Collectable Figurine (Front & Back Rotations)',
-      image: '/assets/4thrive Merch/Artboard 19.png',
+      image: '/assets/4thrive Merch/Artboard 19.webp',
       category: 'figurines',
       lore: '3D toy rendering of T240P, the squad vanguard and tactical anchor. Features an oversized heavy riot shield bearing the 4THRIVE crest and defensive battle posture.',
       tags: ['#3DCollectable', '#T240PShield', '#Vanguard', '#ChibiVinyl']
@@ -169,7 +169,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D FIGURINE',
       title: '3D FIGURINE — HUZAIFA (M16 RIFLE)',
       subtitle: 'Tactical M16 Assault Rifleman 3D Collectable Figurine (Front & Back Rotations)',
-      image: '/assets/4thrive Merch/Artboard 10.png',
+      image: '/assets/4thrive Merch/Artboard 10.webp',
       category: 'figurines',
       lore: 'Turnaround perspective for Huzaifa, showing the scoped M16 rifle slung over the shoulder, high-top tournament sneakers, and stylized anime eye reflections.',
       tags: ['#3DFigurine', '#HuzaifaM16', '#Marksman', '#VinylCollectable']
@@ -182,7 +182,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D FIGURINE',
       title: '3D FIGURINE — IQ (TACTICAL EYE)',
       subtitle: 'Tactical Power-Radar Mastermind 3D Collectable Figurine (Front & Back Rotations)',
-      image: '/assets/4thrive Merch/Artboard 8.png',
+      image: '/assets/4thrive Merch/Artboard 8.webp',
       category: 'figurines',
       lore: 'Mastermind squad captain IQ rendered in 3D vinyl with translucent amber-tinted scouter eyepiece, confident leadership stance, and custom base plate.',
       tags: ['#3DFigurine', '#IQCaptain', '#TacticalIGL', '#VinylToy']
@@ -195,7 +195,7 @@ export default function FourThriveMerchShowcase({
       badge: 'PLUSHIE SPEC',
       title: 'MASCOT PLUSHIE — DESIGN CONCEPT',
       subtitle: 'Tiger Mascot Anatomy, Jersey Detailing & Materials Specification',
-      image: '/assets/4thrive Merch/Artboard 13.png',
+      image: '/assets/4thrive Merch/Artboard 13.webp',
       category: 'plushie',
       lore: 'Factory-ready plushie schematic specifying dimensions, hypoallergenic ultra-soft polyester velvet fabric, reinforced seam stitching, and screen-printed team number.',
       tags: ['#PlushieDesign', '#MascotToy', '#ProductSpec', '#FabricDetail']
@@ -208,7 +208,7 @@ export default function FourThriveMerchShowcase({
       badge: '3D PLUSHIE',
       title: '3D TIGER PLUSHIE TOY — FRONT & BACK',
       subtitle: 'High-Fidelity Physical Plushie Toy Render in Team Colors',
-      image: '/assets/4thrive Merch/Artboard 14.png',
+      image: '/assets/4thrive Merch/Artboard 14.webp',
       category: 'plushie',
       lore: 'Photorealistic 3D render of the plush toy as a finished physical manufactured item, highlighting soft plush fabric textures, 3D stitched ears, and embroidered eyes.',
       tags: ['#PhysicalToy', '#3DPlushie', '#TigerCuddly', '#MerchUnboxing']
@@ -221,7 +221,7 @@ export default function FourThriveMerchShowcase({
       badge: 'STICKER PACK',
       title: 'DIE-CUT FAN STICKER PACK',
       subtitle: 'Holographic Vinyl Stickers & Emote Decals',
-      image: '/assets/4thrive Merch/Artboard 16.png',
+      image: '/assets/4thrive Merch/Artboard 16.webp',
       category: 'plushie',
       lore: 'Die-cut weather-resistant vinyl stickers featuring all five player chibi emotes, squad slogans, tournament logos, and holographic border finishes for fan laptop & phone customization.',
       tags: ['#StickerPack', '#DieCutVinyl', '#Holographic', '#FanDecals']
@@ -234,7 +234,7 @@ export default function FourThriveMerchShowcase({
       badge: 'DIVIDER',
       title: 'ORIGINAL AVATAR BANNER',
       subtitle: 'Original Character Avatars Chapter Divider',
-      image: '/assets/4thrive Merch/4.jpg',
+      image: '/assets/4thrive Merch/4.webp',
       category: 'avatars',
       lore: 'Graphic editorial divider showcasing the full 5-player chibi lineup arranged in a dynamic anime battle charge formation across vibrant team gradient backgrounds.',
       tags: ['#SquadBanner', '#Lineup', '#AnimeArt', '#ChapterDivider']
@@ -247,7 +247,7 @@ export default function FourThriveMerchShowcase({
       badge: 'CREDITS',
       title: 'THANK YOU & CREDITS',
       subtitle: 'Unofficial Concept Showcase by Fatyma Binte Bilal',
-      image: '/assets/4thrive Merch/Artboard 22.png',
+      image: '/assets/4thrive Merch/Artboard 22.webp',
       category: 'credits',
       lore: 'Project acknowledgments and creative credits outlining the creative vision, 3D modeling, merchandise design, and brand presentation for 4THRIVE Esports.',
       tags: ['#Credits', '#ZenkaiMedia', '#EsportsDesign', '#Portfolio']
@@ -303,6 +303,24 @@ export default function FourThriveMerchShowcase({
     }, 4500);
     return () => clearInterval(interval);
   }, [isPlaying, activeSlideIndex, caseFiles.length]);
+
+  // Progressive background preloading for instant zero-latency slide flips
+  useEffect(() => {
+    if (!caseFiles || caseFiles.length === 0) return;
+    const indicesToPreload = [
+      activeSlideIndex,
+      (activeSlideIndex + 1) % caseFiles.length,
+      (activeSlideIndex + 2) % caseFiles.length,
+      (activeSlideIndex - 1 + caseFiles.length) % caseFiles.length
+    ];
+    indicesToPreload.forEach((idx) => {
+      const file = caseFiles[idx];
+      if (file && file.image) {
+        const preloader = new Image();
+        preloader.src = file.image;
+      }
+    });
+  }, [activeSlideIndex, caseFiles]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -498,6 +516,14 @@ export default function FourThriveMerchShowcase({
                 <img
                   src={activeSlide.image}
                   alt={activeSlide.title}
+                  fetchPriority="high"
+                  decoding="async"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.retried) {
+                      e.currentTarget.dataset.retried = 'true';
+                      e.currentTarget.src = activeSlide.image.replace(/\.webp$/i, '.png');
+                    }
+                  }}
                   className="w-full h-full object-contain bg-black group-hover:scale-[1.008] transition-transform duration-500"
                 />
 
@@ -702,10 +728,18 @@ export default function FourThriveMerchShowcase({
                         }`}
                       >
                         {/* Mini 16:9 Thumbnail Image */}
-                        <div className="relative w-32 aspect-[16/9] rounded-lg overflow-hidden bg-black shrink-0 border border-white/10">
+                        <div className="relative w-32 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-900/90 shrink-0 border border-white/10">
                           <img
                             src={item.image}
                             alt={item.title}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              if (!e.currentTarget.dataset.retried) {
+                                e.currentTarget.dataset.retried = 'true';
+                                e.currentTarget.src = item.image.replace(/\.webp$/i, '.png');
+                              }
+                            }}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/85 text-white font-mono text-[9px] font-semibold">
@@ -755,10 +789,18 @@ export default function FourThriveMerchShowcase({
                             : 'bg-white/[0.02] hover:bg-white/[0.06] border-white/10 hover:border-white/20'
                         }`}
                       >
-                        <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-black mb-1.5 border border-white/10">
+                        <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-neutral-900/90 mb-1.5 border border-white/10">
                           <img
                             src={item.image}
                             alt={item.title}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              if (!e.currentTarget.dataset.retried) {
+                                e.currentTarget.dataset.retried = 'true';
+                                e.currentTarget.src = item.image.replace(/\.webp$/i, '.png');
+                              }
+                            }}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/85 text-white font-mono text-[9px] font-semibold">

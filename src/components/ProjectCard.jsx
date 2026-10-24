@@ -96,6 +96,20 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
     } else if (project.slug === 'baaz-merch') {
       import('./BaazCaseStudy');
     }
+
+    // Preload top images for this project into browser memory
+    if (project.presentationSections && project.presentationSections.length > 0) {
+      project.presentationSections.slice(0, 3).forEach((sec) => {
+        if (sec.image) {
+          const img = new Image();
+          img.src = sec.image;
+        }
+      });
+    }
+    if (project.cover) {
+      const img = new Image();
+      img.src = project.cover;
+    }
   };
 
   return (

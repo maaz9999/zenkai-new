@@ -148,6 +148,24 @@ export default function PostersShowcase({
     };
   }, [categorizedPosters]);
 
+  // Preload adjacent posters in background for zero-latency switching
+  useEffect(() => {
+    if (!categorizedPosters || categorizedPosters.length === 0) return;
+    const indicesToPreload = [
+      activePosterIndex,
+      (activePosterIndex + 1) % categorizedPosters.length,
+      (activePosterIndex + 2) % categorizedPosters.length,
+      (activePosterIndex - 1 + categorizedPosters.length) % categorizedPosters.length
+    ];
+    indicesToPreload.forEach((idx) => {
+      const poster = categorizedPosters[idx];
+      if (poster && poster.image) {
+        const preloader = new Image();
+        preloader.src = poster.image;
+      }
+    });
+  }, [activePosterIndex, categorizedPosters]);
+
   // Keyboard navigation for Lightbox
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -314,6 +332,14 @@ export default function PostersShowcase({
                   <img
                     src={activePoster.image}
                     alt={activePoster.title}
+                    fetchPriority="high"
+                    decoding="async"
+                    onError={(e) => {
+                      if (!e.currentTarget.dataset.retried) {
+                        e.currentTarget.dataset.retried = 'true';
+                        e.currentTarget.src = activePoster.image.replace(/\.webp$/i, '.jpg');
+                      }
+                    }}
                     className="w-full h-full object-contain rounded-xl transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                   />
                 </div>
@@ -405,10 +431,18 @@ export default function PostersShowcase({
                               : 'bg-white/[0.03] hover:bg-white/[0.08] border-white/10'
                           }`}
                         >
-                          <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-[#080310] mb-2 border border-white/10 flex items-center justify-center p-1.5">
+                          <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-neutral-900/90 mb-2 border border-white/10 flex items-center justify-center p-1.5">
                             <img
                               src={item.image}
                               alt={item.title}
+                              loading="lazy"
+                              decoding="async"
+                              onError={(e) => {
+                                if (!e.currentTarget.dataset.retried) {
+                                  e.currentTarget.dataset.retried = 'true';
+                                  e.currentTarget.src = item.image.replace(/\.webp$/i, '.jpg');
+                                }
+                              }}
                               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                             />
                             {isSelected && (
@@ -444,10 +478,18 @@ export default function PostersShowcase({
                               : 'bg-white/[0.03] hover:bg-white/[0.08] border-white/10'
                           }`}
                         >
-                          <div className="relative w-16 aspect-[3/4] rounded-xl overflow-hidden bg-[#080310] shrink-0 border border-white/10 flex items-center justify-center p-1">
+                          <div className="relative w-16 aspect-[3/4] rounded-xl overflow-hidden bg-neutral-900/90 shrink-0 border border-white/10 flex items-center justify-center p-1">
                             <img
                               src={item.image}
                               alt={item.title}
+                              loading="lazy"
+                              decoding="async"
+                              onError={(e) => {
+                                if (!e.currentTarget.dataset.retried) {
+                                  e.currentTarget.dataset.retried = 'true';
+                                  e.currentTarget.src = item.image.replace(/\.webp$/i, '.jpg');
+                                }
+                              }}
                               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                             />
                             {isSelected && (
@@ -534,6 +576,13 @@ export default function PostersShowcase({
                         src={poster.image}
                         alt={poster.title}
                         loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          if (!e.currentTarget.dataset.retried) {
+                            e.currentTarget.dataset.retried = 'true';
+                            e.currentTarget.src = poster.image.replace(/\.webp$/i, '.jpg');
+                          }
+                        }}
                         className="w-full h-full object-contain rounded-xl transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                       />
 

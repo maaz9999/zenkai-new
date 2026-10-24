@@ -45,7 +45,7 @@ export default function TwitchPackagingShowcase({
       label: 'Starting Soon',
       frame: 'Frame 04',
       badge: 'COUNTDOWN SCENE',
-      image: '/assets/Twitch emote presentation/Frame 4.jpg',
+      image: '/assets/Twitch emote presentation/Frame 4.webp',
       aspect: 'aspect-[16/9]'
     },
     {
@@ -53,7 +53,7 @@ export default function TwitchPackagingShowcase({
       label: 'In-Game HUD & Cam',
       frame: 'Frame 05',
       badge: 'COMPETITIVE HUD',
-      image: '/assets/Twitch emote presentation/Frame 5.jpg',
+      image: '/assets/Twitch emote presentation/Frame 5.webp',
       aspect: 'aspect-[16/9]'
     },
     {
@@ -61,7 +61,7 @@ export default function TwitchPackagingShowcase({
       label: 'Just Chatting',
       frame: 'Frame 06',
       badge: 'INTERMISSION',
-      image: '/assets/Twitch emote presentation/Frame 6.jpg',
+      image: '/assets/Twitch emote presentation/Frame 6.webp',
       aspect: 'aspect-[16/9]'
     },
     {
@@ -69,7 +69,7 @@ export default function TwitchPackagingShowcase({
       label: 'Stream Ending',
       frame: 'Frame 07',
       badge: 'OUTRO CREDITS',
-      image: '/assets/Twitch emote presentation/Frame 7.jpg',
+      image: '/assets/Twitch emote presentation/Frame 7.webp',
       aspect: 'aspect-[16/9]'
     },
     {
@@ -77,7 +77,7 @@ export default function TwitchPackagingShowcase({
       label: 'Offline Header',
       frame: 'Frame 08',
       badge: 'CHANNEL BANNER',
-      image: '/assets/Twitch emote presentation/Frame 8.jpg',
+      image: '/assets/Twitch emote presentation/Frame 8.webp',
       aspect: 'aspect-[16/9]'
     }
   ], []);
@@ -88,7 +88,7 @@ export default function TwitchPackagingShowcase({
       id: 'sticker-1',
       title: 'ARSLAN 8X EVO TROPHY',
       character: 'Arslan Ash World Champion',
-      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 1.png',
+      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 1.webp',
       badge: '8X EVO TROPHY',
       accent: '#FFC15C'
     },
@@ -96,7 +96,7 @@ export default function TwitchPackagingShowcase({
       id: 'sticker-2',
       title: '4THRIVE TIGER MASCOT',
       character: 'Team Bengal Mascot',
-      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 2.png',
+      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 2.webp',
       badge: 'VICTORY EMOTE',
       accent: '#FF7348'
     },
@@ -104,7 +104,7 @@ export default function TwitchPackagingShowcase({
       id: 'sticker-3',
       title: 'SHADOW KITSUNE NINJA',
       character: 'Masked Anime Assassin',
-      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 3.png',
+      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 3.webp',
       badge: 'NINJA CHIBI',
       accent: '#DA2086'
     },
@@ -112,7 +112,7 @@ export default function TwitchPackagingShowcase({
       id: 'sticker-4',
       title: 'FALAK GAMING MASCOT',
       character: 'Tournament Cheer Mascot',
-      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 4.png',
+      image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 4.webp',
       badge: 'CHEER EMOTE',
       accent: '#9146FF'
     }
@@ -527,7 +527,7 @@ export default function TwitchPackagingShowcase({
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
                   <img
-                    src="/assets/Twitch emote presentation/Frame 2.jpg"
+                    src="/assets/Twitch emote presentation/Frame 2.webp"
                     alt="Custom Emote Character Set"
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-102"
                   />
@@ -558,7 +558,7 @@ export default function TwitchPackagingShowcase({
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
                   <img
-                    src="/assets/Twitch emote presentation/Frame 3.jpg"
+                    src="/assets/Twitch emote presentation/Frame 3.webp"
                     alt="Loyalty Badges & Sub Tiers"
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-102"
                   />

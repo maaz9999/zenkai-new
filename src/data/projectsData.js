@@ -22,7 +22,7 @@ export const projectsData = [
     client: 'Ashes Gaming · Red Bull · Bandai Namco FGC',
     year: '2024 - 2025',
     description: "Master tournament key visuals, matchday fight posters, championship reveal graphics, and athlete portraits for the world's premiere fighting game tournaments.",
-    cover: '/assets/POSTERS/Arslan ash tournament.jpg',
+    cover: '/assets/POSTERS/Arslan ash tournament.webp',
     gradientColors: ['#FFC15C', '#FF7348', '#9227B5', '#551276'],
     projectType: 'posters',
     defaultColumns: 2,
@@ -31,7 +31,7 @@ export const projectsData = [
       {
         title: "DESI VS DESERT SHOWDOWN",
         subtitle: "Pakistan vs Saudi Arabia // Tekken 8 Invitational // Venue: RESS",
-        image: "/assets/POSTERS/Arslan ash tournament.jpg",
+        image: "/assets/POSTERS/Arslan ash tournament.webp",
         badge: "TOURNAMENT",
         category: "matchday",
         aspect: "aspect-[3/4]"
@@ -39,7 +39,7 @@ export const projectsData = [
       {
         title: "THE JON \u2014 CHAMPION OF TGU",
         subtitle: "Thaiger Uppercut Victory // Bangkok // Team Ashes",
-        image: "/assets/POSTERS/20250104_090803.jpg",
+        image: "/assets/POSTERS/20250104_090803.webp",
         badge: "CHAMPIONSHIP",
         category: "championships",
         aspect: "aspect-[3/4]"
@@ -47,7 +47,7 @@ export const projectsData = [
       {
         title: "THE JON IS READY FOR FINALS",
         subtitle: "Tekken World Tour Global Finals // King Specialist Key Art",
-        image: "/assets/POSTERS/20250104_090832.jpg",
+        image: "/assets/POSTERS/20250104_090832.webp",
         badge: "TWT FINALS",
         category: "championships",
         aspect: "aspect-[3/4]"
@@ -55,7 +55,7 @@ export const projectsData = [
       {
         title: "USAMA IS YOUR SECOND IMPACT CHAMPION",
         subtitle: "Team Ashes Championship Title // Second Impact Major",
-        image: "/assets/POSTERS/20250104_090850.jpg",
+        image: "/assets/POSTERS/20250104_090850.webp",
         badge: "CHAMPIONSHIP",
         category: "championships",
         aspect: "aspect-[3/4]"
@@ -63,7 +63,7 @@ export const projectsData = [
       {
         title: "RUNNER UP OF CAPETOWN SHOWDOWN",
         subtitle: "International FGC Tournament Grand Finals // The Jon",
-        image: "/assets/POSTERS/20250104_090915.jpg",
+        image: "/assets/POSTERS/20250104_090915.webp",
         badge: "RUNNER UP",
         category: "championships",
         aspect: "aspect-[3/4]"
@@ -71,7 +71,7 @@ export const projectsData = [
       {
         title: "QASIM \u2014 7TH PLACE AT FIRST KNOCKOUT",
         subtitle: "First Knockout World Placement Key Art // Team Ashes // Lahore",
-        image: "/assets/POSTERS/20250104_090933.jpg",
+        image: "/assets/POSTERS/20250104_090933.webp",
         badge: "PLACEMENT",
         category: "championships",
         aspect: "aspect-[3/4]"
@@ -79,7 +79,7 @@ export const projectsData = [
       {
         title: "TEAM PAKISTAN VS TEAM SAUDI",
         subtitle: "Matchday Broadcast Key Visual // Twisted Labs // Sponsored by Al Rajhi Bank",
-        image: "/assets/POSTERS/IMG_6968.JPG",
+        image: "/assets/POSTERS/IMG_6968.webp",
         badge: "MATCHDAY",
         category: "matchday",
         aspect: "aspect-[3/4]"
@@ -87,7 +87,7 @@ export const projectsData = [
       {
         title: "CASTING TALENT // BROWNMAN & NAJD",
         subtitle: "Official Hosts & Commentators // Pakistan vs Saudi 2025 // Twisted Labs",
-        image: "/assets/POSTERS/IMG_6969.JPG",
+        image: "/assets/POSTERS/IMG_6969.webp",
         badge: "BROADCAST",
         category: "athletes",
         aspect: "aspect-[3/4]"
@@ -95,7 +95,7 @@ export const projectsData = [
       {
         title: "ESPORTS WORLD CUP // TOP 16 QUALIFIED",
         subtitle: "Competing Roster: Arslan Ash, Meer, Noman, Farzeen, Atif Tanveer, Bilal",
-        image: "/assets/POSTERS/IMG_6970.JPG",
+        image: "/assets/POSTERS/IMG_6970.webp",
         badge: "EWC ROSTER",
         category: "athletes",
         aspect: "aspect-[3/4]"
@@ -103,7 +103,7 @@ export const projectsData = [
       {
         title: "COMBAT VERSUS // MAIN EVENT FIGHT CARD",
         subtitle: "Heavyweight Collision // Awan Mohamed, Abo Ali Khan, Zia Mashwani, Ismail Khan",
-        image: "/assets/POSTERS/IMG_6971.JPG",
+        image: "/assets/POSTERS/IMG_6971.webp",
         badge: "FIGHT CARD",
         category: "matchday",
         aspect: "aspect-[3/4]"
@@ -111,7 +111,7 @@ export const projectsData = [
       {
         title: "THE JON // TEKKEN 8 KING SPECIALIST",
         subtitle: "Official Pro Athlete Profile & Editorial Portrait // Team Ashes",
-        image: "/assets/POSTERS/jonn.jpg",
+        image: "/assets/POSTERS/jonn.webp",
         badge: "PLAYER PROFILE",
         category: "athletes",
         aspect: "aspect-[3/4]"
@@ -141,14 +141,14 @@ export const projectsData = [
       {
         title: 'WHO ARE 4THRIVES?',
         subtitle: 'Page 01 // Pakistan-Based PUBG Mobile Esports Team Context & Story',
-        image: '/assets/4thrive Merch/3.jpg',
+        image: '/assets/4thrive Merch/3.webp',
         badge: 'THE TEAM',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'PROJECT OVERVIEW & THE IDEA',
         subtitle: 'Page 02 // Transforming PUBG Mobile Players into Cute, Collectable Merchandise',
-        image: '/media/4thrive_overview.jpg',
+        image: '/media/4thrive_overview.webp',
         badge: 'THE IDEA',
         aspect: 'aspect-[16/9]'
       },
@@ -162,91 +162,91 @@ export const projectsData = [
       {
         title: 'MASTER MERCHANDISE LINEUP',
         subtitle: 'Page 04 // Complete Fan Gear Suite — Hoodies, Deskmat, Phone Covers & Bags',
-        image: '/assets/4thrive Merch/Artboard 21.png',
+        image: '/assets/4thrive Merch/Artboard 21.webp',
         badge: 'COLLECTION LINEUP',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'ORIGINAL AVATARS — IQ & NOCKI',
         subtitle: 'Page 05 // Tactical Mind IQ with Power-Radar & Clutch Hero Nocki with Cape',
-        image: '/assets/4thrive Merch/Artboard 4.jpg',
+        image: '/assets/4thrive Merch/Artboard 4.webp',
         badge: 'AVATARS & LORE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'ORIGINAL AVATARS — HUZAIFA & FALAK',
         subtitle: 'Page 06 // Rifle Specialist Huzaifa (M16) & Fandom Tiger Falak',
-        image: '/assets/4thrive Merch/Artboard 5.png',
+        image: '/assets/4thrive Merch/Artboard 5.webp',
         badge: 'AVATARS & LORE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D FIGURINE — FALAK (THE TIGER)',
         subtitle: 'Page 07 // 3D Chibi Mascot Collectable Toy & Front/Back Details',
-        image: '/assets/4thrive Merch/Artboard 9.png',
+        image: '/assets/4thrive Merch/Artboard 9.webp',
         badge: '3D FIGURINE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D FIGURINE — NOCKI (SUPERMAN)',
         subtitle: 'Page 08 // 3D Clutch Playmaker Figurine with Heroic Cape',
-        image: '/assets/4thrive Merch/Artboard 11.png',
+        image: '/assets/4thrive Merch/Artboard 11.webp',
         badge: '3D FIGURINE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D FIGURINE — T240P (VANGUARD SHIELD)',
         subtitle: 'Page 09 // 3D Squad Shield Figurine with 4THRIVE Crest',
-        image: '/assets/4thrive Merch/Artboard 19.png',
+        image: '/assets/4thrive Merch/Artboard 19.webp',
         badge: '3D FIGURINE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D FIGURINE — HUZAIFA (M16 RIFLE)',
         subtitle: 'Page 10 // 3D Rifle Specialist Figurine with Tactical Sling',
-        image: '/assets/4thrive Merch/Artboard 10.png',
+        image: '/assets/4thrive Merch/Artboard 10.webp',
         badge: '3D FIGURINE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D FIGURINE — IQ (TACTICAL EYE)',
         subtitle: 'Page 11 // 3D Mastermind Figurine with Holographic Scouter',
-        image: '/assets/4thrive Merch/Artboard 8.png',
+        image: '/assets/4thrive Merch/Artboard 8.webp',
         badge: '3D FIGURINE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'MASCOT PLUSHIE — DESIGN CONCEPT',
         subtitle: 'Page 12 // Tiger Mascot Anatomy, Jersey Detailing & Materials',
-        image: '/assets/4thrive Merch/Artboard 13.png',
+        image: '/assets/4thrive Merch/Artboard 13.webp',
         badge: 'PLUSHIE SPEC',
         aspect: 'aspect-[16/9]'
       },
       {
         title: '3D TIGER PLUSHIE TOY — FRONT & BACK',
         subtitle: 'Page 13 // High-Fidelity Physical Plushie Toy Render in Team Colors',
-        image: '/assets/4thrive Merch/Artboard 14.png',
+        image: '/assets/4thrive Merch/Artboard 14.webp',
         badge: '3D PLUSHIE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'DIE-CUT FAN STICKER PACK',
         subtitle: 'Page 14 // Holographic Vinyl Stickers & Emote Decals',
-        image: '/assets/4thrive Merch/Artboard 16.png',
+        image: '/assets/4thrive Merch/Artboard 16.webp',
         badge: 'STICKER PACK',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'ORIGINAL AVATAR BANNER',
         subtitle: 'Page 15 // Original Character Avatars Chapter Divider',
-        image: '/assets/4thrive Merch/4.jpg',
+        image: '/assets/4thrive Merch/4.webp',
         badge: 'DIVIDER',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'THANK YOU & CREDITS',
         subtitle: 'Page 16 // Unofficial Concept Showcase by Fatyma Binte Bilal',
-        image: '/assets/4thrive Merch/Artboard 22.png',
+        image: '/assets/4thrive Merch/Artboard 22.webp',
         badge: 'CREDITS',
         aspect: 'aspect-[16/9]'
       }
@@ -264,7 +264,7 @@ export const projectsData = [
     client: 'Baaz Takedown FGC · International Tournament',
     year: '2026',
     description: 'Official merchandise concept and custom apparel design for Baaz Takedown 2026, combining iconic fighting game legends with authentic Pakistani cultural heritage and Minar-e-Pakistan.',
-    cover: '/assets/Baaz Merch/baaz_merch_thumb.png',
+    cover: '/assets/Baaz Merch/baaz_merch_thumb.webp',
     pdfUrl: '/assets/Baaz Takedown MErch.pdf',
     pdfTitle: 'Download Baaz Takedown 2026 Merchandise Pitch Deck (PDF)',
     gradientColors: ['#F03391', '#9227B5', '#FF7348', '#FFC15C'],
@@ -275,49 +275,49 @@ export const projectsData = [
       {
         title: 'OFFICIAL COVER & TITLE',
         subtitle: 'Page 01 // Baaz Takedown 2026 Official Merchandise Pitch Deck',
-        image: '/assets/Baaz Merch/page_1.png',
+        image: '/assets/Baaz Merch/page_1.webp',
         badge: 'COVER PAGE',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'HERITAGE & COMMUNITY',
         subtitle: 'Page 02 // About Takedown 2026 — FGC Heritage & Community Legacy',
-        image: '/assets/Baaz Merch/page_2.png',
+        image: '/assets/Baaz Merch/page_2.webp',
         badge: 'HERITAGE',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'DESIGN ELEMENTS & ARCHITECTURE',
         subtitle: 'Page 03 // Cultural Heritage & Minar-e-Pakistan Visual Story',
-        image: '/assets/Baaz Merch/page_3.png',
+        image: '/assets/Baaz Merch/page_3.webp',
         badge: 'DESIGN CONCEPT',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'LEGENDS KEY ART ILLUSTRATION',
         subtitle: 'Page 04 // Iconic Pakistani FGC Heroes Concept Illustration',
-        image: '/assets/Baaz Merch/page_4.png',
+        image: '/assets/Baaz Merch/page_4.webp',
         badge: 'KEY ART',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'OFFICIAL TOURNAMENT SHIRT',
         subtitle: 'Page 05 // Baaz Takedown 2026 Merch Shirt — Front & Back Mockup',
-        image: '/assets/Baaz Merch/page_5.png',
+        image: '/assets/Baaz Merch/page_5.webp',
         badge: 'PRODUCT MOCKUP',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'CLOSING & PRODUCTION SPECS',
         subtitle: 'Page 06 // Community Credits, Fabric Specs & Screenprint Guide',
-        image: '/assets/Baaz Merch/page_6.png',
+        image: '/assets/Baaz Merch/page_6.webp',
         badge: 'PRODUCTION SPECS',
         aspect: 'aspect-[4/5]'
       },
       {
         title: 'MASTER BRANDING VISUAL',
         subtitle: 'Feature // Baaz Takedown 2026 Full Branding & Typography',
-        image: '/assets/Baaz Merch/baaz_merch_with_title.png',
+        image: '/assets/Baaz Merch/baaz_merch_with_title.webp',
         badge: 'BRAND ASSET',
         aspect: 'aspect-square'
       }
@@ -351,77 +351,77 @@ export const projectsData = [
       {
         title: 'CUSTOM EMOTE CHARACTER SET',
         subtitle: 'Frame 02 // Interactive Twitch Emotes & Stylized Mascot Expressions',
-        image: '/assets/Twitch emote presentation/Frame 2.jpg',
+        image: '/assets/Twitch emote presentation/Frame 2.webp',
         badge: 'EMOTE SUITE',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'LOYALTY BADGES & SUB TIERS',
         subtitle: 'Frame 03 // Tiered Subscriber Badges & Custom Bit Reward Icons',
-        image: '/assets/Twitch emote presentation/Frame 3.jpg',
+        image: '/assets/Twitch emote presentation/Frame 3.webp',
         badge: 'SUB BADGES',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'STARTING SOON SCREEN',
         subtitle: 'Frame 04 // Broadcast Animated Intro Screen with Countdown',
-        image: '/assets/Twitch emote presentation/Frame 4.jpg',
+        image: '/assets/Twitch emote presentation/Frame 4.webp',
         badge: 'STREAM SCREEN',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'IN-GAME HUD & WEBCAM OVERLAY',
         subtitle: 'Frame 05 // Competitive Match Dynamic Overlay & Facecam Frame',
-        image: '/assets/Twitch emote presentation/Frame 5.jpg',
+        image: '/assets/Twitch emote presentation/Frame 5.webp',
         badge: 'GAME OVERLAY',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'INTERMISSION & CHATTING',
         subtitle: 'Frame 06 // Just Chatting & Tournament Break Broadcast Screen',
-        image: '/assets/Twitch emote presentation/Frame 6.jpg',
+        image: '/assets/Twitch emote presentation/Frame 6.webp',
         badge: 'INTERMISSION',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'STREAM ENDING & CREDITS',
         subtitle: 'Frame 07 // Stream Ending Screen with Social Links & Sponsor Badges',
-        image: '/assets/Twitch emote presentation/Frame 7.jpg',
+        image: '/assets/Twitch emote presentation/Frame 7.webp',
         badge: 'OUTRO SCREEN',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'OFFLINE CHANNEL BANNER',
         subtitle: 'Frame 08 // Official Twitch Offline Screen & Schedule Header',
-        image: '/assets/Twitch emote presentation/Frame 8.jpg',
+        image: '/assets/Twitch emote presentation/Frame 8.webp',
         badge: 'OFFLINE BANNER',
         aspect: 'aspect-[16/9]'
       },
       {
         title: 'ARSLAN 5X EVO CHAMPION CHIBI',
         subtitle: 'Sticker 01 // Official Arslan Ash Championship Trophy Chibi',
-        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 1.png',
+        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 1.webp',
         badge: 'CHIBI STICKER',
         aspect: 'aspect-[1/1]'
       },
       {
         title: 'TIGER MASCOT VICTORY EMOTE',
         subtitle: 'Sticker 02 // 4THRIVE Tiger Mascot Victory Pose Emote',
-        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 2.png',
+        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 2.webp',
         badge: 'CHIBI STICKER',
         aspect: 'aspect-[1/1]'
       },
       {
         title: 'SHADOW KITSUNE NINJA EMOTE',
         subtitle: 'Sticker 03 // Japanese Fox Mask Ninja Anime Character',
-        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 3.png',
+        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 3.webp',
         badge: 'CHIBI STICKER',
         aspect: 'aspect-[1/1]'
       },
       {
         title: 'FALAK CHIBI CHEER EMOTE',
         subtitle: 'Sticker 04 // Custom Falak Gaming Mascot Cheer Expression',
-        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 4.png',
+        image: '/assets/Twitch emote presentation/Stickers/Twitch sticker 4.webp',
         badge: 'CHIBI STICKER',
         aspect: 'aspect-[1/1]'
       }
@@ -595,7 +595,7 @@ export const projectsData = [
     client: 'Top Gaming Creators · Red Bull Athletes · Esports Orgs',
     year: '2024 - 2026',
     description: 'Elite YouTube thumbnail packaging engineered for maximum click-through rates (CTR), high viewer retention, vibrant color psychology, and custom 3D typography across world-class esports gaming channels.',
-    cover: '/assets/Thumbnails/Atif 2.jpg',
+    cover: '/assets/Thumbnails/Atif 2.webp',
     gradientColors: ['#FF7348', '#FFC15C', '#F03391', '#551276'],
     projectType: 'thumbnails',
     defaultColumns: 2,
@@ -604,7 +604,7 @@ export const projectsData = [
       {
         title: "JIREN CUSTOM FIGHTER SHOWDOWN",
         subtitle: "Custom Fighter Tech & Tournament Showcase",
-        image: "/assets/Thumbnails/2025-01-04_09-01-54.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-01-54.webp",
         badge: "CHARACTER",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -612,7 +612,7 @@ export const projectsData = [
       {
         title: "PRO TEKKEN 8 COMBO MASTERCLASS",
         subtitle: "Optimal Damage Routes & Wall Carry Secrets",
-        image: "/assets/Thumbnails/2025-01-04_09-02-08.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-02-08.webp",
         badge: "TECH",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -620,7 +620,7 @@ export const projectsData = [
       {
         title: "TOP TIER PUNISHMENT BREAKDOWN",
         subtitle: "Frame Advantage & Frame Trap Strategies",
-        image: "/assets/Thumbnails/2025-01-04_09-02-21.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-02-21.webp",
         badge: "GUIDE",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -628,7 +628,7 @@ export const projectsData = [
       {
         title: "ULTIMATE MATCHUP STRATEGY",
         subtitle: "Neutral Control & Spacing Against Top Tiers",
-        image: "/assets/Thumbnails/2025-01-04_09-02-55.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-02-55.webp",
         badge: "STRATEGY",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -636,7 +636,7 @@ export const projectsData = [
       {
         title: "CHAMPIONSHIP EXECUTION DRILLS",
         subtitle: "Pro Tournament Practice Routines",
-        image: "/assets/Thumbnails/2025-01-04_09-03-06.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-03-06.webp",
         badge: "TRAINING",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -644,7 +644,7 @@ export const projectsData = [
       {
         title: "DEFENSE & SIDESTEP MASTERY",
         subtitle: "Beating High-Pressure Offense in Tekken 8",
-        image: "/assets/Thumbnails/2025-01-04_09-03-16.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-03-16.webp",
         badge: "DEFENSE",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -652,7 +652,7 @@ export const projectsData = [
       {
         title: "HIGH-STAKES PRO TOURNAMENT RUN",
         subtitle: "Road Through Championship Winners Bracket",
-        image: "/assets/Thumbnails/2025-01-04_09-03-30.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-03-30.webp",
         badge: "MAJOR",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -660,7 +660,7 @@ export const projectsData = [
       {
         title: "UNBREAKABLE MENTALITY & CLUTCH PLAY",
         subtitle: "Championship Finals Decision Rounds",
-        image: "/assets/Thumbnails/2025-01-04_09-03-41.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-03-41.webp",
         badge: "TOURNAMENT",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -668,7 +668,7 @@ export const projectsData = [
       {
         title: "DREAMHACK ARENA SHOWDOWN",
         subtitle: "International Main Stage Grand Finals",
-        image: "/assets/Thumbnails/2025-01-04_09-03-51.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-03-51.webp",
         badge: "DREAMHACK",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -676,7 +676,7 @@ export const projectsData = [
       {
         title: "S-TIER CHARACTER TIER LIST",
         subtitle: "Patch Ranking & Meta Analysis",
-        image: "/assets/Thumbnails/2025-01-04_09-04-07.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-04-07.webp",
         badge: "TIER LIST",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -684,7 +684,7 @@ export const projectsData = [
       {
         title: "CHAMPION VS CHALLENGER",
         subtitle: "First to 10 Intense Pro Deathmatch",
-        image: "/assets/Thumbnails/2025-01-04_09-04-19.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-04-19.webp",
         badge: "FT10",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -692,7 +692,7 @@ export const projectsData = [
       {
         title: "PRO FGC HEAD-TO-HEAD",
         subtitle: "High Roller Money Match Finals",
-        image: "/assets/Thumbnails/2025-01-04_09-04-30.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-04-30.webp",
         badge: "SHOWDOWN",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -700,7 +700,7 @@ export const projectsData = [
       {
         title: "CLASH OF TITANS",
         subtitle: "Top Ranked Global Competitor Duel",
-        image: "/assets/Thumbnails/2025-01-04_09-04-43.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-04-43.webp",
         badge: "RIVALRY",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -708,7 +708,7 @@ export const projectsData = [
       {
         title: "JACK-8 BALANCE PATCH CHANGES",
         subtitle: "Hitbox Fixes & Move Directional Buffs",
-        image: "/assets/Thumbnails/2025-01-04_09-05-01.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-05-01.webp",
         badge: "PATCH BREAKDOWN",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -716,7 +716,7 @@ export const projectsData = [
       {
         title: "WORLD TOUR PREPARATION",
         subtitle: "Behind The Scenes Training Bootcamp",
-        image: "/assets/Thumbnails/2025-01-04_09-05-12.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-05-12.webp",
         badge: "BOOTCAMP",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -724,7 +724,7 @@ export const projectsData = [
       {
         title: "PRO PLAYER DIARIES",
         subtitle: "Travel, Strategy & Tournament Day Routine",
-        image: "/assets/Thumbnails/2025-01-04_09-05-21.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-05-21.webp",
         badge: "VLOG",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -732,7 +732,7 @@ export const projectsData = [
       {
         title: "LEVEL UP YOUR GAME: MASTERCLASS",
         subtitle: "Core Fundamentals & Tournament Mindset",
-        image: "/assets/Thumbnails/2025-01-04_09-05-36.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-05-36.webp",
         badge: "MASTERCLASS",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -740,7 +740,7 @@ export const projectsData = [
       {
         title: "5V5 ALL-STAR TEAM BATTLE",
         subtitle: "Pakistan vs The World Epic Showdown",
-        image: "/assets/Thumbnails/2025-01-04_09-05-52.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-05-52.webp",
         badge: "5V5 BATTLE",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -748,7 +748,7 @@ export const projectsData = [
       {
         title: "VS ALISA & LEGENDS",
         subtitle: "High-Ranked Destruction & Matchup Analysis",
-        image: "/assets/Thumbnails/2025-01-04_09-06-04.jpg",
+        image: "/assets/Thumbnails/2025-01-04_09-06-04.webp",
         badge: "LEGENDS",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -756,7 +756,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH: LIVE HIGHLIGHTS",
         subtitle: "Twitch Stream Clutch Rounds & Insane Whiff Punishes",
-        image: "/assets/Thumbnails/Arslan 1.jpg",
+        image: "/assets/Thumbnails/Arslan 1.webp",
         badge: "HIGHLIGHTS",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -764,7 +764,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH // AYHEQA MIDDLE EAST",
         subtitle: "Middle East Tour Championship Performance",
-        image: "/assets/Thumbnails/Arslan 2.jpg",
+        image: "/assets/Thumbnails/Arslan 2.webp",
         badge: "TOUR",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -772,7 +772,7 @@ export const projectsData = [
       {
         title: "RED BULL GOLDEN LETTERS",
         subtitle: "London Invitational Main Stage Visual Packaging",
-        image: "/assets/Thumbnails/Arslan 3.jpg",
+        image: "/assets/Thumbnails/Arslan 3.webp",
         badge: "RED BULL",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -780,7 +780,7 @@ export const projectsData = [
       {
         title: "VISITING WONDERS OF THE WORLD",
         subtitle: "Arslan Ash International Travel Vlog & Stories",
-        image: "/assets/Thumbnails/Arslan 4.jpg",
+        image: "/assets/Thumbnails/Arslan 4.webp",
         badge: "TRAVEL VLOG",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -788,7 +788,7 @@ export const projectsData = [
       {
         title: "ESPORTS WORLD CUP: ARSLAN VS ATIF",
         subtitle: "The Ultimate Riyadh Clash of Champions",
-        image: "/assets/Thumbnails/Arslan 5.jpg",
+        image: "/assets/Thumbnails/Arslan 5.webp",
         badge: "EWC RIYADH",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -796,7 +796,7 @@ export const projectsData = [
       {
         title: "TEKKEN .EXE FUNNY MOMENTS",
         subtitle: "Memes, Rage Quits & Ranked Shenanigans",
-        image: "/assets/Thumbnails/Arslan 55.jpg",
+        image: "/assets/Thumbnails/Arslan 55.webp",
         badge: ".EXE SPECIAL",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -804,7 +804,7 @@ export const projectsData = [
       {
         title: "ESPORTS WORLD CUP RANKED RUN",
         subtitle: "Dominating The Competitive Ladder",
-        image: "/assets/Thumbnails/Arslan 64.jpg",
+        image: "/assets/Thumbnails/Arslan 64.webp",
         badge: "EWC",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -812,7 +812,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH & KNEE: THE PODCAST",
         subtitle: "Who Inspired You? What Is Your Future Goal?",
-        image: "/assets/Thumbnails/Arslan podcast.jpg",
+        image: "/assets/Thumbnails/Arslan podcast.webp",
         badge: "PODCAST",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -820,7 +820,7 @@ export const projectsData = [
       {
         title: "PUBG MOBILE SPECIAL SHOWCASE",
         subtitle: "Arslan Ash Official Anniversary Stream",
-        image: "/assets/Thumbnails/Arslan pubg.jpg",
+        image: "/assets/Thumbnails/Arslan pubg.webp",
         badge: "PUBG MOBILE",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -828,7 +828,7 @@ export const projectsData = [
       {
         title: "RAPID FIRE FT. KNEE",
         subtitle: "Unfiltered Q&A with The Greatest Fighting Game Rival",
-        image: "/assets/Thumbnails/Arslan rapid fire.jpg",
+        image: "/assets/Thumbnails/Arslan rapid fire.webp",
         badge: "RAPID FIRE",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -836,7 +836,7 @@ export const projectsData = [
       {
         title: "OFFICIAL TEKKEN 8 TIER LIST",
         subtitle: "Definitive Tier Rankings with 8x EVO Champion",
-        image: "/assets/Thumbnails/Arslan tierlist.jpg",
+        image: "/assets/Thumbnails/Arslan tierlist.webp",
         badge: "TIER LIST",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -844,7 +844,7 @@ export const projectsData = [
       {
         title: "DREAMHACK TOP 8: ARSLAN VS MULGOLD",
         subtitle: "Grand Finals Bracket Reset & Victory",
-        image: "/assets/Thumbnails/Arslan tournament.jpg",
+        image: "/assets/Thumbnails/Arslan tournament.webp",
         badge: "DREAMHACK",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -852,7 +852,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH VS ABOOD LEGEND",
         subtitle: "Epic International Showdown & Matchup Breakdown",
-        image: "/assets/Thumbnails/Arslan vs abood.jpg",
+        image: "/assets/Thumbnails/Arslan vs abood.webp",
         badge: "SHOWDOWN",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -860,7 +860,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH VS KNEE: THE ETERNAL RIVALRY",
         subtitle: "The Defining Rivalry of Modern Fighting Game History",
-        image: "/assets/Thumbnails/Arslan vs knee.jpg",
+        image: "/assets/Thumbnails/Arslan vs knee.webp",
         badge: "ICONIC RIVALRY",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -868,7 +868,7 @@ export const projectsData = [
       {
         title: "ARSLAN ASH: OFFICIAL ATHLETE PROFILE",
         subtitle: "Red Bull Athlete & 8x EVO World Champion",
-        image: "/assets/Thumbnails/Arslan.jpg",
+        image: "/assets/Thumbnails/Arslan.webp",
         badge: "CREATOR",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -876,7 +876,7 @@ export const projectsData = [
       {
         title: "ATIF BUTT // TEAM FALCONS 2024",
         subtitle: "Official Team Falcons Athlete Signing & Roster Reveal",
-        image: "/assets/Thumbnails/Atif 1.jpg",
+        image: "/assets/Thumbnails/Atif 1.webp",
         badge: "FALCONS",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -884,7 +884,7 @@ export const projectsData = [
       {
         title: "ATIF BUTT: DEMON AKUMA UNLEASHED",
         subtitle: "Masterclass Execution on World Championship Stage",
-        image: "/assets/Thumbnails/Atif 2.jpg",
+        image: "/assets/Thumbnails/Atif 2.webp",
         badge: "CHAMPION",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -892,7 +892,7 @@ export const projectsData = [
       {
         title: "ATIF BUTT: WORLD TOUR DOMINANCE",
         subtitle: "Tekken World Tour Championship Campaign",
-        image: "/assets/Thumbnails/Atif 3.jpg",
+        image: "/assets/Thumbnails/Atif 3.webp",
         badge: "WORLD TOUR",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -900,7 +900,7 @@ export const projectsData = [
       {
         title: "ATIF BUTT: OFFICIAL ATHLETE PROFILE",
         subtitle: "Tekken World Champion & Team Falcons Star",
-        image: "/assets/Thumbnails/Atif.jpg",
+        image: "/assets/Thumbnails/Atif.webp",
         badge: "CHAMPION",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -908,7 +908,7 @@ export const projectsData = [
       {
         title: "BRYAN FURY TOP 1 COMBO ROUTES",
         subtitle: "Max Damage Wall Carry & Counter Hit Execution",
-        image: "/assets/Thumbnails/IMG_6964.JPG",
+        image: "/assets/Thumbnails/IMG_6964.webp",
         badge: "COMBO GUIDE",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -916,7 +916,7 @@ export const projectsData = [
       {
         title: "MISHIMA PERFECT EWGF GUIDE",
         subtitle: "Frame-Perfect Electric Wind God Fist Execution",
-        image: "/assets/Thumbnails/IMG_6965.JPG",
+        image: "/assets/Thumbnails/IMG_6965.webp",
         badge: "MISHIMA TECH",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -924,7 +924,7 @@ export const projectsData = [
       {
         title: "DRAGUNOV HIGH-PRESSURE META",
         subtitle: "Frame Advantage & Plus Frames Strategy",
-        image: "/assets/Thumbnails/IMG_6966.JPG",
+        image: "/assets/Thumbnails/IMG_6966.webp",
         badge: "META BREAKDOWN",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -932,7 +932,7 @@ export const projectsData = [
       {
         title: "7TH EVO CHAMPION ARSLAN ASH",
         subtitle: "Historic World Record Victory & Trophy Presentation",
-        image: "/assets/Thumbnails/IMG_6967.JPG",
+        image: "/assets/Thumbnails/IMG_6967.webp",
         badge: "7X EVO",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -940,7 +940,7 @@ export const projectsData = [
       {
         title: "TEAM PAKISTAN VS TEAM SAUDI",
         subtitle: "Twisted Labs Official Matchday Broadcast Packaging",
-        image: "/assets/Thumbnails/IMG_6968.JPG",
+        image: "/assets/Thumbnails/IMG_6968.webp",
         badge: "TEAM MATCH",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -948,7 +948,7 @@ export const projectsData = [
       {
         title: "CASTING TALENT // BROWNMAN & NAJD",
         subtitle: "Pakistan vs Saudi 2025 Broadcast Key Art",
-        image: "/assets/Thumbnails/IMG_6969.JPG",
+        image: "/assets/Thumbnails/IMG_6969.webp",
         badge: "BROADCAST",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -956,7 +956,7 @@ export const projectsData = [
       {
         title: "RED DEAD REDEMPTION 2: WE ARE BACK",
         subtitle: "Epic Open World Stream Special",
-        image: "/assets/Thumbnails/IMG_6972.JPG",
+        image: "/assets/Thumbnails/IMG_6972.webp",
         badge: "VARIETY",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -964,7 +964,7 @@ export const projectsData = [
       {
         title: "LIVE INTO THE STADIUM",
         subtitle: "Esports Arena Walkout & Stadium Broadcast",
-        image: "/assets/Thumbnails/IMG_6973.JPG",
+        image: "/assets/Thumbnails/IMG_6973.webp",
         badge: "STADIUM LIVE",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -972,7 +972,7 @@ export const projectsData = [
       {
         title: "HOMELESS CHALLENGE RUN",
         subtitle: "Zero Resources Ranked Challenge Series",
-        image: "/assets/Thumbnails/IMG_6974.JPG",
+        image: "/assets/Thumbnails/IMG_6974.webp",
         badge: "CHALLENGE",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -980,7 +980,7 @@ export const projectsData = [
       {
         title: "ROAD TO GOLD: EVO JAPAN SPECIAL",
         subtitle: "Behind The Scenes in Tokyo & Tournament Run",
-        image: "/assets/Thumbnails/IMG_6975.JPG",
+        image: "/assets/Thumbnails/IMG_6975.webp",
         badge: "ROAD TO GOLD",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -988,7 +988,7 @@ export const projectsData = [
       {
         title: "UNREACTABLE LOWS & DEFENSE EXPLAINED",
         subtitle: "Fuzzy Guarding, Low Parries & Defensive Reads",
-        image: "/assets/Thumbnails/IMG_6976(1).JPG",
+        image: "/assets/Thumbnails/IMG_6976(1).webp",
         badge: "DEFENSE TECH",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -996,7 +996,7 @@ export const projectsData = [
       {
         title: "DIRECTOR IN SAN ANTONIO",
         subtitle: "On-Location Championship Documentary",
-        image: "/assets/Thumbnails/IMG_6977.JPG",
+        image: "/assets/Thumbnails/IMG_6977.webp",
         badge: "DOCUMENTARY",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1004,7 +1004,7 @@ export const projectsData = [
       {
         title: "BLINDFOLDED TEKKEN CHALLENGE",
         subtitle: "Pure Sound Cues & Muscle Memory Mastery",
-        image: "/assets/Thumbnails/IMG_6978.JPG",
+        image: "/assets/Thumbnails/IMG_6978.webp",
         badge: "VIRAL CHALLENGE",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1012,7 +1012,7 @@ export const projectsData = [
       {
         title: "THE BEST KUMA PLAYER IN THE WORLD",
         subtitle: "Bear Meta Destruction & Unorthodox Setups",
-        image: "/assets/Thumbnails/IMG_6979.JPG",
+        image: "/assets/Thumbnails/IMG_6979.webp",
         badge: "CHARACTER TECH",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1020,7 +1020,7 @@ export const projectsData = [
       {
         title: "BEST ONLINE ANNA SPECIALIST",
         subtitle: "Chaos Stance Mixups & High-Ranked Gameplay",
-        image: "/assets/Thumbnails/IMG_6980.JPG",
+        image: "/assets/Thumbnails/IMG_6980.webp",
         badge: "ONLINE RANKED",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1028,7 +1028,7 @@ export const projectsData = [
       {
         title: "PAKISTAN TEKKEN LEAGUE: LAHORE",
         subtitle: "Historic National Tournament Stage Key Visual",
-        image: "/assets/Thumbnails/IMG_6981.JPG",
+        image: "/assets/Thumbnails/IMG_6981.webp",
         badge: "LAHORE ARENA",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -1036,7 +1036,7 @@ export const projectsData = [
       {
         title: "ROAD TO ESPORTS WORLD CUP",
         subtitle: "Qualification Gauntlet & Intensive Scrims",
-        image: "/assets/Thumbnails/IMG_6982.JPG",
+        image: "/assets/Thumbnails/IMG_6982.webp",
         badge: "ROAD TO EWC",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -1044,7 +1044,7 @@ export const projectsData = [
       {
         title: "PRO MATCHUP ANALYSIS",
         subtitle: "Frame Data & Whiff Punish In-Depth Breakdown",
-        image: "/assets/Thumbnails/IMG_6983.JPG",
+        image: "/assets/Thumbnails/IMG_6983.webp",
         badge: "ANALYSIS",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1052,7 +1052,7 @@ export const projectsData = [
       {
         title: "FALCONS 2024 CHAMPIONSHIP SPECIAL",
         subtitle: "Team Falcons Celebration & Major Highlights",
-        image: "/assets/Thumbnails/IMG_6984.JPG",
+        image: "/assets/Thumbnails/IMG_6984.webp",
         badge: "FALCONS 2024",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1060,7 +1060,7 @@ export const projectsData = [
       {
         title: "2024 SEASON HIGHLIGHT REEL",
         subtitle: "Best Tournament Rounds & Iconic Moments of 2024",
-        image: "/assets/Thumbnails/IMG_6985.JPG",
+        image: "/assets/Thumbnails/IMG_6985.webp",
         badge: "2024 REEL",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1068,7 +1068,7 @@ export const projectsData = [
       {
         title: "TEKKEN 8 RANKED GRIND",
         subtitle: "Pushing God of Destruction with Pro Athletes",
-        image: "/assets/Thumbnails/IMG_6986.JPG",
+        image: "/assets/Thumbnails/IMG_6986.webp",
         badge: "GOD OF DESTRUCTION",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1076,7 +1076,7 @@ export const projectsData = [
       {
         title: "CHARACTER SPECIALIST MASTERCLASS",
         subtitle: "Frame Traps, Okizeme & Wall Combos",
-        image: "/assets/Thumbnails/IMG_6987.JPG",
+        image: "/assets/Thumbnails/IMG_6987.webp",
         badge: "MASTERCLASS",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1084,7 +1084,7 @@ export const projectsData = [
       {
         title: "PRO EXECUTION SECRETS",
         subtitle: "Controller Grip, Timing & Tournament Readiness",
-        image: "/assets/Thumbnails/IMG_6988.JPG",
+        image: "/assets/Thumbnails/IMG_6988.webp",
         badge: "PRO SECRETS",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1092,7 +1092,7 @@ export const projectsData = [
       {
         title: "ULTIMATE MATCHUP BREAKDOWN",
         subtitle: "Beating Korea and Japan on International Stage",
-        image: "/assets/Thumbnails/IMG_6992.JPG",
+        image: "/assets/Thumbnails/IMG_6992.webp",
         badge: "MATCHUP",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -1100,7 +1100,7 @@ export const projectsData = [
       {
         title: "TEKKEN .EXE COMEDY SPECIAL",
         subtitle: "Insane Glitches, High IQ Plays & Funny Clips",
-        image: "/assets/Thumbnails/IMG_6993.JPG",
+        image: "/assets/Thumbnails/IMG_6993.webp",
         badge: ".EXE SPECIAL",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1108,7 +1108,7 @@ export const projectsData = [
       {
         title: "HIGH-STAKES PRO SCRIMS",
         subtitle: "Ashes Gaming vs Global Pro Athletes Behind Closed Doors",
-        image: "/assets/Thumbnails/IMG_6994.JPG",
+        image: "/assets/Thumbnails/IMG_6994.webp",
         badge: "PRO SCRIMS",
         category: "rivalries",
         aspect: "aspect-[16/9]"
@@ -1116,7 +1116,7 @@ export const projectsData = [
       {
         title: "CHARACTER TIER LIST UPDATE",
         subtitle: "Post-Major Meta Shifts & Sleeper Picks",
-        image: "/assets/Thumbnails/IMG_6995.JPG",
+        image: "/assets/Thumbnails/IMG_6995.webp",
         badge: "TIER LIST",
         category: "guides",
         aspect: "aspect-[16/9]"
@@ -1124,7 +1124,7 @@ export const projectsData = [
       {
         title: "PAKISTAN TEKKEN LEAGUE: STAGE 1 KARMA",
         subtitle: "Opening Stage Broadcast Key Visual & Brackets",
-        image: "/assets/Thumbnails/IMG_8846.JPG",
+        image: "/assets/Thumbnails/IMG_8846.webp",
         badge: "STAGE 1",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -1132,7 +1132,7 @@ export const projectsData = [
       {
         title: "PAKISTAN TEKKEN LEAGUE: STAGE 2 FINALS",
         subtitle: "Grand Finals Showdown at Pakistan Tekken League",
-        image: "/assets/Thumbnails/IMG_8847.JPG",
+        image: "/assets/Thumbnails/IMG_8847.webp",
         badge: "GRAND FINALS",
         category: "tournaments",
         aspect: "aspect-[16/9]"
@@ -1140,7 +1140,7 @@ export const projectsData = [
       {
         title: "THE BAAZ: THE MOVIE",
         subtitle: "Official Feature Documentary & Cinematic Story",
-        image: "/assets/Thumbnails/IMG_8849.JPG",
+        image: "/assets/Thumbnails/IMG_8849.webp",
         badge: "THE MOVIE",
         category: "shows",
         aspect: "aspect-[16/9]"
@@ -1148,7 +1148,7 @@ export const projectsData = [
       {
         title: "TOURNAMENT PACKAGING SUITE",
         subtitle: "High-CTR YouTube Cover Art & Branding Architecture",
-        image: "/assets/Thumbnails/PO.jpg",
+        image: "/assets/Thumbnails/PO.webp",
         badge: "PACKAGING",
         category: "tournaments",
         aspect: "aspect-[16/9]"

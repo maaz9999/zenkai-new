@@ -186,6 +186,24 @@ export default function ThumbnailsShowcase({
     };
   }, [ytVideos]);
 
+  // Preload adjacent thumbnails for instant zero-latency swapping
+  useEffect(() => {
+    if (!ytVideos || ytVideos.length === 0) return;
+    const indicesToPreload = [
+      activeVideoIndex,
+      (activeVideoIndex + 1) % ytVideos.length,
+      (activeVideoIndex + 2) % ytVideos.length,
+      (activeVideoIndex - 1 + ytVideos.length) % ytVideos.length
+    ];
+    indicesToPreload.forEach((idx) => {
+      const vid = ytVideos[idx];
+      if (vid && vid.image) {
+        const preloader = new Image();
+        preloader.src = vid.image;
+      }
+    });
+  }, [activeVideoIndex, ytVideos]);
+
   // Keyboard navigation for Lightbox
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -340,6 +358,14 @@ export default function ThumbnailsShowcase({
                 <img
                   src={activeVideo.image}
                   alt={activeVideo.title}
+                  fetchPriority="high"
+                  decoding="async"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.retried) {
+                      e.currentTarget.dataset.retried = 'true';
+                      e.currentTarget.src = activeVideo.image.replace(/\.webp$/i, '.jpg');
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-[1.015] transition-transform duration-500"
                 />
 
@@ -520,10 +546,18 @@ export default function ThumbnailsShowcase({
                         }`}
                       >
                         {/* Mini 16:9 Thumbnail Image */}
-                        <div className="relative w-36 aspect-[16/9] rounded-lg overflow-hidden bg-black shrink-0 border border-neutral-800">
+                        <div className="relative w-36 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-900/90 shrink-0 border border-neutral-800">
                           <img
                             src={item.image}
                             alt={item.title}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              if (!e.currentTarget.dataset.retried) {
+                                e.currentTarget.dataset.retried = 'true';
+                                e.currentTarget.src = item.image.replace(/\.webp$/i, '.jpg');
+                              }
+                            }}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/85 text-white font-mono text-[9px] font-semibold">
@@ -571,10 +605,18 @@ export default function ThumbnailsShowcase({
                             : 'bg-neutral-900/60 hover:bg-neutral-800/80 border-neutral-800'
                         }`}
                       >
-                        <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-black mb-1.5 border border-neutral-800">
+                        <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-neutral-900/90 mb-1.5 border border-neutral-800">
                           <img
                             src={item.image}
                             alt={item.title}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              if (!e.currentTarget.dataset.retried) {
+                                e.currentTarget.dataset.retried = 'true';
+                                e.currentTarget.src = item.image.replace(/\.webp$/i, '.jpg');
+                              }
+                            }}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/85 text-white font-mono text-[9px] font-semibold">

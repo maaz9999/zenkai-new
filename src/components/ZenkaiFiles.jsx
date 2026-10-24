@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import { projectsData } from '../data/projectsData';
 
@@ -52,6 +52,28 @@ export default function ZenkaiFiles() {
       thumbnail: '/assets/Baaz Merch/baaz_merch_thumb.webp'
     }
   ];
+
+  // Background idle preloading of primary hero assets for all portfolio projects
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      blocks.forEach((b) => {
+        if (b.thumbnail) {
+          const img = new Image();
+          img.src = b.thumbnail;
+        }
+        if (b.project && b.project.cover) {
+          const img = new Image();
+          img.src = b.project.cover;
+        }
+        if (b.project && b.project.presentationSections && b.project.presentationSections[0]?.image) {
+          const img = new Image();
+          img.src = b.project.presentationSections[0].image;
+        }
+      });
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section id="zenkai-files" className="relative bg-black py-14 sm:py-24 md:py-36 px-3.5 sm:px-6 lg:px-8">
