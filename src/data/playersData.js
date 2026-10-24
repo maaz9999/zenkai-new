@@ -24,7 +24,8 @@ export const playersData = [
     team: 'Team Ashes / Baaz Gaming',
     accolades: 'Thaigher Uppercut Champion',
     badge: 'THAIGHER CHAMPION',
-    image: '/assets/JON.webp'
+    image: '/assets/JON.webp',
+    imageClass: 'object-cover object-center scale-[1.14] sm:scale-[1.26] md:scale-[1.28] translate-y-9 sm:translate-y-7 md:translate-y-8 origin-[center_40%] group-hover:scale-[1.20] sm:group-hover:scale-[1.34]'
   },
   {
     id: 'khan',
