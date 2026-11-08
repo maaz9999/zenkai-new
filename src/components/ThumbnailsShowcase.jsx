@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { thumbnailPreview, thumbnailSrcSet } from '../lib/media';
 import {
   Search,
   X,
@@ -186,20 +187,18 @@ export default function ThumbnailsShowcase({
     };
   }, [ytVideos]);
 
-  // Preload adjacent thumbnails for instant zero-latency swapping
+  // Warm only the next display-sized image; preserve bandwidth for the active artwork.
   useEffect(() => {
     if (!ytVideos || ytVideos.length === 0) return;
     const indicesToPreload = [
-      activeVideoIndex,
-      (activeVideoIndex + 1) % ytVideos.length,
-      (activeVideoIndex + 2) % ytVideos.length,
-      (activeVideoIndex - 1 + ytVideos.length) % ytVideos.length
+      (activeVideoIndex + 1) % ytVideos.length
     ];
     indicesToPreload.forEach((idx) => {
       const vid = ytVideos[idx];
       if (vid && vid.image) {
         const preloader = new Image();
-        preloader.src = vid.image;
+        preloader.fetchPriority = 'low';
+        preloader.src = thumbnailPreview(vid.image);
       }
     });
   }, [activeVideoIndex, ytVideos]);
@@ -356,9 +355,11 @@ export default function ThumbnailsShowcase({
                 className="group relative aspect-[16/9] w-full rounded-2xl bg-black overflow-hidden shadow-2xl border border-neutral-800 hover:border-neutral-700 transition-all cursor-pointer"
               >
                 <img
-                  src={activeVideo.image}
+                  src={thumbnailPreview(activeVideo.image)}
+                  srcSet={thumbnailSrcSet(activeVideo.image)}
+                  sizes="(min-width: 1024px) 65vw, 100vw"
                   alt={activeVideo.title}
-                  fetchPriority="high"
+                  fetchpriority="high"
                   decoding="async"
                   onError={(e) => {
                     if (!e.currentTarget.dataset.retried) {
@@ -548,7 +549,9 @@ export default function ThumbnailsShowcase({
                         {/* Mini 16:9 Thumbnail Image */}
                         <div className="relative w-36 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-900/90 shrink-0 border border-neutral-800">
                           <img
-                            src={item.image}
+                            src={thumbnailPreview(item.image, 360)}
+                            width="360"
+                            height="203"
                             alt={item.title}
                             loading="lazy"
                             decoding="async"
@@ -607,7 +610,9 @@ export default function ThumbnailsShowcase({
                       >
                         <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-neutral-900/90 mb-1.5 border border-neutral-800">
                           <img
-                            src={item.image}
+                            src={thumbnailPreview(item.image, 360)}
+                            width="360"
+                            height="203"
                             alt={item.title}
                             loading="lazy"
                             decoding="async"

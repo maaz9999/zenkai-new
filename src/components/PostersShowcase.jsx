@@ -1,3 +1,5 @@
+import { thumbnailPreview } from '../lib/media';
+import ResponsiveImage from './ResponsiveImage';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -151,17 +153,13 @@ export default function PostersShowcase({
   // Preload adjacent posters in background for zero-latency switching
   useEffect(() => {
     if (!categorizedPosters || categorizedPosters.length === 0) return;
-    const indicesToPreload = [
-      activePosterIndex,
-      (activePosterIndex + 1) % categorizedPosters.length,
-      (activePosterIndex + 2) % categorizedPosters.length,
-      (activePosterIndex - 1 + categorizedPosters.length) % categorizedPosters.length
-    ];
+    const indicesToPreload = [(activePosterIndex + 1) % categorizedPosters.length];
     indicesToPreload.forEach((idx) => {
       const poster = categorizedPosters[idx];
       if (poster && poster.image) {
         const preloader = new Image();
-        preloader.src = poster.image;
+        preloader.fetchPriority = 'low';
+        preloader.src = thumbnailPreview(poster.image);
       }
     });
   }, [activePosterIndex, categorizedPosters]);
@@ -329,7 +327,7 @@ export default function PostersShowcase({
                   onClick={() => setLightboxIndex(activePoster.index)}
                   className="group relative w-full max-w-lg aspect-[3/4] rounded-2xl sm:rounded-3xl bg-[#080310] overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.95)] border border-white/20 hover:border-[#FF7348]/60 transition-all duration-300 cursor-pointer flex items-center justify-center p-3 sm:p-4"
                 >
-                  <img
+                  <ResponsiveImage
                     src={activePoster.image}
                     alt={activePoster.title}
                     fetchPriority="high"
@@ -432,8 +430,8 @@ export default function PostersShowcase({
                           }`}
                         >
                           <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-neutral-900/90 mb-2 border border-white/10 flex items-center justify-center p-1.5">
-                            <img
-                              src={item.image}
+                            <ResponsiveImage
+                              src={item.image} sizes="(min-width: 1024px) 240px, 50vw"
                               alt={item.title}
                               loading="lazy"
                               decoding="async"
@@ -479,8 +477,8 @@ export default function PostersShowcase({
                           }`}
                         >
                           <div className="relative w-16 aspect-[3/4] rounded-xl overflow-hidden bg-neutral-900/90 shrink-0 border border-white/10 flex items-center justify-center p-1">
-                            <img
-                              src={item.image}
+                            <ResponsiveImage
+                              src={item.image} sizes="(min-width: 1024px) 240px, 50vw"
                               alt={item.title}
                               loading="lazy"
                               decoding="async"
@@ -572,8 +570,8 @@ export default function PostersShowcase({
                     className="group relative w-full bg-[#080310] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.85)] hover:border-[#FF7348]/40 hover:shadow-[0_25px_70px_rgba(255,115,72,0.18)] transition-all duration-300 flex flex-col justify-between cursor-pointer"
                   >
                     <div className="relative w-full aspect-[3/4] bg-[#080310] overflow-hidden flex items-center justify-center p-3 sm:p-4">
-                      <img
-                        src={poster.image}
+                      <ResponsiveImage
+                        src={poster.image} sizes="(min-width: 1024px) 240px, 50vw"
                         alt={poster.title}
                         loading="lazy"
                         decoding="async"

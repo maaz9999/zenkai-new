@@ -49,7 +49,7 @@ export default function Footer() {
           {/* Column 1: Brand & Studio Identity (5 cols) */}
           <div className="md:col-span-5 lg:col-span-5 flex flex-col justify-between">
             <div>
-              <Link 
+              <Link
                 to="/" 
                 className="inline-flex items-center gap-2.5 sm:gap-3 group transition-transform hover:scale-[1.02]"
                 aria-label="ZENKAI MEDIA Home"
@@ -86,45 +86,48 @@ export default function Footer() {
               </h4>
               <ul className="space-y-1.5 sm:space-y-2.5 text-xs sm:text-sm font-semibold">
                 <li>
+                  <Link to="/pmgc" className="text-white/70 hover:text-white inline-block transition-all">PMGC Creative</Link>
+                </li>
+                <li>
                   <Link to="/" className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <a 
-                    href="/#zenkai-files" 
+                  <Link
+                    to="/#zenkai-files"
                     onClick={(e) => handleNavClick(e, 'zenkai-files')}
                     className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
                   >
                     Portfolio
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="/#our-craft" 
+                  <Link
+                    to="/#our-craft"
                     onClick={(e) => handleNavClick(e, 'our-craft')}
                     className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
                   >
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="/#in-the-game-with" 
+                  <Link
+                    to="/#in-the-game-with"
                     onClick={(e) => handleNavClick(e, 'in-the-game-with')}
                     className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
                   >
                     Partners
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="/#contact" 
+                  <Link
+                    to="/#contact"
                     onClick={(e) => handleNavClick(e, 'contact')}
                     className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all cursor-pointer"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

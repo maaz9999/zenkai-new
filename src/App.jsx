@@ -1,11 +1,12 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import StartProjectPage from './pages/StartProjectPage';
+const HomePage = lazy(() => import('./pages/HomePage'));
+const StartProjectPage = lazy(() => import('./pages/StartProjectPage'));
 
 // Code-split heavy secondary detail pages to keep main landing instant
 const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const PMGCPage = lazy(() => import('./pages/PMGCPage'));
 
 // Ultra-lightweight brand fallback loader for subroutes
 function PageLoader() {
@@ -34,8 +35,9 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Suspense fallback={<PageLoader />}>
       <Routes>
-        {/* HomePage renders instantly with zero loading waterfall */}
+        {/* Route chunks keep unrelated pages out of the initial download. */}
         <Route path="/" element={<HomePage />} />
         
         {/* Subroutes with lazy code-splitting and smooth fallback */}
@@ -49,6 +51,7 @@ export default function App() {
         />
         <Route path="/start-a-project" element={<StartProjectPage />} />
         <Route path="/contact" element={<StartProjectPage />} />
+        <Route path="/pmgc" element={<Suspense fallback={<PageLoader />}><PMGCPage /></Suspense>} />
         <Route 
           path="*" 
           element={
@@ -58,6 +61,7 @@ export default function App() {
           } 
         />
       </Routes>
+      </Suspense>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import ResponsiveImage from './ResponsiveImage';
 import React from 'react';
 import AnimatedGradient from './AnimatedGradient';
 import { playersData } from '../data/playersData';
@@ -61,7 +62,7 @@ export default function InTheGameWith() {
 
                   {/* Layer 4: Athlete Cutout with generous mobile headroom */}
                   {player.image ? (
-                    <img
+                    <ResponsiveImage
                       src={player.image}
                       alt={player.name}
                       loading="lazy"

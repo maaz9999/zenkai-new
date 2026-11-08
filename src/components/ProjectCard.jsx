@@ -1,3 +1,4 @@
+import ResponsiveImage from './ResponsiveImage';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -99,9 +100,10 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
 
     // Preload top images for this project into browser memory
     if (project.presentationSections && project.presentationSections.length > 0) {
-      project.presentationSections.slice(0, 3).forEach((sec) => {
+      project.presentationSections.slice(0, 1).forEach((sec) => {
         if (sec.image) {
           const img = new Image();
+          img.fetchPriority = 'low';
           img.src = sec.image;
         }
       });
@@ -134,7 +136,7 @@ export default function ProjectCard({ project, index, heading, thumbnail, badge 
       {/* Featured Horizontal Thumbnail Window matching the bottom cards */}
       {displayThumbnail && (
         <div className="absolute top-2 left-2.5 right-2.5 sm:top-2.5 sm:left-3 sm:right-3 h-[75%] sm:h-[77%] rounded-xl overflow-hidden border border-white/20 shadow-[0_12px_28px_rgba(0,0,0,0.65)] z-[2] transition-transform duration-500 ease-out group-hover:scale-[1.02]">
-          <img 
+          <ResponsiveImage
             src={displayThumbnail} 
             alt={displayHeading} 
             loading="lazy"

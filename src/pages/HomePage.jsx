@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import ZenkaiFiles from '../components/ZenkaiFiles';
 import BrandStatement from '../components/BrandStatement';
-import OurCraft from '../components/OurCraft';
+import DeferredSection from '../components/DeferredSection';
+const OurCraft = lazy(() => import('../components/OurCraft'));
 import InTheGameWith from '../components/InTheGameWith';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
@@ -25,7 +26,7 @@ export default function HomePage() {
   // Handle hash scrolling on page navigation
   useEffect(() => {
     if (location.hash) {
-      const target = document.querySelector(location.hash);
+      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
       if (target) {
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth' });
@@ -46,7 +47,7 @@ export default function HomePage() {
       <BrandStatement />
 
       {/* 4. Our Craft — Screenshot 4 */}
-      <OurCraft />
+      <DeferredSection id="our-craft"><OurCraft /></DeferredSection>
 
       {/* 5. In The Game With — Screenshot 5 */}
       <InTheGameWith />

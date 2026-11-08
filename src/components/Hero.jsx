@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Header from './Header';
 import Marquee from './Marquee';
 
@@ -12,6 +12,30 @@ import Marquee from './Marquee';
  * - Infinite Marquee slider flush at bottom
  */
 export default function Hero() {
+  const [videoEnabled, setVideoEnabled] = useState(false);
+  const heroRef = useRef(null);
+  const videoRef = useRef(null);
+  useEffect(() => {
+    if (navigator.connection?.saveData || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const enable = () => setVideoEnabled(true);
+    const idle = window.requestIdleCallback?.(enable, { timeout: 2000 });
+    const timer = idle === undefined ? setTimeout(enable, 500) : undefined;
+    return () => { if (idle !== undefined) window.cancelIdleCallback(idle); clearTimeout(timer); };
+  }, []);
+  useEffect(() => {
+    if (!videoEnabled) return;
+    let visible = true;
+    const sync = () => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (visible && !document.hidden) video.play().catch(() => {});
+      else video.pause();
+    };
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
+    observer.observe(heroRef.current);
+    document.addEventListener('visibilitychange', sync);
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', sync); };
+  }, [videoEnabled]);
   const scrollToWork = () => {
     const el = document.getElementById('zenkai-files');
     if (el) {
@@ -20,17 +44,18 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-black">
+    <section ref={heroRef} className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-black">
       {/* Background Video (Full-bleed edge-to-edge cinematic immersion) */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden transform-gpu">
         <video
-          src="/bg.mp4"
+          ref={videoRef}
+          src={videoEnabled ? '/bg.v2.mp4' : undefined}
           poster="/bg-poster.jpg"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           className="w-full h-full object-cover object-center grayscale"
         />
         {/* Dark overlay ensuring perfect contrast matching Screenshot 1 */}

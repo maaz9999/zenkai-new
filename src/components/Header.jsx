@@ -107,6 +107,7 @@ export default function Header() {
   const desktopNavItems = [
     { label: 'Portfolio', id: 'zenkai-files', key: 'portfolio' },
     { label: 'Services', id: 'our-craft', key: 'services' },
+    { label: 'PMGC', href: '/pmgc', key: 'pmgc' },
     { label: 'Contact', id: 'contact', key: 'contact' }
   ];
 
@@ -114,6 +115,7 @@ export default function Header() {
     { label: 'Portfolio', id: 'zenkai-files', key: 'portfolio' },
     { label: 'Services', id: 'our-craft', key: 'services' },
     { label: 'Partners', id: 'in-the-game-with', key: 'partners' },
+    { label: 'PMGC', href: '/pmgc', key: 'pmgc' },
     { label: 'Contact', id: 'contact', key: 'contact' }
   ];
 
@@ -150,12 +152,14 @@ export default function Header() {
             {/* Desktop Navbar: Portfolio, Services, Contact */}
             <nav className="hidden sm:flex items-center gap-1 sm:gap-1.5 md:gap-2 shrink-0" aria-label="Main Navigation">
               {desktopNavItems.map((item) => {
-                const isActive = activeNav === item.key;
+                const isActive = item.href ? location.pathname === item.href : activeNav === item.key;
+                const NavItem = Link;
                 return (
-                  <a
+                  <NavItem
                     key={item.key}
-                    href={`/#${item.id}`}
-                    onClick={(e) => handleNavClick(e, item.id, item.key)}
+                    to={item.href || `/#${item.id}`}
+                    aria-current={isActive ? (item.href ? 'page' : 'location') : undefined}
+                    onClick={(e) => item.href ? setMobileMenuOpen(false) : handleNavClick(e, item.id, item.key)}
                     className={`group flex items-center px-3 sm:px-3.5 py-1 md:py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all select-none cursor-pointer ${
                       isActive
                         ? 'bg-white/25 hover:bg-white/30 text-white border border-white/30 shadow-[0_2px_12px_rgba(0,0,0,0.25)]'
@@ -163,7 +167,7 @@ export default function Header() {
                     }`}
                   >
                     <span>{item.label}</span>
-                  </a>
+                  </NavItem>
                 );
               })}
             </nav>
@@ -197,12 +201,14 @@ export default function Header() {
 
             <div className="flex flex-col gap-1">
               {mobileNavItems.map((item) => {
-                const isActive = activeNav === item.key;
+                const isActive = item.href ? location.pathname === item.href : activeNav === item.key;
+                const NavItem = Link;
                 return (
-                  <a
+                  <NavItem
                     key={item.key}
-                    href={`/#${item.id}`}
-                    onClick={(e) => handleNavClick(e, item.id, item.key)}
+                    to={item.href || `/#${item.id}`}
+                    aria-current={isActive ? (item.href ? 'page' : 'location') : undefined}
+                    onClick={(e) => item.href ? setMobileMenuOpen(false) : handleNavClick(e, item.id, item.key)}
                     className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl font-bold uppercase tracking-wider text-xs transition-all select-none cursor-pointer ${
                       isActive
                         ? 'bg-gradient-to-r from-[#FF7348]/25 to-[#DA2086]/25 text-white border border-[#FF7348]/40 shadow-sm'
@@ -214,7 +220,7 @@ export default function Header() {
                       <span>{item.label}</span>
                     </div>
                     <ArrowUpRight className="w-3.5 h-3.5 text-white/50" />
-                  </a>
+                  </NavItem>
                 );
               })}
 

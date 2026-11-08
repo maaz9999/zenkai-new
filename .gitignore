@@ -34,3 +34,8 @@ Thumbs.db
 # Scratch & Root duplicate binaries
 scratch/
 /BG.MP4
+
+# Keep full-size editing exports local; ship the optimized web copies.
+/public/assets/LEO/*.mp4
+/public/assets/LEO/optimized/*.incomplete
+/public/assets/LEO/optimized/*.tmp.mp4

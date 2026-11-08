@@ -162,7 +162,6 @@ export default function OurCraft() {
 
   return (
     <section 
-      id="our-craft" 
       className={`relative bg-black transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] px-4 sm:px-6 lg:px-8 xl:px-12 overflow-hidden ${
         isFolderOpen 
           ? 'pt-16 pb-28 sm:pt-20 sm:pb-36 md:pt-24 md:pb-40' 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { reelPoster as getPosterUrl } from '../lib/media';
 import {
   Play,
   Pause,
@@ -44,23 +45,6 @@ function ShortsBadgeIcon({ className = "w-4 h-4" }) {
 }
 
 /**
- * Helper to dynamically resolve poster thumbnail for reels (WebP optimized)
- */
-const getPosterUrl = (videoUrl) => {
-  if (!videoUrl) return '';
-  if (videoUrl.includes('/assets/REELS/')) {
-    return videoUrl.replace('/assets/REELS/', '/assets/REELS/posters/').replace('.mp4', '.webp');
-  }
-  if (videoUrl.includes('/assets/GROWTH CREATIVE.mp4')) {
-    return '/assets/REELS/posters/GROWTH CREATIVE.webp';
-  }
-  if (videoUrl.includes('/media/reel-showcase.mp4')) {
-    return '/assets/REELS/posters/reel-showcase.webp';
-  }
-  return '';
-};
-
-/**
  * Format seconds to mm:ss or hh:mm:ss
  */
 const formatTime = (seconds) => {
@@ -97,7 +81,7 @@ export default function ReelsShowcase({
   prevProject
 }) {
   // View mode: 'shorts-player' (default matching screenshot) | 'videos' | 'all-grid'
-  const [viewMode, setViewMode] = useState('shorts-player');
+  const [viewMode, setViewMode] = useState('all-grid');
   const [activeShortIdx, setActiveShortIdx] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [isPlayerMuted, setIsPlayerMuted] = useState(true);
@@ -131,21 +115,10 @@ export default function ReelsShowcase({
 
   const activeShort = shortsReels[activeShortIdx] || shortsReels[0] || {};
 
-  // Eagerly preload posters in background cache on mount for instant visual display
-  useEffect(() => {
-    longFormVideos.forEach((v) => {
-      const poster = getPosterUrl(v.video);
-      if (poster) {
-        const img = new Image();
-        img.src = poster;
-      }
-    });
-  }, [longFormVideos]);
-
   // Duration mapping for long-form videos
   const getLongDuration = (idx) => {
-    const times = ['14:20', '18:45', '11:32', '08:15'];
-    return times[idx % times.length];
+    const duration = filteredLongForm[idx]?.duration;
+    return duration ? formatTime(duration) : 'PLAY';
   };
 
   const handleToggleMute = (e) => {
@@ -330,6 +303,7 @@ export default function ReelsShowcase({
   // Keyboard navigation for Shorts Feed Player
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (e.target.closest('input, textarea, select, [contenteditable=true]')) return;
       // If theater modal open
       if (activeTheaterVideo) {
         if (e.key === 'Escape') {
@@ -529,7 +503,7 @@ export default function ReelsShowcase({
               }`}
             >
               <ShortsBadgeIcon className="w-4 h-4" />
-              <span>Shorts Player ({shortsReels.length})</span>
+              <span>Shorts ({shortsReels.length})</span>
             </button>
 
             {/* Long-Form Videos Tab */}
@@ -542,7 +516,7 @@ export default function ReelsShowcase({
               }`}
             >
               <Tv className="w-3.5 h-3.5" />
-              <span>16:9 Videos ({longFormVideos.length})</span>
+              <span>16:9 ({longFormVideos.length})</span>
             </button>
 
             {/* Grid View Tab */}
@@ -555,7 +529,7 @@ export default function ReelsShowcase({
               }`}
             >
               <LayoutGrid className="w-3.5 h-3.5" />
-              <span>Full Grid ({allMedia.length})</span>
+              <span>All ({allMedia.length})</span>
             </button>
           </div>
 
@@ -900,26 +874,20 @@ export default function ReelsShowcase({
                 return (
                   <div
                     key={`longform-only-${idx}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Play ${video.title}`}
+                    onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveTheaterVideo(video); } }}
                     onClick={() => setActiveTheaterVideo(video)}
                     className="group cursor-pointer flex flex-col"
                   >
                     <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md group-hover:shadow-[0_15px_40px_rgba(255,115,72,0.18)] transition-all duration-300">
-                      <video
-                        src={video.video}
-                        poster={getPosterUrl(video.video)}
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
+                      <img
+                        src={getPosterUrl(video.video)}
+                        alt={video.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
-                        onMouseEnter={(e) => {
-                          e.target.preload = 'auto';
-                          e.target.play().catch(() => {});
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.pause();
-                          e.target.currentTime = 0;
-                        }}
                       />
                       {/* Play button overlay: prominently visible on touch / mobile */}
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
@@ -991,26 +959,20 @@ export default function ReelsShowcase({
                 {filteredLongForm.map((video, idx) => (
                   <div
                     key={`all-longform-${idx}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Play ${video.title}`}
+                    onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveTheaterVideo(video); } }}
                     onClick={() => setActiveTheaterVideo(video)}
                     className="group cursor-pointer flex flex-col"
                   >
                     <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md transition-all duration-300">
-                      <video
-                        src={video.video}
-                        poster={getPosterUrl(video.video)}
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
+                      <img
+                        src={getPosterUrl(video.video)}
+                        alt={video.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
-                        onMouseEnter={(e) => {
-                          e.target.preload = 'auto';
-                          e.target.play().catch(() => {});
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.pause();
-                          e.target.currentTime = 0;
-                        }}
                       />
                       {/* Play button overlay: prominently visible on touch / mobile */}
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 group-hover:scale-110">
@@ -1076,22 +1038,12 @@ export default function ReelsShowcase({
                     className="group cursor-pointer flex flex-col"
                   >
                     <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-800 group-hover:border-neutral-700 shadow-md group-hover:shadow-[0_12px_36px_rgba(255,0,0,0.22)] transition-all duration-300">
-                      <video
-                        src={short.video}
-                        poster={getPosterUrl(short.video)}
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover object-center group-hover:scale-[1.025] transition-transform duration-300"
-                        onMouseEnter={(e) => {
-                          e.target.preload = 'auto';
-                          e.target.play().catch(() => {});
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.pause();
-                          e.target.currentTime = 0;
-                        }}
+                      <img
+                        src={getPosterUrl(short.video)}
+                        alt={short.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300"
                       />
                       {/* YouTube Shorts Play badge indicator */}
                       <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white border border-white/10 group-hover:bg-[#FF0000] transition-colors pointer-events-none">

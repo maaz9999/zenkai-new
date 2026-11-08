@@ -1,3 +1,5 @@
+import { thumbnailPreview } from '../lib/media';
+import ResponsiveImage from './ResponsiveImage';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -307,17 +309,13 @@ export default function FourThriveMerchShowcase({
   // Progressive background preloading for instant zero-latency slide flips
   useEffect(() => {
     if (!caseFiles || caseFiles.length === 0) return;
-    const indicesToPreload = [
-      activeSlideIndex,
-      (activeSlideIndex + 1) % caseFiles.length,
-      (activeSlideIndex + 2) % caseFiles.length,
-      (activeSlideIndex - 1 + caseFiles.length) % caseFiles.length
-    ];
+    const indicesToPreload = [(activeSlideIndex + 1) % caseFiles.length];
     indicesToPreload.forEach((idx) => {
       const file = caseFiles[idx];
       if (file && file.image) {
         const preloader = new Image();
-        preloader.src = file.image;
+        preloader.fetchPriority = 'low';
+        preloader.src = thumbnailPreview(file.image);
       }
     });
   }, [activeSlideIndex, caseFiles]);
@@ -373,7 +371,7 @@ export default function FourThriveMerchShowcase({
 
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-white/10 p-1 flex items-center justify-center ring-2 ring-[#FF6428]/40 shrink-0">
-                <img
+                <ResponsiveImage
                   src="/assets/zenkai-emblem.png"
                   alt="Zenkai Media"
                   className="w-full h-full object-contain"
@@ -513,7 +511,7 @@ export default function FourThriveMerchShowcase({
                 className="group relative aspect-[16/9] w-full rounded-2xl bg-black overflow-hidden shadow-2xl border border-white/10 hover:border-[#FF6428]/50 transition-all cursor-pointer flex items-center justify-center"
               >
                 {/* Clean Artboard Image */}
-                <img
+                <ResponsiveImage
                   src={activeSlide.image}
                   alt={activeSlide.title}
                   fetchPriority="high"
@@ -595,7 +593,7 @@ export default function FourThriveMerchShowcase({
                   {/* Team Profile */}
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden bg-white/10 border border-white/20 p-1 flex items-center justify-center shrink-0">
-                      <img
+                      <ResponsiveImage
                         src="/assets/zenkai-emblem.png"
                         alt="4THRIVE Org"
                         className="w-full h-full object-contain"
@@ -729,8 +727,8 @@ export default function FourThriveMerchShowcase({
                       >
                         {/* Mini 16:9 Thumbnail Image */}
                         <div className="relative w-32 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-900/90 shrink-0 border border-white/10">
-                          <img
-                            src={item.image}
+                          <ResponsiveImage
+                            src={item.image} sizes="(min-width: 1024px) 240px, 50vw"
                             alt={item.title}
                             loading="lazy"
                             decoding="async"
@@ -790,8 +788,8 @@ export default function FourThriveMerchShowcase({
                         }`}
                       >
                         <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-neutral-900/90 mb-1.5 border border-white/10">
-                          <img
-                            src={item.image}
+                          <ResponsiveImage
+                            src={item.image} sizes="(min-width: 1024px) 240px, 50vw"
                             alt={item.title}
                             loading="lazy"
                             decoding="async"

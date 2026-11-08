@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.brand-gradient[data-animating="false"] [class*="animate-organic"] { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [class*="animate-organic"], .animate-marquee, .animate-marquee-reverse { animation: none !important; }
+}
+
 :root {
   --color-bg: #000000;
   --color-purple: #4B0868;

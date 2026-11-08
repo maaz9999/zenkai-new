@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { 
@@ -68,13 +68,15 @@ const BUDGET_OPTIONS = [
 ];
 
 export default function StartProjectPage() {
+  const [searchParams] = useSearchParams();
+  const isPMGC = searchParams.get('campaign') === 'pmgc';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     handleOrNumber: '',
-    service: 'Tournament Key Art & Posters',
+    service: isPMGC ? 'Video Editing & Motion' : 'Tournament Key Art & Posters',
     budget: '$500 – $1,500',
-    message: ''
+    message: isPMGC ? 'PMGC creative campaign\nTeam: \nCreative needed (films, matchday graphics, identity, merch): \nFootage available: \nTimeline: ' : ''
   });
 
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success'

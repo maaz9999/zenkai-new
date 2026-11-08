@@ -10,6 +10,8 @@
  * - High-CTR YouTube Thumbnails Portfolio (69 Thumbnails)
  */
 
+import { leoReels } from './leoReels';
+
 export const projectsData = [
   // =========================================================================
   // 1. POSTERS PORTFOLIO (11 POSTERS)
@@ -443,8 +445,9 @@ export const projectsData = [
     gradientColors: ['#DA2086', '#FF7348', '#FFC15C', '#551276'],
     projectType: 'reels-portfolio',
     defaultColumns: 4,
-    badgeText: '17 VIDEO REELS',
+    badgeText: `${17 + leoReels.length} VIDEO REELS`,
     presentationSections: [
+      ...leoReels,
       {
         title: "AUTOMOTIVE REVIEW MOTION EDIT",
         subtitle: "High-Retention Automotive Edit with Custom Sound Design",

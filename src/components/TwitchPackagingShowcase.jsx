@@ -1,3 +1,4 @@
+import ResponsiveImage from './ResponsiveImage';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -298,7 +299,7 @@ export default function TwitchPackagingShowcase({
               }}
               className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.95)] cursor-zoom-in group/screen flex items-center justify-center mb-6"
             >
-              <img
+              <ResponsiveImage
                 key={broadcastScenes[activeSceneIndex].id}
                 src={broadcastScenes[activeSceneIndex].image}
                 alt={broadcastScenes[activeSceneIndex].label}
@@ -337,7 +338,7 @@ export default function TwitchPackagingShowcase({
                     >
                       {/* Mini Thumbnail */}
                       <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden bg-black mb-2">
-                        <img
+                        <ResponsiveImage
                           src={scene.image}
                           alt={scene.label}
                           className="w-full h-full object-cover object-center group-hover/dock:scale-105 transition-transform"
@@ -444,7 +445,7 @@ export default function TwitchPackagingShowcase({
                       className="absolute inset-0 opacity-30 blur-xl transition-opacity group-hover:opacity-75"
                       style={{ background: `radial-gradient(circle, ${sticker.accent} 0%, transparent 70%)` }}
                     />
-                    <img
+                    <ResponsiveImage
                       src={sticker.image}
                       alt={sticker.title}
                       className="w-full h-full object-contain object-center z-10 filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.9)] transition-transform duration-300"
@@ -493,7 +494,7 @@ export default function TwitchPackagingShowcase({
                 className="group bg-black/60 rounded-2xl overflow-hidden border border-white/15 hover:border-[#FF7348]/60 shadow-xl transition-all cursor-zoom-in flex flex-col justify-between"
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
-                  <img
+                  <ResponsiveImage
                     src="/assets/Arslan_Ash_cover.webp"
                     alt="Master Stream Packaging"
                     loading="lazy"
@@ -526,7 +527,7 @@ export default function TwitchPackagingShowcase({
                 className="group bg-black/60 rounded-2xl overflow-hidden border border-white/15 hover:border-[#FF7348]/60 shadow-xl transition-all cursor-zoom-in flex flex-col justify-between"
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
-                  <img
+                  <ResponsiveImage
                     src="/assets/Twitch emote presentation/Frame 2.webp"
                     alt="Custom Emote Character Set"
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-102"
@@ -557,7 +558,7 @@ export default function TwitchPackagingShowcase({
                 className="group bg-black/60 rounded-2xl overflow-hidden border border-white/15 hover:border-[#FF7348]/60 shadow-xl transition-all cursor-zoom-in flex flex-col justify-between"
               >
                 <div className="relative aspect-[16/9] w-full bg-[#05020a] overflow-hidden">
-                  <img
+                  <ResponsiveImage
                     src="/assets/Twitch emote presentation/Frame 3.webp"
                     alt="Loyalty Badges & Sub Tiers"
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-102"
@@ -598,8 +599,8 @@ export default function TwitchPackagingShowcase({
                     onClick={() => setLightboxIndex(idx)}
                     className={`relative w-full ${isSticker ? 'aspect-[4/3] p-8' : 'aspect-[16/9] p-2 sm:p-3'} bg-[#080310] overflow-hidden cursor-zoom-in flex items-center justify-center`}
                   >
-                    <img
-                      src={item.image}
+                    <ResponsiveImage
+                      src={item.image} sizes="(min-width: 1024px) 240px, 50vw"
                       alt={item.title}
                       loading="lazy"
                       className={`w-full h-full ${isSticker ? 'object-contain max-h-[85%] drop-shadow-2xl' : 'object-contain'} object-center rounded-xl transition-transform duration-500 group-hover:scale-[1.02]`}

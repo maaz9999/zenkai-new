@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * AnimatedGradient component recreates the organic orange, gold, pink,
@@ -16,9 +16,24 @@ export default function AnimatedGradient({
   rounded = '',
   style = {}
 }) {
+  const gradientRef = useRef(null);
+  const [active, setActive] = useState(false);
+  useEffect(() => {
+    let inView = false;
+    const update = () => setActive(inView && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      update();
+    });
+    observer.observe(gradientRef.current);
+    document.addEventListener('visibilitychange', update);
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
+  }, []);
   return (
     <div 
-      className={`relative overflow-hidden ${rounded} ${className}`}
+      ref={gradientRef}
+      className={`brand-gradient relative overflow-hidden ${rounded} ${className}`}
+      data-animating={active}
       style={style}
     >
       {/* Background base layer (only for variants that need solid base) */}
