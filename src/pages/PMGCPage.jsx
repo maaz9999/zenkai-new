@@ -4,6 +4,7 @@ import { ArrowUpRight, ArrowDown, Play, Film, Image, Palette, Shirt } from 'luci
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import VideoDialog from '../components/VideoDialog';
+import PmgcHarisGallery from '../components/PmgcHarisGallery';
 import { pmgcTeamSamples, pmgcStyleSamples } from '../data/leoReels';
 import './PMGCPage.css';
 
@@ -81,6 +82,8 @@ export default function PMGCPage() {
           <p className="pmgc-sample-note">Independent creative samples by Zenkai Media, presented as pitch concepts.</p>
         </section>
 
+        <PmgcHarisGallery />
+
         <section className="pmgc-services-band">
           <div className="pmgc-container pmgc-section">
             <div className="pmgc-section-heading"><div><p className="pmgc-eyebrow">02 / YOUR CAMPAIGN, CONNECTED</p><h2>MORE THAN<br /><span>A HYPE VIDEO.</span></h2></div><p className="pmgc-body">One creative direction, from the first announcement to the final result. Pick the support your team needs and we’ll build the scope together.</p></div>
@@ -104,7 +107,7 @@ export default function PMGCPage() {
         <section className="pmgc-cta pmgc-container"><p className="pmgc-eyebrow">YOUR NEXT CHAPTER STARTS HERE</p><h2>MAKE YOUR RUN<br /><span>IMPOSSIBLE TO IGNORE.</span></h2><p>Representing a PMGC team? Let’s build a campaign around your story.</p><div className="pmgc-actions"><a href={whatsapp} target="_blank" rel="noreferrer" className="pmgc-button pmgc-button-brand">LET’S TALK PMGC <ArrowUpRight size={19} /></a><Link to="/start-a-project?campaign=pmgc" className="pmgc-text-link">SEND A TEAM BRIEF <ArrowUpRight size={18} /></Link></div></section>
       </main>
       <Footer />
-      {activeSample && <VideoDialog key={activeSample.video} video={activeSample} onClose={() => setActiveSample(null)} />}
+      {activeSample && <VideoDialog key={activeSample.video} video={import.meta.env.DEV ? { ...activeSample, video: `https://www.zenkai.media${activeSample.video}` } : activeSample} onClose={() => setActiveSample(null)} />}
     </div>
   );
 }
