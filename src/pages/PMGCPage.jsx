@@ -6,11 +6,13 @@ import Footer from '../components/Footer';
 import VideoDialog from '../components/VideoDialog';
 import PmgcHarisGallery from '../components/PmgcHarisGallery';
 import { magicianSections } from '../data/magicianData';
+import { fourTSections } from '../data/fourTData';
 import { pmgcSections } from '../data/pmgcData';
 import { pmgcTeamSamples, pmgcStyleSamples } from '../data/leoReels';
 import './PMGCPage.css';
 
 const gallerySections = [
+  ...fourTSections.map((item) => ({ ...item, category: '4THRIVES' })),
   ...pmgcSections,
   ...magicianSections.map((item) => ({
     ...item,
@@ -97,7 +99,7 @@ export default function PMGCPage() {
         <PmgcHarisGallery
           sections={gallerySections}
           eyebrow="More PUBG Mobile work · Haris & Graphical Magician"
-          description="Explore Global Open key art, Silent Wolves tournament graphics, creator thumbnails, tournament identity, and broadcast motion by Haris, alongside the complete Beimaan Chapter 1 event GFX and VFX collection by Graphical Magician."
+          description="Explore the 4THRIVES PMGO South Asia campaign first, followed by Global Open key art, Silent Wolves tournament graphics, creator thumbnails, branding, broadcast motion, and the complete Beimaan Chapter 1 event collection by Haris and Graphical Magician."
         />
 
         <section className="pmgc-services-band">
