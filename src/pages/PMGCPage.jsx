@@ -5,8 +5,20 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import VideoDialog from '../components/VideoDialog';
 import PmgcHarisGallery from '../components/PmgcHarisGallery';
+import { magicianSections } from '../data/magicianData';
+import { pmgcSections } from '../data/pmgcData';
 import { pmgcTeamSamples, pmgcStyleSamples } from '../data/leoReels';
 import './PMGCPage.css';
+
+const gallerySections = [
+  ...pmgcSections,
+  ...magicianSections.map((item) => ({
+    ...item,
+    discipline: item.category,
+    category: 'Event Work',
+    credit: 'Graphical Magician',
+  })),
+];
 
 const whatsapp = `https://wa.me/923137396135?text=${encodeURIComponent("Hi Zenkai Media! I'd like to discuss a PMGC creative campaign for our team.")}`;
 const services = [
@@ -82,7 +94,11 @@ export default function PMGCPage() {
           <p className="pmgc-sample-note">Independent creative samples by Zenkai Media, presented as pitch concepts.</p>
         </section>
 
-        <PmgcHarisGallery />
+        <PmgcHarisGallery
+          sections={gallerySections}
+          eyebrow="More PUBG Mobile work · Haris & Graphical Magician"
+          description="Explore Global Open key art, Silent Wolves tournament graphics, creator thumbnails, tournament identity, and broadcast motion by Haris, alongside the complete Beimaan Chapter 1 event GFX and VFX collection by Graphical Magician."
+        />
 
         <section className="pmgc-services-band">
           <div className="pmgc-container pmgc-section">
